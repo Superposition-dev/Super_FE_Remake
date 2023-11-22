@@ -1,0 +1,6 @@
+@font-face {
+  font-family: 'Lemon';
+  font-weight: 400;
+  font-display: swap;
+  src: local('lemon'), url('/fonts/Lemon.ttf') format('truetype');
+}
