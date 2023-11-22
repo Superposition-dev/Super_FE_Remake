@@ -3,6 +3,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { Mousewheel, Pagination } from 'swiper/modules';
 import * as S from './styles';
+import Intro from './Intro';
 function MainPage() {
   return (
     <S.SwiperWrap
@@ -14,7 +15,11 @@ function MainPage() {
       }}
       modules={[Mousewheel, Pagination]}
       className="mySwiper"
-    ></S.SwiperWrap>
+    >
+      <S.SwiperItem>
+        <Intro />
+      </S.SwiperItem>
+    </S.SwiperWrap>
   );
 }
 
