@@ -1,8 +1,8 @@
 import React from 'react';
 import * as S from './styles';
-function Layout({ children }: { children: React.ReactNode }) {
+function Layout({ children, height }: { children: React.ReactNode; height: number }) {
   return (
-    <S.Layout>
+    <S.Layout height={height}>
       <S.Background />
       <S.Cover />
       {children}
