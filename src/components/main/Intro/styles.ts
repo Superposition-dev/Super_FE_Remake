@@ -15,31 +15,38 @@ const updown = keyframes`
 `;
 
 export const SwiperSection = styled.section`
-  height: 100vh;
+  height: 100%;
   position: relative;
   overflow: hidden;
   @media (max-width: 768px) {
   }
 `;
 
-export const PlanetWrap = styled.div`
-  width: 200%;
+export const PlanetWrap = styled.div<{ height: number }>`
   position: absolute;
+  width: 200%;
   left: -50%;
-  top: -20%;
-  img {
-    transform: rotate(-20deg);
+  right: -50%;
+  transform: rotate(55deg);
+  @media (max-width: 768px) {
+    top: -17%;
+  }
+  @media (max-width: 411px) {
+    top: -30%;
   }
 `;
 
 export const LogoWrap = styled.div`
   position: absolute;
-  top: 10%;
+  top: 15%;
   left: 50%;
   right: 50%;
   transform: translateX(-50%);
   @media (max-width: 768px) {
     width: 15%;
+  }
+  @media (max-width: 411px) {
+    width: 13%;
   }
 `;
 
@@ -67,6 +74,11 @@ export const CatWrap = styled.div`
     top: 46%;
     left: 25%;
   }
+  @media (max-width: 411px) {
+    width: 25%;
+    top: 47%;
+    left: 27%;
+  }
 `;
 
 export const TextWrap = styled.div`
@@ -86,7 +98,7 @@ export const Title = styled.h1`
 `;
 
 export const Desc = styled.p`
-  ${({ theme }) => theme.font.regular_14};
+  ${({ theme }) => theme.font.regular_12};
 `;
 
 export const ArrowWrap = styled.div`

@@ -73,6 +73,7 @@ const theme = {
   colors,
   font,
   border,
+  flex,
 };
 
 export default theme;
