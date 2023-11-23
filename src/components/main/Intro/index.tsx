@@ -17,7 +17,7 @@ function Intro() {
         <Image src="/images/planet2.svg" alt="중간행성" width={0} height={0} layout="responsive" />
       </S.MediumPlanetWrap>
       <S.CatWrap>
-        <Image src="/images/cat.svg" alt="고양이" width={0} height={0} layout="responsive" />
+        <Image src="/images/cat.webp" alt="고양이" width={0} height={0} layout="responsive" />
       </S.CatWrap>
       <S.TextWrap>
         <S.Title>
@@ -31,6 +31,7 @@ function Intro() {
       <S.ArrowWrap>
         <Image src="/images/scroll_arrow.svg" alt="화살표" width={0} height={0} layout="responsive" />
       </S.ArrowWrap>
+      <S.Gradient />
     </S.SwiperSection>
   );
 }
