@@ -14,7 +14,7 @@ const keyframesPlanet = keyframes`
 // 중형행성 애니메이션
 const showPlanet = keyframes`
   0% {
-    transform: rotate(80deg) translateY(-40%);
+    transform: rotate(80deg) translateY(-80%);
   }
   100% {
     transform: rotate(0) translateY(0);
@@ -53,48 +53,34 @@ const fadeInText = keyframes`
   } 
 `;
 
-// 화살표 애니메이션
-const updown = keyframes`
-    0% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10%);
-    }
-    100% {
-      transform: translateY(0);
-    }
-`;
-
-export const SwiperSection = styled.section`
-  width: 100%;
-  height: 100%;
+export const IntroSection = styled.section`
+  ${({ theme }) => theme.layout.overFlowHidden};
   position: relative;
-  overflow: hidden;
   @media (max-width: 768px) {
   }
 `;
 
-export const PlanetWrap = styled.div`
+export const PlanetWrap = styled.div<{ vh: number }>`
   position: absolute;
   width: 200%;
   left: -50%;
   right: -50%;
   transform: rotate(55deg);
-  z-index: 1;
-  animation: ${keyframesPlanet} 480s linear infinite;
+  z-index: 0;
+  /* animation: ${keyframesPlanet} 426s linear infinite; */
   @media (max-width: 768px) {
-    top: -18%;
+    top: calc(-16vh - ${({ vh }) => vh * 4}px);
   }
-  @media (max-width: 411px) {
-    top: -22%;
+  @media (max-width: 425px) {
+    top: calc(-20vh - ${({ vh }) => vh * 2}px);
   }
-  @media (max-width: 380px) {
-    top: -30%;
+  @media (max-width: 374px) {
+    top: calc(-24vh - ${({ vh }) => vh}px);
   }
 `;
 
 export const LogoWrap = styled.div`
+  width: 6vh;
   position: absolute;
   top: 15%;
   left: 0;
@@ -104,32 +90,27 @@ export const LogoWrap = styled.div`
   transform: translateY(-50%);
   opacity: 0;
   animation: ${fadeInUp} 0.7s ease-in-out 0.2s forwards;
-  @media (max-width: 768px) {
-    width: 15%;
-  }
-  @media (max-width: 411px) {
-    width: 13%;
-  }
 `;
 
 export const SmallPlanetWrap = styled.div`
   position: absolute;
   top: 10%;
   left: 10%;
-  z-index: 2;
+  z-index: 20;
   opacity: 0;
   animation: ${fadeIn} 0.6s ease-in 1s forwards;
   @media (max-width: 768px) {
     width: 15%;
   }
 `;
+
 export const MediumPlanetWrap = styled.div`
   position: absolute;
   top: 15%;
-  right: -35%;
-  z-index: 2;
-  transform: rotate(80deg) translateY(-40%);
-  animation: ${showPlanet} 0.8s ease-in 0.2s forwards;
+  right: -43%;
+  z-index: 20;
+  transform: rotate(80deg) translateY(-60%);
+  animation: ${showPlanet} 0.7s ease-in 0.3s forwards;
   @media (max-width: 768px) {
     width: 80%;
   }
@@ -137,18 +118,13 @@ export const MediumPlanetWrap = styled.div`
 
 export const CatWrap = styled.div`
   position: absolute;
-  z-index: 2;
+  z-index: 20;
   opacity: 0;
   animation: ${fadeIn} 1s ease-in-out 0.5s forwards;
   @media (max-width: 768px) {
-    width: 30%;
+    width: 12vh;
     top: 46%;
-    left: 25%;
-  }
-  @media (max-width: 411px) {
-    width: 25%;
-    top: 47%;
-    left: 27%;
+    left: 28%;
   }
 `;
 
@@ -156,7 +132,7 @@ export const TextWrap = styled.div`
   position: absolute;
   top: 30%;
   left: 5%;
-  z-index: 2;
+  z-index: 20;
   opacity: 0;
   transform: translateX(-10%);
   animation: ${fadeInText} 1s ease-in-out 0.6s forwards;
@@ -173,17 +149,7 @@ export const Title = styled.h1`
 `;
 
 export const Desc = styled.p`
-  ${({ theme }) => theme.font.regular_12};
-`;
-
-export const ArrowWrap = styled.div`
-  width: 10%;
-  position: absolute;
-  bottom: 2%;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  animation: ${updown} 1s ease infinite;
+  ${({ theme }) => theme.font.regular_14};
 `;
 
 export const Gradient = styled.div`
