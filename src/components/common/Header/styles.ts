@@ -10,7 +10,7 @@ export const HeaderWrap = styled.div`
   background-color: transparent;
   @media (max-width: 768px) {
     height: 5.5rem;
-    padding: 1rem;
+    padding: 1rem 2rem;
   }
 `;
 
@@ -23,6 +23,6 @@ export const NavWrap = styled.div`
   gap: 2rem;
 `;
 export const NavItem = styled.div`
-  ${({ theme }) => theme.font.regular_12};
+  ${({ theme }) => theme.font.regular_14};
   cursor: pointer;
 `;
