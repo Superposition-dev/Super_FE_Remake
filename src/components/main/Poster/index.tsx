@@ -1,6 +1,7 @@
 import React from 'react';
 import * as S from './styles';
 import Image from 'next/image';
+import ExhibitionList from './ExhibitionList';
 function Poster() {
   return (
     <S.PosterSection>
@@ -23,7 +24,7 @@ function Poster() {
           {'연남에서의 첫 번째 만남. 이번엔 성수를 찾아갑니다!\n두 가지 버전으로 펼쳐질 성수전을 기대해주세요!'}
         </S.PosterInfo>
       </S.PosterInfoWrap>
-      <S.PosterSlideWrap></S.PosterSlideWrap>
+      <ExhibitionList />
     </S.PosterSection>
   );
 }
