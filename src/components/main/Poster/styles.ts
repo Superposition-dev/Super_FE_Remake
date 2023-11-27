@@ -22,7 +22,6 @@ export const SubTitle = styled.h3`
 
 export const PosterInfoWrap = styled.div`
   width: 100%;
-  height: 100%;
   ${({ theme }) => theme.flex.flexColumn};
   align-items: center;
   flex-direction: column;
@@ -75,4 +74,3 @@ export const PosterInfo = styled.p`
   word-break: keep-all;
   white-space: pre-wrap;
 `;
-export const PosterSlideWrap = styled(Swiper)``;
