@@ -13,6 +13,7 @@ export const Box = styled.div<{ img: string }>`
   justify-content: center;
   gap: 0.5rem;
   position: relative;
+  filter: drop-shadow(0px 4px 8px rgba(230, 154, 249, 0.3));
 `;
 
 export const BoxCover = styled.div`
