@@ -9,13 +9,21 @@ export const HeaderWrap = styled.div`
   z-index: 100;
   background-color: transparent;
   @media (max-width: 768px) {
-    height: 5.5rem;
-    padding: 1rem;
+    height: 6rem;
+    padding: 1rem 2rem;
   }
 `;
 
 export const LogoWrap = styled.div`
-  width: 12rem;
+  @media (max-width: 768px) {
+    width: 18rem;
+  }
+  @media (max-width: 411px) {
+    width: 15rem;
+  }
+  @media (max-width: 380px) {
+    width: 12rem;
+  }
 `;
 
 export const NavWrap = styled.div`
@@ -23,6 +31,7 @@ export const NavWrap = styled.div`
   gap: 2rem;
 `;
 export const NavItem = styled.div`
-  ${({ theme }) => theme.font.regular_12};
+  ${({ theme }) => theme.font.regular_14};
+  font-weight: 500;
   cursor: pointer;
 `;

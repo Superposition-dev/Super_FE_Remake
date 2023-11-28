@@ -30,13 +30,18 @@ const font = {
     'font-size': '3rem',
     'line-height': '1.2',
   },
+  bold_3vh: {
+    'font-size': '3vh',
+    'font-weight': '700',
+    'line-height': '1.2',
+  },
   bold_20: {
     'font-size': '2rem',
     'font-weight': '700',
     'line-height': '1.2',
   },
   bold_12: {
-    'font-size': '1rem',
+    'font-size': '1.2rem',
     'font-weight': '700',
     'line-height': '1.2',
   },
@@ -51,7 +56,7 @@ const font = {
     'line-height': '1.4',
   },
   regular_14: {
-    'font-size': '1.4rem',
+    'font-size': '1.8vh',
     'font-weight': '400',
     'line-height': '1.4',
   },
@@ -62,18 +67,19 @@ const font = {
   },
 };
 
-const border = {
-  inputBorder: {
-    border: '1px solid #212121',
-    'border-radius': '5px',
+const layout = {
+  overFlowHidden: {
+    width: '100%',
+    height: '100%',
+    overflow: 'hidden',
   },
 };
 
 const theme = {
   colors,
   font,
-  border,
   flex,
+  layout,
 };
 
 export default theme;
