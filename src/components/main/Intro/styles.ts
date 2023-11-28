@@ -144,7 +144,7 @@ export const TextWrap = styled.div`
 `;
 
 export const Title = styled.h1`
-  ${({ theme }) => theme.font.bold_20};
+  ${({ theme }) => theme.font.bold_3vh};
   margin-bottom: 1rem;
 `;
 

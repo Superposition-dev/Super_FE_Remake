@@ -4,7 +4,7 @@ import { Swiper } from 'swiper/react';
 export const PosterSection = styled.section`
   ${({ theme }) => theme.layout.overFlowHidden};
   position: relative;
-  padding: 7rem 0;
+  padding: 6rem 0;
 `;
 
 export const TitleWrap = styled.div`
@@ -50,7 +50,7 @@ export const PosterTitleWrap = styled.div`
 `;
 
 export const PosterTitle = styled.h3`
-  ${({ theme }) => theme.font.bold_20};
+  ${({ theme }) => theme.font.bold_3vh};
 `;
 
 export const PosterSubWrap = styled.div`
