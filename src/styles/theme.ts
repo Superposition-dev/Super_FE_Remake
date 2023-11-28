@@ -26,11 +26,17 @@ const flex = {
 
 const font = {
   title: {
+    'font-family': 'lemon',
     'font-size': '3rem',
     'line-height': '1.2',
   },
-  bold_20: {
+  bold_3vh: {
     'font-size': '3vh',
+    'font-weight': '700',
+    'line-height': '1.2',
+  },
+  bold_20: {
+    'font-size': '2rem',
     'font-weight': '700',
     'line-height': '1.2',
   },
