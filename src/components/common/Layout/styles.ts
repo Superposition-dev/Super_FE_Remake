@@ -19,7 +19,7 @@ export const Background = styled.div`
 `;
 
 export const Cover = styled.div`
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.5);
   width: 100vw;
   height: 100%;
   position: fixed;
