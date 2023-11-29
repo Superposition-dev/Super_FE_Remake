@@ -11,7 +11,7 @@ html {
     font-size: 12px;
   }
 }
-@media (max-width: 429px) {
+@media (max-width: 430px) {
   html {
     font-size: 10px;
   }
@@ -24,18 +24,13 @@ html {
 
 body {
   height: 100vh;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   font-family: 'pretendard', 'sangju', 'Lemon', sans-serif;
   font-size: 1.4rem;
   color: #fefefe;
+  background-color: #000;
 }
-
-.ir-text {
-  text-indent: 105%;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
 .swiper-pagination-bullets {
   top: 53% !important;
   display: flex;
