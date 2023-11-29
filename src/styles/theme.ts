@@ -4,6 +4,7 @@ const colors = {
   white: '#fefefe',
   black: '#101010',
   gray: '#b8b8b8',
+  dark_gray: '#797979',
   light_purple: '#A550f0',
   purple: '#6E28AC',
 };
@@ -39,6 +40,11 @@ const font = {
     'font-size': '2rem',
     'font-weight': '700',
     'line-height': '1.2',
+  },
+  bold_14: {
+    'font-size': '1.4rem',
+    'font-weight': '700',
+    'line-height': '1.4',
   },
   bold_12: {
     'font-size': '1.2rem',
