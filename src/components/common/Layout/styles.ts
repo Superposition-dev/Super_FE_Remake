@@ -1,15 +1,14 @@
 import styled from '@emotion/styled';
 
-export const Layout = styled.div<{ height: number }>`
+export const Layout = styled.div<{ path: string; height: number }>`
   width: 100%;
-  height: ${({ height }) => 100 * height + 'px'};
-  overflow: hidden;
+  height: ${({ path, height }) => (path === '/' ? 100 * height + 'px' : '100vh')};
   position: relative;
 `;
 
 export const Background = styled.div`
   width: 100vw;
-  height: 100%;
+  height: 100vh;
   background-image: url('/images/background.webp');
   background-position: center;
   background-size: cover;
@@ -21,7 +20,7 @@ export const Background = styled.div`
 export const Cover = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   width: 100vw;
-  height: 100%;
+  height: 100vh;
   position: fixed;
   z-index: -1;
 `;

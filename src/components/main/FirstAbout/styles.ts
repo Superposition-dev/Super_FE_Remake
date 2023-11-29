@@ -2,8 +2,10 @@ import styled from '@emotion/styled';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 export const AboutSection = styled.section`
+  width: 100%;
+  height: 100%;
   overflow: hidden;
-  padding: 6rem 0;
+  padding: 5rem 0;
 `;
 
 export const TitleWrap = styled.div`
@@ -32,7 +34,7 @@ export const ImageSwiper = styled(SwiperSlide)`
 
 export const ContentWrap = styled.div`
   padding: 0 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 `;
 
 export const ContentTitle = styled.h3`
@@ -41,7 +43,7 @@ export const ContentTitle = styled.h3`
 `;
 
 export const ContentDesc = styled.p`
-  width: 80%;
+  width: 93%;
   color: ${({ theme }) => theme.colors.gray};
   ${({ theme }) => theme.font.regular_14};
   word-break: keep-all;

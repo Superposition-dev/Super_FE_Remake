@@ -1,6 +1,7 @@
 @import './reset.css';
 @import './pretendard.css';
-
+@import './lemon.css';
+@import './sangju.css';
 html {
   font-size: 10px;
 }
@@ -10,14 +11,9 @@ html {
     font-size: 12px;
   }
 }
-@media (max-width: 411px) {
+@media (max-width: 430px) {
   html {
     font-size: 10px;
-  }
-}
-@media (max-width: 376px) {
-  html {
-    font-size: 8px;
   }
 }
 
@@ -28,18 +24,13 @@ html {
 
 body {
   height: 100vh;
-  overflow: hidden;
-  font-family: 'pretendard';
+  overflow-y: auto;
+  overflow-x: hidden;
+  font-family: 'pretendard', 'sangju', 'Lemon', sans-serif;
   font-size: 1.4rem;
   color: #fefefe;
+  background-color: #000;
 }
-
-.ir-text {
-  text-indent: 105%;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
 .swiper-pagination-bullets {
   top: 53% !important;
   display: flex;

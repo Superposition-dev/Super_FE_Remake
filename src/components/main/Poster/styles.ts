@@ -1,10 +1,9 @@
 import styled from '@emotion/styled';
-import { Swiper } from 'swiper/react';
 
 export const PosterSection = styled.section`
   ${({ theme }) => theme.layout.overFlowHidden};
   position: relative;
-  padding: 6rem 0;
+  padding: 5rem 0;
 `;
 
 export const TitleWrap = styled.div`
@@ -36,10 +35,13 @@ export const PosterImage = styled.div`
   @media (max-width: 768px) {
     width: 60%;
   }
-  @media (max-width: 411px) {
-    width: 55%;
+  @media (max-width: 429px) {
+    width: 50%;
   }
-  @media (max-width: 380px) {
+  @media (max-width: 390px) {
+    width: 53%;
+  }
+  @media (max-width: 385px) {
     width: 45%;
   }
 `;
@@ -50,7 +52,9 @@ export const PosterTitleWrap = styled.div`
 `;
 
 export const PosterTitle = styled.h3`
+  font-family: 'sangju';
   ${({ theme }) => theme.font.bold_3vh};
+  font-weight: 500;
 `;
 
 export const PosterSubWrap = styled.div`
