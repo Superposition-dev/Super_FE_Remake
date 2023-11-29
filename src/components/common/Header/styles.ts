@@ -1,28 +1,26 @@
 import styled from '@emotion/styled';
+import Link from 'next/link';
 
-export const HeaderWrap = styled.div`
+export const HeaderWrap = styled.div<{ path: string }>`
   width: 100%;
   ${({ theme }) => theme.flex.flexRow};
   justify-content: space-between;
   align-items: center;
   position: fixed;
   z-index: 100;
-  background-color: transparent;
+  background-color: ${({ theme, path }) => (path === '/' ? 'transprent' : theme.colors.black)};
   @media (max-width: 768px) {
-    height: 6rem;
+    height: 5rem;
     padding: 1rem 2rem;
   }
 `;
 
-export const LogoWrap = styled.div`
+export const LogoWrap = styled(Link)`
   @media (max-width: 768px) {
-    width: 18rem;
+    width: 24vh;
   }
-  @media (max-width: 411px) {
-    width: 15rem;
-  }
-  @media (max-width: 380px) {
-    width: 12rem;
+  @media (max-width: 429px) {
+    width: 16vh;
   }
 `;
 
@@ -30,8 +28,10 @@ export const NavWrap = styled.div`
   ${({ theme }) => theme.flex.flexRow};
   gap: 2rem;
 `;
-export const NavItem = styled.div`
+export const NavItem = styled(Link)`
   ${({ theme }) => theme.font.regular_14};
   font-weight: 500;
   cursor: pointer;
+  text-decoration: none;
+  color: ${({ theme }) => theme.colors.white};
 `;
