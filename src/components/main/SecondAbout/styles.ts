@@ -2,9 +2,11 @@ import styled from '@emotion/styled';
 import Image from 'next/image';
 
 export const SecondeAboutSection = styled.section`
-  ${({ theme }) => theme.flex.flexCenter};
-  flex-direction: column;
-  padding: 6rem 2rem;
+  width: 100%;
+  height: 100%;
+  ${({ theme }) => theme.flex.flexColumn};
+  align-items: center;
+  padding: 5rem 2rem;
   overflow: hidden;
 `;
 
@@ -19,7 +21,16 @@ export const QrCodeWrap = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  margin-bottom: 2rem;
+
+  @media (max-width: 429px) {
+    margin-bottom: 1rem;
+  }
+  @media (max-width: 390px) {
+    margin: 1rem 0 2rem;
+  }
+  @media (max-width: 385px) {
+    margin-bottom: 1rem;
+  }
 `;
 
 export const QrContentWrap = styled.div`
@@ -58,10 +69,16 @@ export const ContentText = styled.p`
 
 export const DetailImageWrap = styled.div`
   ${({ theme }) => theme.flex.flexCenter};
-  width: 30vh;
-  height: 20vh;
   position: relative;
-  margin: 1.5rem 0;
+  margin: 1rem 0;
+  @media (max-width: 429px) {
+    width: 58vw;
+    height: 20vh;
+  }
+  @media (max-width: 380px) {
+    width: 56vw;
+    height: 20vh;
+  }
 `;
 
 export const TextWrap = styled.div`
