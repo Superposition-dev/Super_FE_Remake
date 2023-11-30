@@ -21,7 +21,7 @@ function ProductsPage() {
         <Author />
       </S.Authors>
       <Search />
-      <S.Products column={2} gap={30} align={'justify'} defaultDirection={'end'}>
+      <S.Products column={2} gap={20} align={'justify'} defaultDirection={'end'}>
         <Product img={'https://i.pinimg.com/474x/c6/a3/f2/c6a3f2bbe8537fed334798f0c55876ec.jpg'} />
         <Product img={'https://i.pinimg.com/474x/be/79/5c/be795c0014a3b986abe0642e66734819.jpg'} />
         <Product img={'https://i.pinimg.com/474x/47/c2/02/47c202ad23b674a2eb0778c6af757f0c.jpg'} />
