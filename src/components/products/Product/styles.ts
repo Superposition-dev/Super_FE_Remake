@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import Image from 'next/image';
 
 export const ProductWrap = styled.div`
-  width: 40vw;
+  width: 42vw;
 `;
 
 export const ProductImageWrap = styled.div`
