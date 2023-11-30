@@ -1,6 +1,5 @@
 import React from 'react';
 import * as S from './styles';
-import { AuthorsData } from '@/interface/authors';
 import Image from 'next/image';
 // { data }: { data: AuthorsData }
 // const { name, image } = data;
