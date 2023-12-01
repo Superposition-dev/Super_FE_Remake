@@ -1,5 +1,5 @@
-type authors = {
+export type AuthorsProps = {
   id: number;
   name: string;
-  image: string;
+  profile: string;
 };
