@@ -17,3 +17,12 @@ export const getProduct = async (id: string) => {
     console.log(e);
   }
 };
+
+export const getSearchProducts = async (search: string) => {
+  try {
+    const res = await instance.get(`/products?search=${search}`);
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+}
