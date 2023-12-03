@@ -1,12 +1,12 @@
 export type MainProduct = {
+  productId: string;
   picture: string;
-  tag: string[];
+  tags: string[];
   title: string;
   artist: string;
 };
 
 export type ProductProps = MainProduct & {
-  productId: string;
   productNum: number;
   pictureInfo: {
     type: string;
