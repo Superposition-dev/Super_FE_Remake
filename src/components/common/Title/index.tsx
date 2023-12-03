@@ -1,8 +1,8 @@
 import React from 'react';
 import * as S from './styles';
-import { CommonTitleData } from '@/interface/commonTitle';
+import { CommonTitleProps } from '@/interface/commonTitle';
 
-function CommonTitle({ data }: { data: CommonTitleData }) {
+function CommonTitle({ data }: { data: CommonTitleProps }) {
   const { title, subTitle } = data;
   return (
     <S.TitleWrap>
