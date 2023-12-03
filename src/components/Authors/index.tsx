@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import * as S from './styles';
 import CommonTitle from '../common/Title';
 import Search from '../common/Search';
@@ -23,15 +23,21 @@ export const getStaticProps = async () => {
 };
 
 function Authors() {
-  const { data } = useQuery('authors', getAuthors);
+  const [data, setData] = useState<AuthorsProps[]>([]);
+  const {data: authorsData} = useQuery('authors', getAuthors,{
+    onSuccess: (data) => {
+      setData(data);
+    },
+  });
+  console.log(data);
   return (
     <S.AuthorsContainer>
       <CommonTitle data={titleData} />
-      <Search />
+      <Search setData={setData} />
       <S.AuthorsWrap>
         {
-          data?.map((author:AuthorsProps) => {
-            return <Author key={author.instagramId} data={author} />;
+          data?.map((author:AuthorsProps,index:number) => {
+            return <Author key={index} data={author} />;
           })
         }
       </S.AuthorsWrap>

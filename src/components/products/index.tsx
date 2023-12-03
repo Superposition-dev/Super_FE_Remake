@@ -26,9 +26,14 @@ export async function getStaticProps(){
 };
 
 function ProductsPage() {
-  const { data: productsData } = useQuery('products', getProducts);
+  const [products, setProducts] = React.useState<MainProduct[]>([]);
+  const { data: productsData } = useQuery('products', getProducts,{
+    onSuccess: (data) => {
+      setProducts(data);
+    },
+  });
   const { data: authorsData } = useQuery('authors', getMainAuthors);
-
+  
   return (
     <S.ProductsContainer>
       <CommonTitle data={titleData} />
@@ -37,9 +42,9 @@ function ProductsPage() {
           <Author key={index} data={author} />
         ))}
       </S.Authors>
-      <Search />
+      <Search setData={setProducts} />
       <S.Products column={2} gap={20} align={'justify'} defaultDirection={'end'}>
-        {productsData?.map((product: MainProduct, index: number) => (
+        {products?.map((product: MainProduct, index: number) => (
           <Product key={index} data={product} />
         ))}
       </S.Products>
