@@ -1,5 +1,7 @@
 export type AuthorsProps = {
-  id: number;
   name: string;
   profile: string;
+  instagramId: string;
+  introduce: string;
+  display: boolean;
 };
