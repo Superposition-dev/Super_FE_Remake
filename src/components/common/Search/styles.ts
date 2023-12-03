@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { IoSearch } from 'react-icons/io5';
-export const SearchWrap = styled.div`
+export const SearchWrap = styled.form`
   width: 100%;
   height: 3.4rem;
   position: relative;
