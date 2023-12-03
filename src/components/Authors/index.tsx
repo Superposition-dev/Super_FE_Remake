@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React from 'react';
 import * as S from './styles';
 import CommonTitle from '../common/Title';
 import Search from '../common/Search';
@@ -23,23 +23,28 @@ export const getStaticProps = async () => {
 };
 
 function Authors() {
-  const [data, setData] = useState<AuthorsProps[]>([]);
-  const {data: authorsData} = useQuery('authors', getAuthors,{
-    onSuccess: (data) => {
-      setData(data);
+  const { data: authorsData } = useQuery('authors', getAuthors, {
+    initialData: () => {
+      const queryClient = new QueryClient();
+      return queryClient.getQueryData('authors');
     },
+    refetchOnMount: true,
+    refetchOnWindowFocus: false,
+    staleTime: 1000 * 60 * 60 * 24,
   });
-  console.log(data);
+  const [searchData, setSearchData] = React.useState<AuthorsProps[]>([]);
+  console.log(authorsData);
+
   return (
     <S.AuthorsContainer>
       <CommonTitle data={titleData} />
-      <Search setData={setData} />
+      <Search setData={setSearchData} /> {/* Placeholder for Search component */}
       <S.AuthorsWrap>
-        {
-          data?.map((author:AuthorsProps,index:number) => {
-            return <Author key={index} data={author} />;
-          })
-        }
+        {searchData.length===0?authorsData?.map((author: AuthorsProps, index: number) => (
+          <Author key={index} data={author} />
+        )):searchData.map((author: AuthorsProps, index: number) => (
+          <Author key={index} data={author} />
+        ))}
       </S.AuthorsWrap>
     </S.AuthorsContainer>
   );

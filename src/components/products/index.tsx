@@ -26,14 +26,24 @@ export async function getStaticProps(){
 };
 
 function ProductsPage() {
-  const [products, setProducts] = React.useState<MainProduct[]>([]);
   const { data: productsData } = useQuery('products', getProducts,{
-    onSuccess: (data) => {
-      setProducts(data);
+    initialData: () => {
+      const queryClient = new QueryClient();
+      return queryClient.getQueryData('products');
     },
+    refetchOnWindowFocus: false,
+    staleTime: 1000 * 60 * 60 * 24,
   });
-  const { data: authorsData } = useQuery('authors', getMainAuthors);
-  
+  const { data: authorsData } = useQuery('authors', getMainAuthors,{
+    initialData: () => {
+      const queryClient = new QueryClient();
+      return queryClient.getQueryData('authors');
+    },
+    refetchOnMount: true,
+    refetchOnWindowFocus: false,
+    staleTime: 1000 * 60 * 60 * 24,
+  });
+  const [searchData, setSearchData] = React.useState<MainProduct[]>([]);
   return (
     <S.ProductsContainer>
       <CommonTitle data={titleData} />
@@ -42,9 +52,11 @@ function ProductsPage() {
           <Author key={index} data={author} />
         ))}
       </S.Authors>
-      <Search setData={setProducts} />
+      <Search setData={setSearchData} />
       <S.Products column={2} gap={20} align={'justify'} defaultDirection={'end'}>
-        {products?.map((product: MainProduct, index: number) => (
+        {searchData.length===0?productsData?.map((product: MainProduct, index: number) => (
+          <Product key={index} data={product} />
+        )):searchData.map((product: MainProduct, index: number) => (
           <Product key={index} data={product} />
         ))}
       </S.Products>
