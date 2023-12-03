@@ -29,6 +29,7 @@ export const ImageWrap = styled.div`
 `;
 
 export const ProductInfoWrap = styled.div`
+  width: 100%;
   padding: 0 2rem;
 `;
 
