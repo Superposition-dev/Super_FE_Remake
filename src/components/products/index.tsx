@@ -14,7 +14,7 @@ const titleData = {
   subTitle: '슈퍼포지션 두 번째 기획 전시',
 };
 
-export const getStaticProps = async () => {
+export async function getStaticProps(){
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery('products', getProducts);
   await queryClient.prefetchQuery('authors', getMainAuthors);
@@ -33,8 +33,8 @@ function ProductsPage() {
     <S.ProductsContainer>
       <CommonTitle data={titleData} />
       <S.Authors>
-        {authorsData?.map((author: AuthorsProps) => (
-          <Author key={author.id} data={author} />
+        {authorsData?.map((author: AuthorsProps,index:number) => (
+          <Author key={index} data={author} />
         ))}
       </S.Authors>
       <Search />
