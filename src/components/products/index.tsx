@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import * as S from './styles';
 import Author from './Author';
 import Search from '../common/Search';
@@ -14,19 +14,19 @@ const titleData = {
   subTitle: '슈퍼포지션 두 번째 기획 전시',
 };
 
-export async function getStaticProps(){
+export async function getStaticProps() {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery('products', getProducts);
-  await queryClient.prefetchQuery('authors', getMainAuthors);
+  await queryClient.prefetchQuery('mainAuthors', getMainAuthors);
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
     },
   };
-};
+}
 
 function ProductsPage() {
-  const { data: productsData } = useQuery('products', getProducts,{
+  const { data: productsData } = useQuery('products', getProducts, {
     initialData: () => {
       const queryClient = new QueryClient();
       return queryClient.getQueryData('products');
@@ -34,7 +34,7 @@ function ProductsPage() {
     refetchOnWindowFocus: false,
     staleTime: 1000 * 60 * 60 * 24,
   });
-  const { data: authorsData } = useQuery('authors', getMainAuthors,{
+  const { data: authorsData } = useQuery('mainAuthos', getMainAuthors, {
     initialData: () => {
       const queryClient = new QueryClient();
       return queryClient.getQueryData('authors');
@@ -43,22 +43,31 @@ function ProductsPage() {
     refetchOnWindowFocus: false,
     staleTime: 1000 * 60 * 60 * 24,
   });
-  const [searchData, setSearchData] = React.useState<MainProduct[]>([]);
+  const [searchData, setSearchData] = useState<MainProduct[]>([]);
+  const memoizedProductsData = useMemo(() => productsData, [productsData]);
+  const memoizedAuthorsData = useMemo(() => authorsData, [authorsData]);
+
   return (
     <S.ProductsContainer>
       <CommonTitle data={titleData} />
       <S.Authors>
-        {authorsData?.map((author: AuthorsProps,index:number) => (
+        {memoizedAuthorsData?.map((author: AuthorsProps, index: number) => (
           <Author key={index} data={author} />
         ))}
       </S.Authors>
       <Search setData={setSearchData} />
-      <S.Products column={2} gap={20} align={'justify'} defaultDirection={'end'}>
-        {searchData.length===0?productsData?.map((product: MainProduct, index: number) => (
-          <Product key={index} data={product} />
-        )):searchData.map((product: MainProduct, index: number) => (
-          <Product key={index} data={product} />
-        ))}
+      <S.Products
+        column={2}
+        gap={20}
+        align={'justify'}
+        defaultDirection={'end'}
+        observeChildren={true}
+        useResizeObserver={true}
+      >
+        {searchData?.length === 0
+          ? memoizedProductsData?.map((product: MainProduct, index: number) => <Product key={index} data={product} />)
+          : searchData?.map((product: MainProduct, index: number) => <Product key={index} data={product} />)}
+        {searchData?.length !== 0 && <S.NoResult>검색 결과가 없습니다.</S.NoResult>}
       </S.Products>
     </S.ProductsContainer>
   );
