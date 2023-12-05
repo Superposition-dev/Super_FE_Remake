@@ -11,7 +11,7 @@ function SecondAbout() {
           <p>2023</p>
         </S.QrContentWrap>
         <S.QrIconWrap>
-          <Image src={'/images/QRCode.svg'} alt={'큐알코드'} fill={true} />
+          <Image src={'/images/QRCode.svg'} loading="lazy" alt={'큐알코드'} fill={true} />
         </S.QrIconWrap>
       </S.QrCodeWrap>
       <S.ContentWrap>
@@ -24,7 +24,7 @@ function SecondAbout() {
         </S.ContentText>
       </S.ContentWrap>
       <S.DetailImageWrap>
-        <Image src={'/images/detail.webp'} alt={'작품상세이미지'} fill={true} />
+        <Image src={'/images/detail.webp'} loading="lazy" alt={'작품상세이미지'} fill={true} />
       </S.DetailImageWrap>
       <S.QrContentWrap>
         <S.ContentTitle>작품 페이지</S.ContentTitle>

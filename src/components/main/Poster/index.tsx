@@ -11,7 +11,7 @@ function Poster() {
       </S.TitleWrap>
       <S.PosterInfoWrap>
         <S.PosterImage>
-          <Image src="/images/poster1.webp" alt="포스터" width={240} height={340} layout="responsive" />
+          <Image src="/images/poster1.webp" loading="lazy" alt="포스터" width={240} height={340} layout="responsive" />
         </S.PosterImage>
         <S.PosterTitleWrap>
           <S.PosterTitle>성수 POSITION</S.PosterTitle>
