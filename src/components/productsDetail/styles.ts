@@ -26,6 +26,7 @@ export const DetailContainer = styled.div`
 
 export const ImageWrap = styled.div`
   width: 100%;
+  position: relative;
 `;
 
 export const ProductInfoWrap = styled.div`
@@ -33,7 +34,12 @@ export const ProductInfoWrap = styled.div`
   padding: 0 2rem;
 `;
 
-export const ProductImage = styled(Image)``;
+export const ProductImage = styled(Image)`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+`;
 
 export const Copy = styled.div`
   text-align: center;
@@ -126,7 +132,7 @@ export const AuthorImageWrap = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center -6px;
+    object-position: center;
   }
 `;
 

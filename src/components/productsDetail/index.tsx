@@ -1,11 +1,20 @@
 import React from 'react';
 import * as S from './styles';
 import Image from 'next/image';
-import { ProductProps } from '@/interface/product';
+import { ProductDetailProps } from '@/interface/product';
+import { useRouter } from 'next/router';
 
-function ProductDetail({data}:{data:ProductProps}) {
-  const {picture,tags,title,artist,productNum,pictureInfo,price,description} = data;
+const NOTE =
+  'Nisl faucibus sollicitudin elementum commodo cursus ullamcorper senectus ut. Urna euismod feugiat convallis in mi neque. Nascetur etiam blandit sem amet. Odio viverra molestie ';
 
+function ProductDetail({ data }: { data: ProductDetailProps }) {
+  const { picture, title, tags, artistInfo, pictureInfo, description, price, productId } = data;
+  const No = String(productId).padStart(3, '0');
+  const priceNum = String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  const router = useRouter();
+  const onLinked = () => {
+    router.push(`/authors/${artistInfo.instagramId}`);
+  };
   return (
     <S.DetailContainer>
       <S.ImageWrap>
@@ -14,18 +23,17 @@ function ProductDetail({data}:{data:ProductProps}) {
           alt="이미지"
           width={360}
           height={594}
-          layout="responsive"
         />
       </S.ImageWrap>
       <S.ProductInfoWrap>
         <S.Copy>
           <S.CopyText>무단 도용 및 재배포를 금지합니다.</S.CopyText>
-          <S.CopyText>ⓒ 2023. {artist}. All rights reserved.</S.CopyText>
+          <S.CopyText>ⓒ 2023. {artistInfo.artistName}. All rights reserved.</S.CopyText>
         </S.Copy>
         <S.FlexBox>
           <S.TitleWrap>
             <S.Title>{title}</S.Title>
-            <S.Code>{productNum}</S.Code>
+            <S.Code>No.{No}</S.Code>
           </S.TitleWrap>
           <S.IsLike>
             <S.UnHeart />
@@ -37,24 +45,21 @@ function ProductDetail({data}:{data:ProductProps}) {
           <S.InfoType>{pictureInfo.year}</S.InfoType>
         </S.InfoWrap>
         <S.Tags>
-          {
-            tags.map((item:string,index:number) => (
-              <S.Tag key={index}>#{item}</S.Tag>
-            ))
-          }
+          {tags.map((item: string, index: number) => (
+            <S.Tag key={index}>#{item}</S.Tag>
+          ))}
         </S.Tags>
-        <S.AuthorWrap>
+        <S.AuthorWrap onClick={onLinked}>
           <S.AuthorBox>
             <S.AuthorImageWrap>
               <Image
-                src="https://i.pinimg.com/474x/75/dd/74/75dd7445d292b84013f1b790d2eaaf0b.jpg"
+                src={`https://kr.object.ncloudstorage.com/superposition-bucket/${artistInfo.profile}`}
                 alt="이미지"
-                width={0}
-                height={0}
-                layout="responsive"
+                width={48}
+                height={48}
               />
             </S.AuthorImageWrap>
-            <S.AuthorName>{artist}</S.AuthorName>
+            <S.AuthorName>{artistInfo.artistName}</S.AuthorName>
           </S.AuthorBox>
           <S.RightArrow />
         </S.AuthorWrap>
@@ -64,7 +69,7 @@ function ProductDetail({data}:{data:ProductProps}) {
         </S.AuthorNote>
       </S.ProductInfoWrap>
       <S.PriceBox>
-        <S.Price>{price}원</S.Price>
+        <S.Price>{priceNum}원</S.Price>
         <S.BuyButton>구매하기</S.BuyButton>
       </S.PriceBox>
     </S.DetailContainer>
