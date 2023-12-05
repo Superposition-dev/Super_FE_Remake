@@ -8,6 +8,7 @@ import Header from '@/components/common/Header';
 import { useVh } from '@/hook/useVh';
 import { useState } from 'react';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
+import Head from 'next/head';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
@@ -18,6 +19,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <Header />
         <Layout height={vh}>
           <Hydrate state={pageProps.dehydratedState}>
+            <Head>
+              <title>슈퍼 포지션 (SuperPosition)</title>
+            </Head>
             <Component {...pageProps} />
           </Hydrate>
         </Layout>
