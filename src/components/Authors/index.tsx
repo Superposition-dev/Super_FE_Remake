@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import * as S from './styles';
 import CommonTitle from '../common/Title';
 import Search from '../common/Search';
@@ -32,19 +32,20 @@ function Authors() {
     refetchOnWindowFocus: false,
     staleTime: 1000 * 60 * 60 * 24,
   });
+
   const [searchData, setSearchData] = React.useState<AuthorsProps[]>([]);
-  console.log(authorsData);
+  const memoizedAuthorsData = useMemo(() => authorsData, [authorsData]);
+  const memoizedSearchData = useMemo(() => searchData, [searchData]);
 
   return (
     <S.AuthorsContainer>
       <CommonTitle data={titleData} />
       <Search setData={setSearchData} /> {/* Placeholder for Search component */}
       <S.AuthorsWrap>
-        {searchData.length===0?authorsData?.map((author: AuthorsProps, index: number) => (
-          <Author key={index} data={author} />
-        )):searchData.map((author: AuthorsProps, index: number) => (
-          <Author key={index} data={author} />
-        ))}
+        {memoizedSearchData?.length === 0
+          ? memoizedAuthorsData?.map((author: AuthorsProps, index: number) => <Author key={index} data={author} />)
+          : memoizedSearchData?.map((author: AuthorsProps, index: number) => <Author key={index} data={author} />)}
+        {memoizedSearchData?.length !== 0 && <S.NoResult>검색 결과가 없습니다.</S.NoResult>}
       </S.AuthorsWrap>
     </S.AuthorsContainer>
   );
