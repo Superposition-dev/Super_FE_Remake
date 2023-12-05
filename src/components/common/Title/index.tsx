@@ -12,4 +12,4 @@ function CommonTitle({ data }: { data: CommonTitleProps }) {
   );
 }
 
-export default CommonTitle;
+export default React.memo(CommonTitle);
