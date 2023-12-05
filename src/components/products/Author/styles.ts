@@ -12,6 +12,13 @@ export const AuthorImage = styled.div`
   height: 4.6rem;
   border-radius: 50%;
   overflow: hidden;
+  position: relative;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
 `;
 
 export const AuthorName = styled.div`
