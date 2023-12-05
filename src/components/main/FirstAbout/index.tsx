@@ -23,10 +23,10 @@ function FirstAbout() {
       </S.TitleWrap>
       <S.ImageSwiperWrap>
         <S.ImageSwiper>
-          <Image src="/images/aboutImage.webp" alt="행성" width={360} height={185} />
+          <Image src="/images/aboutImage.webp" loading="lazy" alt="행성" width={360} height={185} />
         </S.ImageSwiper>
         <S.ImageSwiper>
-          <Image src="/images/aboutImage.webp" alt="행성" width={360} height={185} />
+          <Image src="/images/aboutImage.webp" loading="lazy" alt="행성" width={360} height={185} />
         </S.ImageSwiper>
       </S.ImageSwiperWrap>
       <S.ContentWrap>
