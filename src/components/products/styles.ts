@@ -25,11 +25,10 @@ export const ProductsSubTitle = styled.h2`
 `;
 
 export const Authors = styled.div`
-  width: 80%;
+  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 2rem;
   margin-bottom: 3rem;
 `;
 
@@ -37,4 +36,16 @@ export const Products = styled(MasonryGrid)`
   width: 100%;
   height: auto !important;
   margin-top: 3rem;
+`;
+
+export const NoResult = styled.div`
+  width: 100%;
+  height: 40vh;
+  ${({ theme }) => theme.font.bold_20};
+  color: ${({ theme }) => theme.colors.gray};
+  margin-top: 3rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
