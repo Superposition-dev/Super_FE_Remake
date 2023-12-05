@@ -15,3 +15,15 @@ export const AuthorsWrap = styled.div`
   flex-wrap: wrap;
   margin-top: 3rem;
 `;
+
+export const NoResult = styled.div`
+  width: 100%;
+  height: 40vh;
+  ${({ theme }) => theme.font.bold_20};
+  color: ${({ theme }) => theme.colors.gray};
+  margin-top: 3rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
