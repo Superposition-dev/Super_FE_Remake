@@ -5,3 +5,13 @@ export type AuthorsProps = {
   introduce: string;
   display: boolean;
 };
+
+export type AuthorDetailProps = AuthorsProps & {
+  description: string;
+  products: AuthorProductsProps[];
+};
+
+export type AuthorProductsProps = {
+  productId: number;
+  picture: string;
+};
