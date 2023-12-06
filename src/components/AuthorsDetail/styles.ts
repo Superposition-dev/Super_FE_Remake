@@ -91,13 +91,14 @@ export const PlusButton = styled.button`
 `;
 
 export const ImageSwiper = styled(Swiper)`
+  max-width: 100%;
   width: 100%;
   margin-bottom: 2rem;
 `;
 
 export const ImageWrap = styled.div`
-  width: 47vw;
-  height: 20rem;
+  width: 100%;
+  height: 50vw;
   position: relative;
   img {
     width: 100%;
