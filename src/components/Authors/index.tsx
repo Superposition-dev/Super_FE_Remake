@@ -45,7 +45,7 @@ function Authors() {
         {memoizedSearchData?.length === 0
           ? memoizedAuthorsData?.map((author: AuthorsProps, index: number) => <Author key={index} data={author} />)
           : memoizedSearchData?.map((author: AuthorsProps, index: number) => <Author key={index} data={author} />)}
-        {memoizedSearchData?.length !== 0 && <S.NoResult>검색 결과가 없습니다.</S.NoResult>}
+        {searchData === undefined && <S.NoResult>검색 결과가 없습니다.</S.NoResult>}
       </S.AuthorsWrap>
     </S.AuthorsContainer>
   );

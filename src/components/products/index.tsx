@@ -13,7 +13,7 @@ const titleData = {
   title: '성수 포지션',
   subTitle: '슈퍼포지션 두 번째 기획 전시',
 };
-
+//
 export async function getStaticProps() {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery('products', getProducts);
@@ -46,7 +46,7 @@ function ProductsPage() {
   const [searchData, setSearchData] = useState<MainProduct[]>([]);
   const memoizedProductsData = useMemo(() => productsData, [productsData]);
   const memoizedAuthorsData = useMemo(() => authorsData, [authorsData]);
-
+  console.log(searchData);
   return (
     <S.ProductsContainer>
       <CommonTitle data={titleData} />
@@ -67,8 +67,8 @@ function ProductsPage() {
         {searchData?.length === 0
           ? memoizedProductsData?.map((product: MainProduct, index: number) => <Product key={index} data={product} />)
           : searchData?.map((product: MainProduct, index: number) => <Product key={index} data={product} />)}
-        {searchData?.length !== 0 && <S.NoResult>검색 결과가 없습니다.</S.NoResult>}
       </S.Products>
+      {searchData === undefined && <S.NoResult>검색 결과가 없습니다.</S.NoResult>}
     </S.ProductsContainer>
   );
 }

@@ -26,7 +26,7 @@ function Search({ setData }: { setData: Function }) {
       setSearch(false);
     },
     onError: () => {
-      setData([]);
+      setData('');
       setSearch(false);
     },
   });
@@ -38,7 +38,7 @@ function Search({ setData }: { setData: Function }) {
       setSearch(false);
     },
     onError: () => {
-      setData([]);
+      setData('');
       setSearch(false);
     },
   });
