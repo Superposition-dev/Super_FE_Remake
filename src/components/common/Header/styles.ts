@@ -17,10 +17,10 @@ export const HeaderWrap = styled.div<{ path: string }>`
 
 export const LogoWrap = styled(Link)`
   @media (max-width: 768px) {
-    width: 24vh;
+    width: 56vw;
   }
   @media (max-width: 429px) {
-    width: 16vh;
+    width: 40vw;
   }
 `;
 

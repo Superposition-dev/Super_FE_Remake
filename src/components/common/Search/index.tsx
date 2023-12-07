@@ -53,7 +53,7 @@ function Search({ setData }: { setData: Function }) {
       <S.SearchInput
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
-        placeholder={isProductsPath ? '작품 제목, 작가 이름을 입력하세요.' : '작가 이름을 입력하세요'}
+        placeholder={isProductsPath ? '작품 제목, 작가 이름을 입력하세요.' : '작가 이름을 입력하세요.'}
       />
       <S.SearchIcon />
       {searchValue.length !== 0 && <S.DeleteIcon onClick={onSearchDelete} />}

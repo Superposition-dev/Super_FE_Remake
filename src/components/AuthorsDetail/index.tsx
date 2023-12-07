@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import * as S from './styles';
 import { AuthorDetailProps, AuthorProductsProps } from '@/interface/authors';
 import Image from 'next/image';
@@ -7,9 +7,12 @@ import { Pagination, FreeMode } from 'swiper/modules';
 import { SwiperSlide } from 'swiper/react';
 import { FaInstagram } from 'react-icons/fa6';
 import { useRouter } from 'next/router';
+import { useMutation } from 'react-query';
+import { patchView } from '@/api/patchData';
+import { getItemWithExpire } from '@/util/localstorage';
 
 function AuthorsDetail({ data }: { data: AuthorDetailProps }) {
-  const { name, profile, introduce, display, products } = data;
+  const { name, profile, introduce, display, products, instagramId } = data;
   const [plus, setPlus] = React.useState<boolean>(false);
   const onPlus = () => {
     setPlus(!plus);
@@ -20,6 +23,14 @@ function AuthorsDetail({ data }: { data: AuthorDetailProps }) {
       "What is Lorem Ipsum?Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
     []
   ); // Add dependencies if any
+
+  const { mutate } = useMutation(patchView);
+  useEffect(() => {
+    const validView = getItemWithExpire('views', `products-${instagramId}`);
+    if (validView) {
+      mutate({ title: 'artists', id: instagramId });
+    }
+  }, []);
 
   return (
     <S.AuthorDetailWrap>
@@ -44,7 +55,7 @@ function AuthorsDetail({ data }: { data: AuthorDetailProps }) {
       <S.Description plus={plus}>{memoizedDescription}</S.Description>
       <S.PlusButton onClick={onPlus}>{plus ? '간략히 보기' : '더보기'}</S.PlusButton>
       <S.Title>대표 작품</S.Title>
-      <S.ImageSwiper slidesPerView={2} spaceBetween={30} freeMode={true} modules={[Pagination]} loop={true}>
+      <S.ImageSwiper slidesPerView={2} spaceBetween={10} freeMode={true} modules={[FreeMode, Pagination]}>
         {products.map((item: AuthorProductsProps, index) => (
           <SwiperSlide key={index}>
             <S.ImageWrap
@@ -67,7 +78,11 @@ function AuthorsDetail({ data }: { data: AuthorDetailProps }) {
       <S.Title>SNS</S.Title>
       <S.IconsWrap>
         <S.Icon>
-          <FaInstagram />
+          <FaInstagram
+            onClick={() => {
+              router.push(`https://www.instagram.com/${instagramId}`);
+            }}
+          />
         </S.Icon>
       </S.IconsWrap>
     </S.AuthorDetailWrap>

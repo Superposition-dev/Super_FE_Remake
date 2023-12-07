@@ -4,7 +4,18 @@ import Image from 'next/image';
 import { FaHeart, FaRegHeart } from 'react-icons/fa6';
 import { MdArrowForwardIos } from 'react-icons/md';
 
-const shadowLight = keyframes`
+const redShadowLight = keyframes`
+  0%{
+    filter: drop-shadow(0px 4px 8px rgba(254, 8, 8, 0.1));
+  }
+  50%{
+    filter: drop-shadow(0px 4px 8px rgba(254, 8, 8, 0.2));
+  }
+  100%{
+    filter: drop-shadow(0px 4px 8px rgba(254, 8, 8, 0.1));
+  }
+`;
+const whiteShadowLight = keyframes`
   0%{
     filter: drop-shadow(0px 4px 8px rgba(255, 255, 255, 0.1));
   }
@@ -15,7 +26,13 @@ const shadowLight = keyframes`
     filter: drop-shadow(0px 4px 8px rgba(255, 255, 255, 0.1));
   }
 `;
-
+const heartBling = keyframes`
+  0% { transform: scale( 1.0 ); }
+    30% { transform: scale( 0.9 ); }
+    50% { transform: scale( 1.0 ); }
+    70% { transform: scale( 0.9 ); }
+    100% { transform: scale( 1.0 ); }
+`;
 export const DetailContainer = styled.div`
   width: 100%;
   padding: 6rem 0 8rem;
@@ -71,7 +88,7 @@ export const Code = styled.p`
   color: ${({ theme }) => theme.colors.dark_gray};
 `;
 
-export const IsLike = styled.div`
+export const IsLike = styled.div<{ like: boolean }>`
   width: 5rem;
   height: 5rem;
   background-color: ${({ theme }) => theme.colors.black};
@@ -79,11 +96,14 @@ export const IsLike = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: ${shadowLight} 5s infinite;
+  animation: ${({ like }) => (like ? redShadowLight : whiteShadowLight)} 5s infinite;
   border-radius: 6px;
 `;
 
-export const Heart = styled(FaHeart)``;
+export const Heart = styled(FaHeart)`
+  color: #fe0808;
+  animation: ${heartBling} 3s infinite 1s;
+`;
 
 export const UnHeart = styled(FaRegHeart)``;
 
@@ -112,7 +132,7 @@ export const AuthorWrap = styled.div`
   padding: 0 2rem;
   margin: 2rem 0;
   background-color: ${({ theme }) => theme.colors.black};
-  animation: ${shadowLight} 5s infinite;
+  animation: ${whiteShadowLight} 5s infinite;
   border-radius: 6px;
 `;
 

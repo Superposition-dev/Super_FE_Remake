@@ -21,6 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <Hydrate state={pageProps.dehydratedState}>
             <Head>
               <title>슈퍼 포지션 (SuperPosition)</title>
+              <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
             </Head>
             <Component {...pageProps} />
           </Hydrate>

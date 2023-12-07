@@ -62,7 +62,7 @@ const font = {
     'line-height': '1.4',
   },
   regular_14: {
-    'font-size': '1.8vh',
+    'font-size': '4vw',
     'font-weight': '400',
     'line-height': '1.4',
   },

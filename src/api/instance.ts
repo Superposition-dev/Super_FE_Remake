@@ -2,11 +2,11 @@ import axios from 'axios';
 
 const getAxiosInstans = (type: string) => {
   const config = {
-    baseURL: 'http://115.85.183.75:8080/',
+    baseURL: 'https://api.spp-art.com/',
     headers: {
       'Content-Type': type,
     },
-    origin: 'http://115.85.183.75:8080/',
+    origin: 'https://api.spp-art.com/',
     withCredentials: true,
   };
   const instance = axios.create(config);

@@ -65,6 +65,8 @@ export const AuthorMsg = styled.p`
 `;
 
 export const Title = styled.h2`
+  ${({ theme }) => theme.font.regular_14};
+  font-weight: 700;
   margin-bottom: 1rem;
 `;
 
@@ -75,7 +77,7 @@ export const Description = styled.p<{ plus: boolean }>`
   text-overflow: ellipsis;
   white-space: normal;
   display: -webkit-box;
-  -webkit-line-clamp: ${({ plus }) => (plus ? '100' : '3')};
+  -webkit-line-clamp: ${({ plus }) => (plus ? '100' : '5')};
   -webkit-box-orient: vertical;
   overflow: hidden;
   margin-bottom: 1rem;
@@ -88,6 +90,7 @@ export const PlusButton = styled.button`
   ${({ theme }) => theme.font.bold_14};
   color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
+  margin-bottom: 1rem;
 `;
 
 export const ImageSwiper = styled(Swiper)`

@@ -13,8 +13,8 @@ export const patchView = async ({ title, id }: { title: string; id: string | num
   }
 };
 
-export const patchLike = async (id: number) => {
-  const res = await instance.patch(`/products/${id}/like`);
-  console.log(res.data);
+export const patchLike = async ({ id, like }: { id: number; like: boolean }) => {
+  const res = await instance.patch(`/products/${id}/like`, like);
+  console.log(res);
   return res.data;
 };

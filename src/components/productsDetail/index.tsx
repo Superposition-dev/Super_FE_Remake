@@ -1,20 +1,51 @@
 import React from 'react';
+import { useEffect, useState } from 'react';
 import * as S from './styles';
 import Image from 'next/image';
 import { ProductDetailProps } from '@/interface/product';
 import { useRouter } from 'next/router';
+import { getItemWithExpire, toggleLike } from '@/util/localstorage';
+import { useMutation } from 'react-query';
+import { patchLike, patchView } from '@/api/patchData';
 
 const NOTE =
   'Nisl faucibus sollicitudin elementum commodo cursus ullamcorper senectus ut. Urna euismod feugiat convallis in mi neque. Nascetur etiam blandit sem amet. Odio viverra molestie ';
 
 function ProductDetail({ data }: { data: ProductDetailProps }) {
   const { picture, title, tags, artistInfo, pictureInfo, description, price, productId } = data;
+  const [like, setLike] = useState(false);
   const No = String(productId).padStart(3, '0');
   const priceNum = String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   const router = useRouter();
   const onLinked = () => {
     router.push(`/authors/${artistInfo.instagramId}`);
   };
+  const { mutate: viewMutate } = useMutation(patchView);
+
+  const { mutate: likeMutate } = useMutation(patchLike, {
+    onSuccess: () => {
+      toggleLike(productId);
+    },
+    onError: () => {
+      setLike(!like);
+    },
+  });
+
+  const onLike = () => {
+    setLike(!like);
+    likeMutate({ id: productId, like: !like });
+  };
+
+  useEffect(() => {
+    const validView = getItemWithExpire('views', `products-${productId}`);
+    if (validView) {
+      viewMutate({ title: 'products', id: productId });
+    }
+    const likedPosts = JSON.parse(String(localStorage.getItem('likedPost'))) || [];
+    // 게시물이 이미 좋아요를 누른 상태인지 확인
+    const isLiked = likedPosts.includes(productId);
+    setLike(isLiked);
+  }, []);
   return (
     <S.DetailContainer>
       <S.ImageWrap>
@@ -35,8 +66,8 @@ function ProductDetail({ data }: { data: ProductDetailProps }) {
             <S.Title>{title}</S.Title>
             <S.Code>No.{No}</S.Code>
           </S.TitleWrap>
-          <S.IsLike>
-            <S.UnHeart />
+          <S.IsLike like={like} onClick={onLike}>
+            {like ? <S.Heart /> : <S.UnHeart />}
           </S.IsLike>
         </S.FlexBox>
         <S.InfoWrap>

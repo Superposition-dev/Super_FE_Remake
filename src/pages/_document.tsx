@@ -9,7 +9,7 @@ export default function Document() {
         <link href="https://fonts.googleapis.com/css2?family=Lemon&display=swap" rel="stylesheet" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="SuperPosition" />
-        <meta property="og:title" content="iPad 10.2" />
+        <meta property="og:title" content="Superposition" />
         <meta
           property="og:description"
           content="슈퍼포지션은 예술과 공간이 함께 어우러져 상생할 수 있는 세상을 꿈 꿉니다."
