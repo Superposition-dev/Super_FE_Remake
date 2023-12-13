@@ -26,3 +26,8 @@ export const getSearchProducts = async (search: string) => {
     console.log(e);
   }
 }
+
+export const getQrProduct = async (id: string) => {
+  const res = await instance.get(`/products/${id}?isQr=true`);
+  return res.data;
+}
