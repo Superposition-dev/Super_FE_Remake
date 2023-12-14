@@ -9,7 +9,7 @@ function Intro() {
   return (
     <S.IntroSection>
       <S.PlanetWrap vh={vh}>
-        <Image src="/images/planets.webp" alt="보라행성" loading="lazy" width={0} height={0} layout="responsive" />
+        <Image src="/images/planets.webp" alt="보라행성" loading="eager" width={0} height={0} layout="responsive" />
       </S.PlanetWrap>
       <S.LogoWrap>
         <Image src="/images/logo.svg" alt="로고" loading="lazy" width={0} height={0} layout="responsive" />
