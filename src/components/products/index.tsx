@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import * as S from './styles';
 import Author from './Author';
 import Search from '../common/Search';
@@ -44,9 +44,13 @@ function ProductsPage() {
     staleTime: 1000 * 60 * 60 * 24,
   });
   const [searchData, setSearchData] = useState<MainProduct[]>([]);
+  const [maxScroll, setMaxScroll] = useState(0);
   const memoizedProductsData = useMemo(() => productsData, [productsData]);
   const memoizedAuthorsData = useMemo(() => authorsData, [authorsData]);
-  console.log(searchData);
+  useEffect(() => {
+    const scrollHeight = document.body.scrollHeight;
+    setMaxScroll(scrollHeight);
+  }, [productsData,searchData]);
   return (
     <S.ProductsContainer>
       <CommonTitle data={titleData} />
@@ -63,6 +67,7 @@ function ProductsPage() {
         defaultDirection={'end'}
         observeChildren={true}
         useResizeObserver={true}
+        maxScroll={maxScroll}
       >
         {searchData?.length === 0
           ? memoizedProductsData?.map((product: MainProduct, index: number) => <Product key={index} data={product} />)
