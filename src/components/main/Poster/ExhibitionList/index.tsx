@@ -6,8 +6,8 @@ import 'swiper/css';
 const data = [
   {
     id: 1,
-    img: '/images/poster3.webp',
-    state: true,
+    img: '/images/poster1.webp',
+    state: false,
     title: '성수 POSITION 2차',
     date: '11.20 ~ 12.12',
   },
