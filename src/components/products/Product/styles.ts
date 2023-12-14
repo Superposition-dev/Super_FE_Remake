@@ -27,7 +27,11 @@ export const Tags = styled.div`
   margin-top: 0.5rem;
 `;
 
-export const Tag = styled.p``;
+export const Tag = styled.p`
+  word-break: keep-all;
+  white-space: nowrap;
+  margin-right: 0.5rem;
+`
 
 export const ProductTitle = styled.div``;
 
