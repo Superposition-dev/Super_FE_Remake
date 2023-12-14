@@ -1,6 +1,7 @@
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import Image from 'next/image';
+import Link from 'next/link';
 import { FaHeart, FaRegHeart } from 'react-icons/fa6';
 import { MdArrowForwardIos } from 'react-icons/md';
 
@@ -75,11 +76,12 @@ export const FlexBox = styled.div`
 `;
 
 export const TitleWrap = styled.div`
+  width: 80%;
   margin: 1rem 0 1.4rem;
 `;
 
 export const Title = styled.h1`
-  ${({ theme }) => theme.font.bold_3vh};
+  ${({ theme }) => theme.font.bold_20};
   margin-bottom: 0.2rem;
 `;
 
@@ -174,6 +176,8 @@ export const AuthorTitle = styled.h3`
 
 export const NoteText = styled.p`
   ${({ theme }) => theme.font.regular_14};
+  white-space: pre-line;
+  word-break: keep-all;
 `;
 
 export const PriceBox = styled.div`
@@ -193,7 +197,7 @@ export const Price = styled.p`
   ${({ theme }) => theme.flex.flexCenter};
 `;
 
-export const BuyButton = styled.button`
+export const BuyButton = styled(Link)`
   width: 55%;
   height: 100%;
   ${({ theme }) => theme.flex.flexCenter};
@@ -202,4 +206,5 @@ export const BuyButton = styled.button`
   color: ${({ theme }) => theme.colors.white};
   border: none;
   cursor: pointer;
+  text-decoration: none;
 `;
