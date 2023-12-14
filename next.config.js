@@ -7,6 +7,9 @@ const nextConfig = {
       { protocol: 'https', hostname: 'i.pinimg.com' },
     ],
   },
+  experimental: {
+    scrollRestoration: true,
+  },
 };
 
 module.exports = nextConfig;
