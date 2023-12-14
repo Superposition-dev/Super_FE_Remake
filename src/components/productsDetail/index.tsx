@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useEffect, useState } from 'react';
 import * as S from './styles';
 import Image from 'next/image';
@@ -31,10 +31,10 @@ function ProductDetail({ data }: { data: ProductDetailProps }) {
     },
   });
 
-  const onLike = () => {
-    setLike(!like);
+  const handleLike = useCallback(() => {
+    setLike((prevLike) => !prevLike);
     likeMutate({ id: productId, like: !like });
-  };
+  }, [like, productId, likeMutate]);
 
   useEffect(() => {
     const validView = getItemWithExpire('views', `products-${productId}`);
@@ -66,7 +66,7 @@ function ProductDetail({ data }: { data: ProductDetailProps }) {
             <S.Title>{title}</S.Title>
             <S.Code>No.{No}</S.Code>
           </S.TitleWrap>
-          <S.IsLike like={like} onClick={onLike}>
+          <S.IsLike like={like} onClick={handleLike}>
             {like ? <S.Heart /> : <S.UnHeart />}
           </S.IsLike>
         </S.FlexBox>
@@ -101,10 +101,10 @@ function ProductDetail({ data }: { data: ProductDetailProps }) {
       </S.ProductInfoWrap>
       <S.PriceBox>
         <S.Price>{priceNum}원</S.Price>
-        <S.BuyButton>구매하기</S.BuyButton>
+        <S.BuyButton href={'https://forms.gle/8aV6YfbUjbHFKgf7A'} target='_blank'>구매하기</S.BuyButton>
       </S.PriceBox>
     </S.DetailContainer>
   );
 }
 
-export default ProductDetail;
+export default React.memo(ProductDetail);
