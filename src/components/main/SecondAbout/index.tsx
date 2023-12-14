@@ -28,15 +28,7 @@ function SecondAbout() {
       </S.DetailImageWrap>
       <S.QrContentWrap>
         <S.ContentTitle>작품 페이지</S.ContentTitle>
-        <S.ContentDesc>작품 페이지에 들어오면 전시 중인 작품의 상세한 정보를 직접 확인할 수 있습니다.</S.ContentDesc>
-        <S.TextWrap>
-          <S.TextStrong>작품이 인상 깊으셨나요?</S.TextStrong>
-          <S.Text>{`작품의 '좋아요' 버튼을 눌러주세요! 여러분의 소중한 마음이 작가님에게 전달됩니다.`}</S.Text>
-        </S.TextWrap>
-        <S.TextWrap>
-          <S.TextStrong>스토리가 궁금하셨나요?</S.TextStrong>
-          <S.Text>작가님이 직접 작성한 노트와 함께 작품을 보다 깊이 감상하실 수 있습니다.</S.Text>
-        </S.TextWrap>
+        <S.ContentDesc>작품 페이지에 들어오면 전시 중인 작품의 상세한 정보를 직접 확인할 수 있습니다. 작가 노트를 읽고, 맘에 드는 작품에는 좋아요를 눌러보세요!</S.ContentDesc>
       </S.QrContentWrap>
     </S.SecondeAboutSection>
   );

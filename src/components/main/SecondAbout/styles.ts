@@ -46,11 +46,11 @@ export const QrIconWrap = styled.div`
 export const ContentWrap = styled.div`
   width: 100%;
   ${({ theme }) => theme.flex.flexColumn};
-  gap: 0.6rem;
 `;
 
 export const ContentTitle = styled.h3`
   ${({ theme }) => theme.font.bold_20};
+  margin-bottom: 1rem;
 `;
 
 export const ContentDesc = styled.p`
@@ -70,14 +70,10 @@ export const ContentText = styled.p`
 export const DetailImageWrap = styled.div`
   ${({ theme }) => theme.flex.flexCenter};
   position: relative;
-  margin: 1rem 0;
+  margin: 2.3rem 0;
   @media (max-width: 429px) {
-    width: 58vw;
-    height: 20vh;
-  }
-  @media (max-width: 380px) {
-    width: 56vw;
-    height: 20vh;
+    width: 27.8rem;
+    height: 19.4rem;
   }
 `;
 
