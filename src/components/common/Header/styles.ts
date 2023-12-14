@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import Link from 'next/link';
-
 export const HeaderWrap = styled.div<{ path: string }>`
   width: 100%;
   ${({ theme }) => theme.flex.flexRow};
@@ -28,10 +27,11 @@ export const NavWrap = styled.div`
   ${({ theme }) => theme.flex.flexRow};
   gap: 2rem;
 `;
-export const NavItem = styled(Link)`
+export const NavItem = styled(Link)<{active:boolean}>`
   ${({ theme }) => theme.font.regular_14};
   font-weight: 500;
   cursor: pointer;
   text-decoration: none;
   color: ${({ theme }) => theme.colors.white};
+  border-bottom: ${({active})=>active?`2px solid #fff`:'none'};
 `;
