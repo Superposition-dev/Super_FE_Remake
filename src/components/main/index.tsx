@@ -8,6 +8,7 @@ import Poster from './Poster';
 import ScrollArrow from '../common/ScrollArrow';
 import FirstAbout from './FirstAbout';
 import SecondAbout from './SecondAbout';
+import Footer from './Footer';
 function MainPage() {
   return (
     <S.SwiperWrap
@@ -31,6 +32,9 @@ function MainPage() {
       </S.SwiperItem>
       <S.SwiperItem>
         <SecondAbout />
+      </S.SwiperItem>
+      <S.SwiperItem>
+        <Footer/>
       </S.SwiperItem>
       <ScrollArrow />
     </S.SwiperWrap>
