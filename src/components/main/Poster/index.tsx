@@ -11,17 +11,17 @@ function Poster() {
       </S.TitleWrap>
       <S.PosterInfoWrap>
         <S.PosterImage>
-          <Image src="/images/poster1.webp" loading="lazy" alt="포스터" width={240} height={340} layout="responsive" />
+          <Image src="/images/poster4.webp" loading="lazy" alt="포스터" width={240} height={340} layout="responsive" />
         </S.PosterImage>
         <S.PosterTitleWrap>
-          <S.PosterTitle>성수 POSITION</S.PosterTitle>
+          <S.PosterTitle>여기는 따뜻해</S.PosterTitle>
           <S.PosterSubWrap>
-            <S.PosterSubTitle>슈퍼포지션의 두 번째 기획 전시</S.PosterSubTitle>
+            <S.PosterSubTitle>성수지앵XSuperposition 겨울 전시</S.PosterSubTitle>
             <S.More>더보기</S.More>
           </S.PosterSubWrap>
         </S.PosterTitleWrap>
         <S.PosterInfo>
-          {'연남에서의 첫 번째 만남. 이번엔 성수를 찾아갑니다!\n두 가지 버전으로 펼쳐질 성수전을 기대해주세요!'}
+          {'연남에서의 첫 번째 만남. 이번엔 성수를 찾아갑니다! 두 가지 버전으로 펼쳐질 성수전을 기대해주세요!'}
         </S.PosterInfo>
       </S.PosterInfoWrap>
       <ExhibitionList />
