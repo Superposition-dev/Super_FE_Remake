@@ -42,7 +42,9 @@ export const AuthorImage = styled.div`
     z-index: 1;
   }
 `;
-export const AuthorInfo = styled.div``;
+export const AuthorInfo = styled.div`
+  width: 65%;
+`;
 
 export const AuthorState = styled.div`
   width: 5rem;
@@ -60,6 +62,7 @@ export const AuthorName = styled.h1`
 `;
 
 export const AuthorMsg = styled.p`
+  width: 80%;
   ${({ theme }) => theme.font.regular_12};
   color: ${({ theme }) => theme.colors.gray};
 `;
@@ -82,6 +85,8 @@ export const Description = styled.p<{ plus: boolean }>`
   overflow: hidden;
   margin-bottom: 1rem;
   transition: all 1s ease-in-out;
+  white-space: pre-line;
+  word-break: keep-all;
 `;
 
 export const PlusButton = styled.button`
@@ -101,12 +106,13 @@ export const ImageSwiper = styled(Swiper)`
 
 export const ImageWrap = styled.div`
   width: 100%;
-  height: 50vw;
+  height: 40vw;
   position: relative;
   img {
     width: 100%;
     object-fit: cover;
     object-position: center;
+    background-color: ${({ theme }) => theme.colors.light_gray};
   }
 `;
 
