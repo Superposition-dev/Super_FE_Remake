@@ -38,7 +38,7 @@ export const ContentWrap = styled.div`
 `;
 
 export const ContentTitle = styled.h3`
-  ${({ theme }) => theme.font.bold_3vh};
+  ${({ theme }) => theme.font.bold_20};
   margin-bottom: 1rem;
 `;
 
