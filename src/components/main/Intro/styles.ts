@@ -1,15 +1,6 @@
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 
-// 대형행성 애니메이션
-const keyframesPlanet = keyframes`
-  0% {
-    transform: rotate(55deg);
-  }
-  100% {
-    transform: rotate(415deg);
-  }
-`;
 
 // 중형행성 애니메이션
 const showPlanet = keyframes`
@@ -67,7 +58,6 @@ export const PlanetWrap = styled.div<{ vh: number }>`
   right: -50%;
   transform: rotate(55deg);
   z-index: 0;
-  /* animation: ${keyframesPlanet} 426s linear infinite; */
   @media (max-width: 768px) {
     top: calc(-16vh - ${({ vh }) => vh * 4}px);
   }
