@@ -5,7 +5,6 @@ import ScrollArrow from '@/components/common/ScrollArrow';
 import { useVh } from '@/hook/useVh';
 function Intro() {
   const vh = useVh();
-  console.log(vh);
   return (
     <S.IntroSection>
       <S.PlanetWrap vh={vh}>
