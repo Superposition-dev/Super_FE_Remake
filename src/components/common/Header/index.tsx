@@ -17,7 +17,7 @@ const menuData = [
 function Header() {
   const router = useRouter();
   const pathname = router.pathname;
-
+  
   return (
     <S.HeaderWrap path={pathname}>
       <S.LogoWrap href={'/'}>
@@ -26,7 +26,7 @@ function Header() {
       <S.NavWrap>
         {
           menuData.map((item, index) => (
-            <S.NavItem key={index} href={item.link} active={item.link === pathname?true:false}>
+            <S.NavItem key={index} href={item.link} active={pathname.indexOf(item.link) !== -1?true:false}>
               {item.title}
             </S.NavItem>
           ))
