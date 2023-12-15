@@ -39,7 +39,7 @@ function Footer() {
       <S.SponsorWrap>
         <S.Text>후원 및 협업사</S.Text>
         <S.SponsorImage>
-        <Image src='/images/sponsorLogo.webp' alt='sponsor' fill/>
+        <Image src='/images/sponsor_logo.webp' alt='sponsor' fill/>
         </S.SponsorImage>
       </S.SponsorWrap>
       <S.CopyRightWrap>
