@@ -2,14 +2,21 @@ import React from 'react';
 import * as S from './styles';
 import Image from 'next/image';
 import ExhibitionList from './ExhibitionList';
+import { useRouter } from 'next/router';
 function Poster() {
+
+  const router = useRouter();
+  const onLinked = () => {
+    router.push(`/products`);
+  }
+
   return (
     <S.PosterSection>
       <S.TitleWrap>
         <S.Title>Exhibition</S.Title>
         <S.SubTitle>우주 속 다채로운 예술과의 조우</S.SubTitle>
       </S.TitleWrap>
-      <S.PosterInfoWrap>
+      <S.PosterInfoWrap onClick={onLinked}>
         <S.PosterImage>
           <Image src="/images/poster4.webp" loading="lazy" alt="포스터" width={240} height={340} layout="responsive" />
         </S.PosterImage>
