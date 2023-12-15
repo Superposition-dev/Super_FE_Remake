@@ -81,4 +81,24 @@ export const InfoWrap = styled.div``
 export const Text = styled.p`
   ${({ theme }) => theme.font.regular_12};
   color: ${({ theme }) => theme.colors.white};
+  align-self: flex-start;
+`
+
+export const SponsorWrap = styled.div`
+  ${({ theme }) => theme.flex.flexColumn};
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+
+`
+
+export const SponsorImage = styled.div`
+  position: relative;
+  width: 100%;
+  height: 5rem;
+  bottom: 0;
+`
+
+export const CopyRightWrap = styled.div`
+  margin-top: 3rem;
 `
