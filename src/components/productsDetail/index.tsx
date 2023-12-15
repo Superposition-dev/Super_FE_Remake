@@ -6,7 +6,7 @@ import { ProductDetailProps } from '@/interface/product';
 import { useRouter } from 'next/router';
 import { getItemWithExpire, toggleLike } from '@/util/localstorage';
 import { useMutation } from 'react-query';
-import { patchLike, patchView } from '@/api/patchData';
+import { patchFormClick, patchLike, patchView } from '@/api/patchData';
 
 const NOTE =
   'Nisl faucibus sollicitudin elementum commodo cursus ullamcorper senectus ut. Urna euismod feugiat convallis in mi neque. Nascetur etiam blandit sem amet. Odio viverra molestie ';
@@ -30,6 +30,8 @@ function ProductDetail({ data }: { data: ProductDetailProps }) {
       setLike(!like);
     },
   });
+
+  const {mutate: formMutate} = useMutation(patchFormClick);
 
   const handleLike = useCallback(() => {
     setLike((prevLike) => !prevLike);
@@ -101,7 +103,7 @@ function ProductDetail({ data }: { data: ProductDetailProps }) {
       </S.ProductInfoWrap>
       <S.PriceBox>
         <S.Price>{priceNum}원</S.Price>
-        <S.BuyButton href={'https://forms.gle/8aV6YfbUjbHFKgf7A'} target='_blank'>구매하기</S.BuyButton>
+        <S.BuyButton href={'https://forms.gle/8aV6YfbUjbHFKgf7A'} target='_blank' onClick={()=>formMutate(productId)}>구매하기</S.BuyButton>
       </S.PriceBox>
     </S.DetailContainer>
   );

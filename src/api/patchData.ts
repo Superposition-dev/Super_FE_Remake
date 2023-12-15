@@ -18,3 +18,9 @@ export const patchLike = async ({ id, like }: { id: number; like: boolean }) => 
   console.log(res);
   return res.data;
 };
+
+export const patchFormClick = async (id:number) => {
+  const res = await instance.patch(`/products/${id}/google`);
+  console.log(res);
+  return res.data;
+}
