@@ -6,11 +6,9 @@ import Author from './Author';
 import { QueryClient, dehydrate, useQuery } from 'react-query';
 import { getAuthors } from '@/api/authors';
 import { AuthorsProps } from '@/interface/authors';
+import { ARITST_TITLE } from '@/constants/title';
 
-const titleData = {
-  title: '파트너 작가',
-  subTitle: '슈퍼포지션의 작가들을 소개합니다.',
-};
+
 
 export const getStaticProps = async () => {
   const queryClient = new QueryClient();
@@ -39,7 +37,7 @@ function Authors() {
 
   return (
     <S.AuthorsContainer>
-      <CommonTitle data={titleData} />
+      <CommonTitle data={ARITST_TITLE} />
       <Search setData={setSearchData} /> {/* Placeholder for Search component */}
       <S.AuthorsWrap>
         {memoizedSearchData?.length === 0

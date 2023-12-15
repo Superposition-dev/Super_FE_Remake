@@ -9,10 +9,8 @@ import { getMainAuthors } from '@/api/authors';
 import { getProducts } from '@/api/products';
 import { AuthorsProps } from '@/interface/authors';
 import { MainProduct } from '@/interface/product';
-const titleData = {
-  title: '성수 포지션',
-  subTitle: '슈퍼포지션 두 번째 기획 전시',
-};
+import { CONCEPT } from '@/constants/title';
+
 //
 export async function getStaticProps() {
   const queryClient = new QueryClient();
@@ -53,7 +51,7 @@ function ProductsPage() {
   }, [productsData,searchData]);
   return (
     <S.ProductsContainer>
-      <CommonTitle data={titleData} />
+      <CommonTitle data={CONCEPT} />
       <S.Authors>
         {memoizedAuthorsData?.map((author: AuthorsProps, index: number) => (
           <Author key={index} data={author} />
