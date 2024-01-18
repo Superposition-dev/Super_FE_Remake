@@ -1,24 +1,31 @@
 import React from 'react';
 import * as S from './styles';
-import { AuthorsData } from '@/interface/authors';
 import Image from 'next/image';
-// { data }: { data: AuthorsData }
-// const { name, image } = data;
-function Author() {
+import { AuthorsProps } from '@/interface/authors';
+import { useRouter } from 'next/router';
+
+function Author({ data }: { data: AuthorsProps }) {
+  const { name, profile, instagramId } = data;
+  const router = useRouter();
+  const onLinked = () => {
+    router.push(`/authors/${instagramId}`);
+  };
   return (
-    <S.AuthorWrap>
+    <S.AuthorWrap onClick={onLinked}>
       <S.AuthorImage>
         <Image
-          src="https://i.pinimg.com/474x/73/95/de/7395dec8eb275253c2245947dda7d622.jpg"
+          src={`https://kr.object.ncloudstorage.com/superposition-bucket/${profile}`}
           alt="작가이미지"
+          loading="lazy"
+          placeholder="blur"
+          blurDataURL={`https://kr.object.ncloudstorage.com/superposition-bucket/${profile}`}
           width={46}
           height={46}
-          layout="responsive"
         />
       </S.AuthorImage>
-      <S.AuthorName>김민수</S.AuthorName>
+      <S.AuthorName>{name}</S.AuthorName>
     </S.AuthorWrap>
   );
 }
 
-export default Author;
+export default React.memo(Author);

@@ -10,7 +10,7 @@ export const AuthorWrap = styled.div`
 
 export const AuthorImageWrap = styled.div`
   width: 100%;
-  height: 25vh;
+  height: 52vw;
   position: relative;
   border-radius: 8px;
   overflow: hidden;

@@ -1,4 +1,4 @@
-export type CommonTitle = {
-  title: string;
-  subTitle: string;
+export type CommonTitleProps = {
+  TITLE: string;
+  SUBTITLE: string;
 };

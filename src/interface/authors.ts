@@ -1,5 +1,17 @@
-type authors = {
-  id: number;
+export type AuthorsProps = {
   name: string;
-  image: string;
+  profile: string;
+  instagramId: string;
+  introduce: string;
+  display: boolean;
+};
+
+export type AuthorDetailProps = AuthorsProps & {
+  description: string;
+  products: AuthorProductsProps[];
+};
+
+export type AuthorProductsProps = {
+  productId: number;
+  picture: string;
 };

@@ -15,12 +15,15 @@ const updown = keyframes`
 `;
 
 export const ArrowWrap = styled.div`
-  width: 10%;
-  position: absolute;
-  bottom: 2%;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  animation: ${updown} 1s ease infinite;
-  z-index: 2;
+    width: 5rem;
+    position: absolute;
+    bottom: 2%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    animation: ${updown} 1s ease infinite;
+    z-index: 2;
+    @media (max-width: 768px) {
+    width: 10%;
+  }
 `;

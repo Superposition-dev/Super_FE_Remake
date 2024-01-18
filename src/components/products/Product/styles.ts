@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import Image from 'next/image';
 
 export const ProductWrap = styled.div`
-  width: 40vw;
+  width: 42vw;
 `;
 
 export const ProductImageWrap = styled.div`
@@ -27,7 +27,11 @@ export const Tags = styled.div`
   margin-top: 0.5rem;
 `;
 
-export const Tag = styled.p``;
+export const Tag = styled.p`
+  word-break: keep-all;
+  white-space: nowrap;
+  margin-right: 0.5rem;
+`
 
 export const ProductTitle = styled.div``;
 

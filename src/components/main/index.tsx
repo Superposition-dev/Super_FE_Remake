@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Mousewheel, Pagination } from 'swiper/modules';
@@ -8,7 +8,17 @@ import Poster from './Poster';
 import ScrollArrow from '../common/ScrollArrow';
 import FirstAbout from './FirstAbout';
 import SecondAbout from './SecondAbout';
+import Footer from './Footer';
+import Swiper from 'swiper';
+
 function MainPage() {
+  const [showScrollArrow, setShowScrollArrow] = useState(true);
+
+  const handleSlideChange = (swiper:Swiper) => {
+    const isFooterSlide = swiper.activeIndex === 4;
+    setShowScrollArrow(!isFooterSlide);
+  };
+
   return (
     <S.SwiperWrap
       direction={'vertical'}
@@ -19,6 +29,7 @@ function MainPage() {
       }}
       modules={[Mousewheel, Pagination]}
       watchSlidesProgress={true}
+      onSlideChange={(swiper) => handleSlideChange(swiper)}
     >
       <S.SwiperItem>
         <Intro />
@@ -32,7 +43,10 @@ function MainPage() {
       <S.SwiperItem>
         <SecondAbout />
       </S.SwiperItem>
-      <ScrollArrow />
+      <S.SwiperItem>
+        <Footer/>
+      </S.SwiperItem>
+      {showScrollArrow && <ScrollArrow />}
     </S.SwiperWrap>
   );
 }

@@ -1,15 +1,15 @@
 import React from 'react';
 import * as S from './styles';
-import { CommonTitleData } from '@/interface/commonTitle';
+import { CommonTitleProps } from '@/interface/commonTitle';
 
-function CommonTitle({ data }: { data: CommonTitleData }) {
-  const { title, subTitle } = data;
+function CommonTitle({ data }: { data: CommonTitleProps }) {
+  const { TITLE, SUBTITLE } = data;
   return (
     <S.TitleWrap>
-      <S.Title>{title}</S.Title>
-      <S.SubTitle>{subTitle}</S.SubTitle>
+      <S.Title>{TITLE}</S.Title>
+      <S.SubTitle>{SUBTITLE}</S.SubTitle>
     </S.TitleWrap>
   );
 }
 
-export default CommonTitle;
+export default React.memo(CommonTitle);

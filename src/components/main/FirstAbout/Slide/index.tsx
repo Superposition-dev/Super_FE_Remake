@@ -20,12 +20,12 @@ function Slide({ images, state }: SlideProps) {
       >
         {images.map((image, index) => (
           <S.SlideItem key={index}>
-            <Image src={image} alt="슬라이드 이미지" width={100} height={84} />
+            <Image src={image} alt="슬라이드 이미지" loading="eager" width={100} height={84} />
           </S.SlideItem>
         ))}
         {images.map((image, index) => (
           <S.SlideItem key={index}>
-            <Image src={image} alt="슬라이드 이미지" width={100} height={84} />
+            <Image src={image} alt="슬라이드 이미지" loading="eager" width={100} height={84} />
           </S.SlideItem>
         ))}
       </S.SlideItems>

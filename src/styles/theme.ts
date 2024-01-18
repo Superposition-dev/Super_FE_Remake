@@ -36,6 +36,11 @@ const font = {
     'font-weight': '700',
     'line-height': '1.2',
   },
+  bold_24: {
+    'font-size': '2.4rem',
+    'font-weight': '700',
+    'line-height': '1.2',
+  },
   bold_20: {
     'font-size': '2rem',
     'font-weight': '700',
@@ -62,7 +67,7 @@ const font = {
     'line-height': '1.4',
   },
   regular_14: {
-    'font-size': '1.8vh',
+    'font-size': '4vw',
     'font-weight': '400',
     'line-height': '1.4',
   },

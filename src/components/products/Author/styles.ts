@@ -8,10 +8,17 @@ export const AuthorWrap = styled.div`
 `;
 
 export const AuthorImage = styled.div`
-  width: 4.6rem;
-  height: 4.6rem;
+  width: 5.5rem;
+  height: 5.5rem;
   border-radius: 50%;
   overflow: hidden;
+  position: relative;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
 `;
 
 export const AuthorName = styled.div`

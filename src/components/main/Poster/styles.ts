@@ -47,8 +47,8 @@ export const PosterImage = styled.div`
 `;
 
 export const PosterTitleWrap = styled.div`
-  width: 80%;
-  margin-top: -1.6rem;
+  width: 90%;
+  margin-top: -3vh;
 `;
 
 export const PosterTitle = styled.h3`
@@ -71,7 +71,7 @@ export const PosterSubTitle = styled.p`
 export const More = styled.div``;
 
 export const PosterInfo = styled.p`
-  width: 80%;
+  width: 90%;
   ${({ theme }) => theme.font.regular_14};
   color: ${({ theme }) => theme.colors.gray};
   margin-top: 1rem;

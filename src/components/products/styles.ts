@@ -11,7 +11,7 @@ export const ProductsContainer = styled.div`
 
 export const ProductsTitleWrap = styled.div`
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 `;
 
 export const ProductsTitle = styled.h1`
@@ -25,16 +25,29 @@ export const ProductsSubTitle = styled.h2`
 `;
 
 export const Authors = styled.div`
-  width: 80%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
+  gap: 1rem;
 `;
 
-export const Products = styled(MasonryGrid)`
+export const Products = styled(MasonryGrid)<{maxScroll:number}>`
+  min-height: calc(max(100vh, ${({ maxScroll }) => maxScroll}px) - 20rem);
   width: 100%;
   height: auto !important;
   margin-top: 3rem;
+`;
+
+export const NoResult = styled.div`
+  width: 100%;
+  height: 40vh;
+  ${({ theme }) => theme.font.bold_20};
+  color: ${({ theme }) => theme.colors.gray};
+  margin-top: 3rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
