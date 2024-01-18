@@ -12,6 +12,10 @@ const menuData = [
     title: '작가',
     link: '/authors',
   },
+  {
+    title: '로그인',
+    link: '/login',
+  }
 ]
 
 function Header() {
@@ -21,7 +25,7 @@ function Header() {
   return (
     <S.HeaderWrap path={pathname}>
       <S.LogoWrap href={'/'}>
-        <Image src="/images/main_logo.webp" alt="로고" width={0} height={0} layout="responsive" />
+        <Image src="/images/main_logo.webp" alt="로고"fill  />
       </S.LogoWrap>
       <S.NavWrap>
         {
