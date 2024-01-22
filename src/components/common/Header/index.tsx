@@ -1,17 +1,28 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import * as S from './styles';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import SideBar from './SideBar';
+import Portal from '../Modal';
+import InduceModal from '../Modal/Induce';
 
 function Header() {
   const [open, setOpen] = useState<boolean>(false);
+  const [like, setLike] = useState<boolean>(false);
   const router = useRouter();
   const pathname = router.pathname;
 
+  const onLinkedLogin = () => {
+    router.push('/login');
+  };
+
   const onOpenMenu = () => {
     setOpen(true);
+  };
+
+  const onSendLike = () => {
+    setLike(true);
   };
 
   return (
@@ -21,13 +32,13 @@ function Header() {
           <Image src="/images/main_logo.webp" alt="로고" fill />
         </S.LogoWrap>
         <S.NavWrap>
-          <Link href="/login">
-            <S.NavLogin />
-          </Link>
+          <div onClick={onSendLike}>좋아요</div>
+          <S.NavLogin onClick={onLinkedLogin} />
           <S.NavMenu onClick={onOpenMenu} />
         </S.NavWrap>
       </S.HeaderWrap>
       <SideBar open={open} setOpen={setOpen} />
+      <Portal>{like ? <InduceModal title="좋아요" state={like} setState={setLike} /> : <></>}</Portal>
     </>
   );
 }
