@@ -7,6 +7,7 @@ const colors = {
   dark_gray: '#797979',
   light_purple: '#A550f0',
   purple: '#6E28AC',
+  kakao: '#FEE500',
 };
 
 const flex = {
