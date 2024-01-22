@@ -59,6 +59,7 @@ export const ModalTitle = styled.p`
   font-weight: 500;
   color: ${({ theme }) => theme.colors.black};
   white-space: pre-wrap;
+  text-align: center;
 `;
 
 export const ModalButtonWrap = styled.div`
