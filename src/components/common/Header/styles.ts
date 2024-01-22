@@ -10,7 +10,7 @@ export const HeaderWrap = styled.div<{ path: string }>`
   justify-content: space-between;
   align-items: center;
   position: fixed;
-  z-index: 100;
+  z-index: 200;
   /* background-color: ${({ theme, path }) => (path === '/' ? 'transprent' : theme.colors.black)}; */
   left: 0;
   right: 0;
@@ -34,6 +34,7 @@ export const LogoWrap = styled(Link)`
 
 export const NavWrap = styled.div`
   ${({ theme }) => theme.flex.flexRow};
+  align-items: center;
   gap: 4rem;
   @media (max-width: 768px) {
     gap: 1.5rem;

@@ -11,7 +11,7 @@ export const BackgroundWrap = styled.div<{ open: boolean }>`
   height: 100%;
   background-color: ${({ theme }) => theme.colors.black};
   opacity: 40%;
-  z-index: 109;
+  z-index: 299;
 `;
 
 export const SideBarWrap = styled.div<{ open: boolean }>`
@@ -26,7 +26,7 @@ export const SideBarWrap = styled.div<{ open: boolean }>`
   padding: 4rem;
   background-color: ${({ theme }) => theme.colors.purple};
   transition: 0.5s;
-  z-index: 110;
+  z-index: 300;
 `;
 
 export const MenuWrap = styled.div`
