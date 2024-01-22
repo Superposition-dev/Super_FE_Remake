@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import * as S from './styles';
-import { SideBarProps } from '@/interface/headers';
+import { SideBarProps } from '@/interface/header';
 
 const menuData = [
   {
