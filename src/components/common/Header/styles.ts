@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import Link from 'next/link';
-import { HiOutlineUserCircle } from 'react-icons/hi2';
-import { IoMenu } from 'react-icons/io5';
+import { BiUser } from 'react-icons/bi';
+import { GrMenu } from 'react-icons/gr';
 
 export const HeaderWrap = styled.div<{ path: string }>`
   max-width: 1660px;
@@ -40,14 +40,14 @@ export const NavWrap = styled.div`
   }
 `;
 
-export const NavLogin = styled(HiOutlineUserCircle)`
+export const NavLogin = styled(BiUser)`
   color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
   width: 2rem;
   height: 2rem;
 `;
 
-export const NavMenu = styled(IoMenu)`
+export const NavMenu = styled(GrMenu)`
   color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
   width: 2rem;
