@@ -9,6 +9,7 @@ import { useVh } from '@/hook/useVh';
 import { useState } from 'react';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import Head from 'next/head';
+import Floating from '@/components/common/Floating';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
@@ -26,6 +27,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <Component {...pageProps} />
           </Hydrate>
         </Layout>
+        <Floating />
       </ThemeProvider>
     </QueryClientProvider>
   );
