@@ -1,42 +1,34 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as S from './styles';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-
-const menuData = [
-  {
-    title: '전시 작품',
-    link: '/products',
-  },
-  {
-    title: '작가',
-    link: '/authors',
-  },
-  {
-    title: '로그인',
-    link: '/login',
-  }
-]
+import Link from 'next/link';
+import SideBar from './SideBar';
 
 function Header() {
+  const [open, setOpen] = useState<boolean>(false);
   const router = useRouter();
   const pathname = router.pathname;
-  
+
+  const onOpenMenu = () => {
+    setOpen(true);
+  };
+
   return (
-    <S.HeaderWrap path={pathname}>
-      <S.LogoWrap href={'/'}>
-        <Image src="/images/main_logo.webp" alt="로고"fill  />
-      </S.LogoWrap>
-      <S.NavWrap>
-        {
-          menuData.map((item, index) => (
-            <S.NavItem key={index} href={item.link} active={pathname.indexOf(item.link) !== -1?true:false}>
-              {item.title}
-            </S.NavItem>
-          ))
-        }
-      </S.NavWrap>
-    </S.HeaderWrap>
+    <>
+      <S.HeaderWrap path={pathname}>
+        <S.LogoWrap href={'/'}>
+          <Image src="/images/main_logo.webp" alt="로고" fill />
+        </S.LogoWrap>
+        <S.NavWrap>
+          <Link href="/login">
+            <S.NavLogin />
+          </Link>
+          <S.NavMenu onClick={onOpenMenu} />
+        </S.NavWrap>
+      </S.HeaderWrap>
+      <SideBar open={open} setOpen={setOpen} />
+    </>
   );
 }
 

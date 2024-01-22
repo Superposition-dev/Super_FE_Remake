@@ -1,5 +1,8 @@
 import styled from '@emotion/styled';
 import Link from 'next/link';
+import { HiOutlineUserCircle } from 'react-icons/hi2';
+import { IoMenu } from 'react-icons/io5';
+
 export const HeaderWrap = styled.div<{ path: string }>`
   max-width: 1660px;
   width: 100%;
@@ -21,8 +24,8 @@ export const HeaderWrap = styled.div<{ path: string }>`
 
 export const LogoWrap = styled(Link)`
   position: relative;
-    width: 250px;
-    height: 33px;
+  width: 250px;
+  height: 33px;
   @media (max-width: 768px) {
     width: 150px;
     height: 20px;
@@ -33,17 +36,20 @@ export const NavWrap = styled.div`
   ${({ theme }) => theme.flex.flexRow};
   gap: 4rem;
   @media (max-width: 768px) {
-    gap: 2rem;
+    gap: 1.5rem;
   }
 `;
-export const NavItem = styled(Link)<{active:boolean}>`
+
+export const NavLogin = styled(HiOutlineUserCircle)`
   color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
-  text-decoration: none;
-  font-weight: 500;
-  border-bottom: ${({active})=>active?`2px solid #fff`:'none'};
-  ${({ theme }) => theme.font.bold_24};
-  @media (max-width: 768px) {
-    ${({ theme }) => theme.font.regular_14};
-  }
+  width: 2rem;
+  height: 2rem;
+`;
+
+export const NavMenu = styled(IoMenu)`
+  color: ${({ theme }) => theme.colors.white};
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
 `;
