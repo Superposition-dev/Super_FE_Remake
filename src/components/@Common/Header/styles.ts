@@ -10,8 +10,8 @@ export const HeaderWrap = styled.div<{ path: string }>`
   justify-content: space-between;
   align-items: center;
   position: fixed;
-  z-index: 200;
-  /* background-color: ${({ theme, path }) => (path === '/' ? 'transprent' : theme.colors.black)}; */
+  z-index: 100;
+  background-color: ${({ theme, path }) => (path === '/' ? 'transprent' : theme.colors.black)};
   left: 0;
   right: 0;
   margin: 0 auto;
