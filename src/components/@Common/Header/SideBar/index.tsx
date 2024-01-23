@@ -9,7 +9,7 @@ const menuData = [
   },
   {
     title: '전시',
-    link: '/products',
+    link: '/exhibition',
   },
   {
     title: '작가',
