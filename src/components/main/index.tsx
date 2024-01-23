@@ -5,7 +5,7 @@ import { Mousewheel, Pagination } from 'swiper/modules';
 import * as S from './styles';
 import Intro from './Intro';
 import Poster from './Poster';
-import ScrollArrow from '../common/ScrollArrow';
+import ScrollArrow from '../@Common/ScrollArrow';
 import FirstAbout from './FirstAbout';
 import SecondAbout from './SecondAbout';
 import Footer from './Footer';
@@ -14,7 +14,7 @@ import Swiper from 'swiper';
 function MainPage() {
   const [showScrollArrow, setShowScrollArrow] = useState(true);
 
-  const handleSlideChange = (swiper:Swiper) => {
+  const handleSlideChange = (swiper: Swiper) => {
     const isFooterSlide = swiper.activeIndex === 4;
     setShowScrollArrow(!isFooterSlide);
   };
@@ -44,7 +44,7 @@ function MainPage() {
         <SecondAbout />
       </S.SwiperItem>
       <S.SwiperItem>
-        <Footer/>
+        <Footer />
       </S.SwiperItem>
       {showScrollArrow && <ScrollArrow />}
     </S.SwiperWrap>
