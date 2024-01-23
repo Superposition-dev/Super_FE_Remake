@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import * as S from './styles';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 import SideBar from './SideBar';
 import Portal from '../Modal';
-import InduceModal from '../Modal/Induce';
+import InduceLoginModal from '../Modal/InduceLogin';
 
 function Header() {
   const [open, setOpen] = useState<boolean>(false);
@@ -38,7 +37,7 @@ function Header() {
         </S.NavWrap>
       </S.HeaderWrap>
       <SideBar open={open} setOpen={setOpen} />
-      <Portal>{like ? <InduceModal title="좋아요" state={like} setState={setLike} /> : <></>}</Portal>
+      <Portal>{like ? <InduceLoginModal title="좋아요" state={like} setState={setLike} /> : <></>}</Portal>
     </>
   );
 }

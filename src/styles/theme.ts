@@ -7,6 +7,8 @@ const colors = {
   dark_gray: '#797979',
   light_purple: '#A550f0',
   purple: '#6E28AC',
+  navy: '#1D1E22',
+  dark_navy: '#121212',
   kakao: '#FEE500',
 };
 
@@ -66,6 +68,11 @@ const font = {
     'font-size': '1.4rem',
     'font-weight': '500',
     'line-height': '1.4',
+  },
+  medium_12: {
+    'font-size': '1.2rem',
+    'font-weight': '500',
+    'line-height': '1.2',
   },
   regular_14: {
     'font-size': '4vw',
