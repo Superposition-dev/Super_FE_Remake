@@ -29,11 +29,14 @@ export const SideBarWrap = styled.div<{ open: boolean }>`
   z-index: 300;
 `;
 
-export const MenuWrap = styled.div`
+export const MenuWrap = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  color: ${({ theme }) => theme.colors.white};
+  text-decoration: none;
+  cursor: pointer;
 `;
 
 export const ArrowImage = styled(IoIosArrowBack)`
@@ -41,10 +44,7 @@ export const ArrowImage = styled(IoIosArrowBack)`
   height: 2.4rem;
 `;
 
-export const MenuTitle = styled(Link)`
-  color: ${({ theme }) => theme.colors.white};
-  cursor: pointer;
-  text-decoration: none;
+export const MenuTitle = styled.div`
   font-weight: 500;
   ${({ theme }) => theme.font.bold_24};
   @media (max-width: 768px) {

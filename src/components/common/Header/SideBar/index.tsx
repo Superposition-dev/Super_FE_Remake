@@ -53,11 +53,9 @@ function SideBar(props: SideBarProps) {
       <S.SideBarWrap open={open} ref={sideBarRef}>
         {menuData.map((item, index) => {
           return (
-            <S.MenuWrap key={index}>
+            <S.MenuWrap key={index} href={item.link} onClick={onLinkMenu}>
               <S.ArrowImage />
-              <S.MenuTitle href={item.link} onClick={onLinkMenu}>
-                {item.title}
-              </S.MenuTitle>
+              <S.MenuTitle>{item.title}</S.MenuTitle>
             </S.MenuWrap>
           );
         })}
