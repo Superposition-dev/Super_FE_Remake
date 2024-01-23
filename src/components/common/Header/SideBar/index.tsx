@@ -35,6 +35,10 @@ function SideBar(props: SideBarProps) {
     sideBarRef.current && !current.contains(e.target as Node) ? setOpen(false) : setOpen(true);
   };
 
+  const onLinkMenu = () => {
+    setOpen(false);
+  };
+
   // 사이드바 외 영역 클릭시 닫기
   useEffect(() => {
     document.addEventListener('mousedown', outsideClick);
@@ -51,7 +55,9 @@ function SideBar(props: SideBarProps) {
           return (
             <S.MenuWrap key={index}>
               <S.ArrowImage />
-              <S.MenuTitle href={item.link}>{item.title}</S.MenuTitle>
+              <S.MenuTitle href={item.link} onClick={onLinkMenu}>
+                {item.title}
+              </S.MenuTitle>
             </S.MenuWrap>
           );
         })}
