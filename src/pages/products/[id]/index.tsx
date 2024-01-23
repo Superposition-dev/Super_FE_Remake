@@ -1,13 +1,13 @@
 import { getProduct, getProducts, getQrProduct } from '@/api/products';
-import ProductDetail from '@/components/productsDetail';
+import ProductDetail from '@/components/ProductsDetail';
 import { ProductProps } from '@/interface/product';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useQuery } from 'react-query';
 
-export async function getStaticPaths(){
+export async function getStaticPaths() {
   const data = await getProducts();
-  const paths = data.map((product:ProductProps) => {
+  const paths = data.map((product: ProductProps) => {
     return {
       params: { id: product.productId.toString() },
     };
@@ -15,20 +15,20 @@ export async function getStaticPaths(){
   return {
     paths,
     fallback: false,
-  }; 
+  };
 }
 
-export async function getStaticProps({ params }:any){
+export async function getStaticProps({ params }: any) {
   const data = await getProduct(params.id);
   return {
     props: {
       data,
     },
   };
-};
+}
 
-function ProductDetailPage({ data }:any) {
-  const {query} = useRouter();
+function ProductDetailPage({ data }: any) {
+  const { query } = useRouter();
   useQuery('qrProduct', () => getQrProduct(query.id as string), {
     enabled: !!query.isQr,
     onSuccess: (qrData) => {
@@ -40,7 +40,6 @@ function ProductDetailPage({ data }:any) {
     },
   });
   return <ProductDetail data={data} />;
-  }
-
+}
 
 export default ProductDetailPage;
