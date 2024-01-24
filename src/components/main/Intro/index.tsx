@@ -32,17 +32,19 @@ function Intro() {
       <S.MediumPlanetWrap>
         <Image src="/images/planet2.webp" loading="lazy" alt="중간행성" width={0} height={0} layout="responsive" />
       </S.MediumPlanetWrap>
-      <S.CatWrap>
-        <Image src="/images/cat.webp" loading="lazy" alt="고양이" width={0} height={0} layout="responsive" />
-      </S.CatWrap>
-      <S.TextWrap>
-        <S.TitleWrap>
-          <S.Title>예술과 공간을 잇는 &nbsp;</S.Title>
-          <S.Title>새로운 우주</S.Title>
-        </S.TitleWrap>
-        <S.Desc>슈퍼포지션은 예술과 공간이 함께 어우러져</S.Desc>
-        <S.Desc>상생할 수 있는 세상을 꿈 꿉니다.</S.Desc>
-      </S.TextWrap>
+      <S.BottomWrap>
+        <S.CatWrap>
+          <Image src="/images/cat.webp" loading="lazy" alt="고양이" width={0} height={0} layout="responsive" />
+        </S.CatWrap>
+        <S.TextWrap>
+          <S.TitleWrap>
+            <S.Title>예술과 공간을 잇는 &nbsp;</S.Title>
+            <S.Title>새로운 우주</S.Title>
+          </S.TitleWrap>
+          <S.Desc>슈퍼포지션은 예술과 공간이 함께 어우러져</S.Desc>
+          <S.Desc>상생할 수 있는 세상을 꿈 꿉니다.</S.Desc>
+        </S.TextWrap>
+      </S.BottomWrap>
       <S.Gradient />
     </S.IntroSection>
   );

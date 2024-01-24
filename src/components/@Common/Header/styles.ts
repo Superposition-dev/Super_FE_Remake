@@ -6,6 +6,7 @@ import { GrMenu } from 'react-icons/gr';
 export const HeaderWrap = styled.div<{ path: string }>`
   max-width: 1660px;
   width: 100%;
+  height: 10rem;
   ${({ theme }) => theme.flex.flexRow};
   justify-content: space-between;
   align-items: center;

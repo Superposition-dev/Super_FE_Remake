@@ -75,8 +75,7 @@ export const PlanetWrap = styled.div<{ vh: number }>`
 
 export const DarkPlanetWrap = styled.div<{ vh: number }>`
   position: absolute;
-  width: 75%;
-  transform: rotate(55deg);
+  width: 77%;
   z-index: 0;
   display:block;
   transform: translateY(-50%);
@@ -107,11 +106,12 @@ export const LogoWrap = styled.div`
 
 export const MainLogoWrap = styled.div`
   width: 50%;
-  height: 100%;
   position: relative;
   margin: 0 auto;
   top: 15%;
-
+  @media (max-width: 1440px) {
+    width: 40%;
+  }
   @media (max-width: 768px) {
     display: none;
   }
@@ -147,33 +147,49 @@ export const MediumPlanetWrap = styled.div`
   }
 `;
 
-export const CatWrap = styled.div`
-  position: absolute;
+export const BottomWrap = styled.div`
+  position: relative;
+  max-width: 1440px;
+  width: 100%;
+  height: 80vh;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(-2%);
   z-index: 20;
-  width: 8%;
-  bottom: 8%;
-  left: 30%;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    transform: translateX(0);
+    justify-content: flex-end;
+    align-items: flex-start;
+    margin-left: 5%;
+    transform: translateX(0);
+  }
+`
+
+export const CatWrap = styled.div`
+  z-index: 20;
+  width: 10%;
+  @media (max-width: 1440px) {
+    width:8%;
+  }
   @media (max-width: 768px) {
     width: 30%;
-    top: 45%;
-    left: 25%;
+    margin-left: 20%;
+    margin-bottom: 10%;
   }
 `;
 
 export const TextWrap = styled.div`
-  position: absolute;
   z-index: 20;
   opacity: 0;
   transform: translate(-10%);
   animation: ${fadeInText} 1s ease-in-out 0.6s forwards;
   text-align: center;
-  width: 100%;
-  bottom: 10%;
   @media (max-width: 768px) {
     width: 80%;
     top: auto;
-    bottom: 10%;  
-    left: 5%;
     text-align: left;
   }
 `;
@@ -188,9 +204,9 @@ export const TitleWrap = styled.div`
 `
 
 export const Title = styled.h1`
-  font-size: 2.5vw;
+  font-size: 2.2vw;
   font-weight: 700;
-  margin-bottom: 3rem;
+  line-height: 1.5;
   @media (max-width: 768px) {
     ${({ theme }) => theme.font.bold_3vh};
     margin-bottom: 1rem;
@@ -199,18 +215,21 @@ export const Title = styled.h1`
 `;
 
 export const Desc = styled.p`
-  font-size: 2rem;
+  font-size: 1.3vw;
   line-height: 1.5;
+  margin-left: -3rem;
   @media (max-width: 768px) {
     ${({ theme }) => theme.font.regular_14};
+    margin-left: 0;
   }
 `;
 
 export const Gradient = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   position: absolute;
   z-index: 1;
   background-image: linear-gradient(140deg, rgba(0, 0, 0, 0.9) 3%, transparent 20%, transparent 90%, #101010 100%);
   background-color: transparent;
+  top: 0;
 `;

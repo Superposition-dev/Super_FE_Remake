@@ -39,6 +39,11 @@ const font = {
     'font-size': '3rem',
     'line-height': '1.2',
   },
+  bold_50: {
+    'font-size': '5rem',
+    'font-weight': '700',
+    'line-height': '1.2',
+  },
   bold_3vh: {
     'font-size': '3vh',
     'font-weight': '700',
