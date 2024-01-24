@@ -3,8 +3,8 @@ import { VscSparkle } from 'react-icons/vsc';
 
 export const FloatingWrap = styled.button`
   position: fixed;
-  right: 1rem;
-  bottom: 1rem;
+  right: 2rem;
+  bottom: 2.5rem;
   ${({ theme }) => theme.flex.flexCenter}
   ${({ theme }) => theme.flex.flexColumn}
   gap: 0.25rem;
