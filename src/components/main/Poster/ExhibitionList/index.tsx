@@ -22,11 +22,9 @@ const data = [
 
 function ExhibitionList() {
   return (
-    <S.ExhibitionListWrap slidesPerView={2} spaceBetween={20}>
+    <S.ExhibitionListWrap>
       {data.map((item) => (
-        <SwiperSlide key={item.id}>
-          <Exhibition data={item} />
-        </SwiperSlide>
+          <Exhibition key={item.id} data={item} />
       ))}
     </S.ExhibitionListWrap>
   );
