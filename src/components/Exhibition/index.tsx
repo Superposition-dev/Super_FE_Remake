@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import * as S from './styles';
 import CommonWrapper from '../@Common/Wrap';
 import { FilterType } from '@/interface/exhibition';
-import List from './List';
+import ExhibitionList from './List';
 
 function ExhibitionPage() {
   const [type, setType] = useState<FilterType>(FilterType.all);
 
   const FILTER_TAB = [
     { type: FilterType.all, text: '전체' },
-    { type: FilterType.progress, text: '진행 중' },
-    { type: FilterType.complete, text: '전시 종료' },
+    { type: FilterType.progress, text: '전시 중' },
+    { type: FilterType.end, text: '전시 종료' },
   ];
 
   const onSetFilter = (type: FilterType) => {
@@ -38,7 +38,7 @@ function ExhibitionPage() {
             })}
           </S.FilterWrap>
         </S.Title>
-        <List type={type} />
+        <ExhibitionList type={type} />
       </S.ExhibitionWrap>
     </CommonWrapper>
   );

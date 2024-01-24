@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 
-export const List = styled.section`
+export const ExhibitionList = styled.section`
   ${({ theme }) => theme.flex.flexColumn};
-  ${({ theme }) => theme.flex.flexCenter};
+  align-items: center;
   width: 100%;
+  overflow: auto;
 `;

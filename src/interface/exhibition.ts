@@ -1,9 +1,24 @@
 export enum FilterType {
   all = 'all',
   progress = 'progress',
-  complete = 'complete',
+  end = 'end',
 }
 
-export interface ListProps {
+export interface ExhibitionListProps {
   type: FilterType;
+}
+
+export interface ExhibitionProps {
+  exhibition: ExhibitionType;
+}
+
+export interface ExhibitionType {
+  exbihitionNum: number;
+  title: string;
+  subtitle: string;
+  picture: string;
+  location: string;
+  startDate: string;
+  endDate: string;
+  isDisplay: boolean;
 }

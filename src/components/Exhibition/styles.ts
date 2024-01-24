@@ -15,6 +15,7 @@ export const Title = styled.div`
   height: 42px;
   padding: 10px 0;
   ${({ theme }) => theme.font.bold_20};
+  font-size: 1.8rem;
   color: ${({ theme }) => theme.colors.white};
 `;
 

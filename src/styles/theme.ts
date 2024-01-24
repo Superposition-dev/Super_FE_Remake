@@ -3,12 +3,17 @@ import '@emotion/react';
 const colors = {
   white: '#fefefe',
   black: '#101010',
+
   gray: '#b8b8b8',
+  light_gray: '#D9D9D9',
   dark_gray: '#797979',
-  light_purple: '#A550f0',
+
   purple: '#6E28AC',
+  light_purple: '#A550f0',
+
   navy: '#1D1E22',
   dark_navy: '#121212',
+
   kakao: '#FEE500',
 };
 
@@ -61,7 +66,7 @@ const font = {
   },
   bold_10: {
     'font-size': '1rem',
-    'font-weight': '700',
+    'font-weight': '500',
     'line-height': '1.2',
   },
   medium_14: {
@@ -76,13 +81,13 @@ const font = {
   },
   regular_14: {
     'font-size': '4vw',
-    'font-weight': '400',
+    'font-weight': '300',
     'line-height': '1.4',
   },
   regular_12: {
     'font-size': '1.2rem',
-    'font-weight': '400',
-    'line-height': '1.4',
+    'font-weight': '300',
+    'line-height': '1.2',
   },
 };
 
@@ -91,6 +96,12 @@ const layout = {
     width: '100%',
     height: '100%',
     overflow: 'hidden',
+  },
+
+  ellipsis: {
+    overflow: 'hidden',
+    'text-overflow': 'ellipsis',
+    'white-space': 'nowrap',
   },
 };
 
