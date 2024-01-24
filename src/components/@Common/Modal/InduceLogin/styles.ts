@@ -26,11 +26,9 @@ export const Modal = styled.div`
   top: 50%;
   left: 50%;
   ${({ theme }) => theme.flex.flexColumn}
-  align-items: center;
-  justify-content: space-between;
+  ${({ theme }) => theme.flex.flexCenter}
   width: 75%;
   height: 16rem;
-  padding: 2.5rem 2rem;
   background-color: ${({ theme }) => theme.colors.navy};
   border-radius: 1rem;
   transform: translate(-50%, -50%);
@@ -41,7 +39,7 @@ export const Modal = styled.div`
 export const ModalInnerWrap = styled.div`
   ${({ theme }) => theme.flex.flexColumn}
   ${({ theme }) => theme.flex.flexCenter}
-  justify-content: space-between;
+  gap: 2rem;
   width: 100%;
   height: 100%;
 `;
