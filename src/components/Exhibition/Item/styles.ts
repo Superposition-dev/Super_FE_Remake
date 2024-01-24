@@ -41,7 +41,7 @@ export const InnerWrap = styled.div`
 
 export const InnerTopWrap = styled.div`
   ${({ theme }) => theme.flex.flexColumn};
-  gap: 0.75rem;
+  gap: 0.5rem;
   width: 100%;
 `;
 
@@ -57,6 +57,7 @@ export const Type = styled.span<{ isDisplay: boolean }>`
 
 export const TitleWrap = styled.div`
   ${({ theme }) => theme.flex.flexColumn};
+  gap: 0.25rem;
   width: 100%;
 `;
 
@@ -74,19 +75,19 @@ export const SubTitle = styled.h5`
 
 export const InnerBottomWrap = styled.div`
   ${({ theme }) => theme.flex.flexColumn};
-  gap: 0.25rem;
+  gap: 0.375rem;
   width: 100%;
 `;
 
-export const Desc = styled.p`
+export const DescWrap = styled.div`
   ${({ theme }) => theme.flex.flexRow};
   align-items: center;
   gap: 0.5rem;
-  ${({ theme }) => theme.font.bold_10};
-  ${({ theme }) => theme.colors.white};
 `;
 
 export const LocationIcon = styled(HiOutlineLocationMarker)`
+  position: relative;
+  top: -1px;
   width: 16px;
   height: 16px;
   ${({ theme }) => theme.colors.white};
@@ -96,4 +97,13 @@ export const DateIcon = styled(IoCalendarOutline)`
   width: 16px;
   height: 16px;
   ${({ theme }) => theme.colors.white};
+`;
+
+export const Desc = styled.p`
+  width: 85%;
+  height: 100%;
+  ${({ theme }) => theme.font.bold_10};
+  ${({ theme }) => theme.colors.white};
+  ${({ theme }) => theme.layout.ellipsis};
+  vertical-align: middle;
 `;

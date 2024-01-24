@@ -21,14 +21,14 @@ function Exhibition(props: ExhibitionProps) {
           </S.TitleWrap>
         </S.InnerTopWrap>
         <S.InnerBottomWrap>
-          <S.Desc>
+          <S.DescWrap>
             <S.LocationIcon />
-            {exhibition.location}
-          </S.Desc>
-          <S.Desc>
+            <S.Desc>{exhibition.location}</S.Desc>
+          </S.DescWrap>
+          <S.DescWrap>
             <S.DateIcon />
-            {`${exhibition.startDate} ~ ${exhibition.endDate}`}
-          </S.Desc>
+            <S.Desc>{`${exhibition.startDate} ~ ${exhibition.endDate}`}</S.Desc>
+          </S.DescWrap>
         </S.InnerBottomWrap>
       </S.InnerWrap>
     </S.ExhibitionWrap>
