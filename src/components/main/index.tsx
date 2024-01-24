@@ -25,11 +25,12 @@ function MainPage() {
       slidesPerView={1}
       mousewheel={true}
       pagination={{
-        clickable: true,
+        clickable:true
       }}
       modules={[Mousewheel, Pagination]}
       watchSlidesProgress={true}
       onSlideChange={(swiper) => handleSlideChange(swiper)}
+      speed={1000}
     >
       <S.SwiperItem>
         <Intro />

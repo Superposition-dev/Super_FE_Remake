@@ -15,7 +15,7 @@ const updown = keyframes`
 `;
 
 export const ArrowWrap = styled.div`
-    width: 5rem;
+    width: 2%;
     position: absolute;
     bottom: 2%;
     left: 0;
@@ -24,6 +24,6 @@ export const ArrowWrap = styled.div`
     animation: ${updown} 1s ease infinite;
     z-index: 2;
     @media (max-width: 768px) {
-    width: 10%;
+    width: 8%;
   }
 `;

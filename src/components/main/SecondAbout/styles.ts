@@ -2,26 +2,52 @@ import styled from '@emotion/styled';
 import Image from 'next/image';
 
 export const SecondeAboutSection = styled.section`
+  max-width: 1200px;
   width: 100%;
   height: 100%;
-  ${({ theme }) => theme.flex.flexColumn};
+  ${({ theme }) => theme.flex.flexRow};
   align-items: center;
+  justify-content: center;
   padding: 5rem 2rem;
   overflow: hidden;
+  margin: 0 auto;
+  gap: 3rem;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 0;
+  }
 `;
+
+export const Wrap = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
 
 export const QrCodeWrap = styled.div`
   width: 100%;
-  border-radius: 8px;
+  height: 43rem;
   border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
   background: linear-gradient(104deg, rgba(254, 254, 254, 0.25) 22.14%, rgba(254, 254, 254, 0.1) 73.73%);
   box-shadow: 0px 8px 34px 0px rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(1px);
   display: flex;
-  justify-content: space-between;
+  flex-direction: column-reverse;
+  justify-content: center;
   align-items: center;
+  gap: 2rem;
   padding: 1rem 2rem;
-
+  margin-bottom: 3rem;
+  @media (max-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0;
+    border-radius: 8px;
+    height: auto;
+  }
   @media (max-width: 429px) {
     margin-bottom: 1rem;
   }
@@ -34,13 +60,26 @@ export const QrCodeWrap = styled.div`
 `;
 
 export const QrContentWrap = styled.div`
-  ${({ theme }) => theme.font.medium_14};
+  font-size: 2.4rem;
+  line-height: 1.5;
+  text-align: center;
+  h2{
+    font-weight: 600;
+  }
+  @media (max-width: 768px) {
+    ${({ theme }) => theme.font.medium_14};
+    text-align: left;
+  }
 `;
 
 export const QrIconWrap = styled.div`
+  position: relative;
+  width: 18rem;
+  height: 18rem;
+  @media (max-width: 768px) {
   width: 10.5vh;
   height: 10.5vh;
-  position: relative;
+  }
 `;
 
 export const ContentWrap = styled.div`
@@ -49,28 +88,43 @@ export const ContentWrap = styled.div`
 `;
 
 export const ContentTitle = styled.h3`
-  ${({ theme }) => theme.font.bold_20};
+  font-size: 3.8rem;
+  font-weight: 700;
   margin-bottom: 1rem;
+  @media (max-width: 768px) {
+    ${({ theme }) => theme.font.bold_20};
+  }
 `;
 
 export const ContentDesc = styled.p`
   width: 90%;
+  font-size: 2rem;
+  line-height: 1.5;
   color: ${({ theme }) => theme.colors.gray};
-  ${({ theme }) => theme.font.regular_14};
   word-break: keep-all;
+  @media (max-width: 768px) {
+    ${({ theme }) => theme.font.regular_14};
+  }
 `;
 
 export const ContentText = styled.p`
   width: 70%;
+  font-size: 2rem;
+  line-height: 1.5;
   color: ${({ theme }) => theme.colors.gray};
-  ${({ theme }) => theme.font.bold_10};
   word-break: keep-all;
+  @media (max-width: 768px) {
+    ${({ theme }) => theme.font.bold_10};
+  }
 `;
 
 export const DetailImageWrap = styled.div`
   ${({ theme }) => theme.flex.flexCenter};
   position: relative;
-  margin: 2.3rem 0;
+  margin: 2.3rem 0 3rem;
+  display: flex;
+  width: 59rem;
+  height: 39rem;
   @media (max-width: 429px) {
     width: 27.8rem;
     height: 19.4rem;
