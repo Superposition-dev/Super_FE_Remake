@@ -59,7 +59,7 @@ export const ModalTitle = styled.p`
 `;
 
 export const ModalSubTitle = styled.p`
-  ${({ theme }) => theme.font.regular_12};
+  ${({ theme }) => theme.font.medium_12};
   color: ${({ theme }) => theme.colors.dark_gray};
   text-align: center;
 `;
