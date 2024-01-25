@@ -129,7 +129,9 @@ table {
   border-spacing: 0;
 }
 
-*:focus {
+*:focus,
+*::after,
+*::before {
   border: 0;
   outline: 0;
   background-color: transparent;

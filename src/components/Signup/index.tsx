@@ -20,6 +20,7 @@ function SignupPage() {
         <S.SignupBottomWrap>
           <UserInfo userInfo={userInfo} setUserInfo={setUserInfo} />
         </S.SignupBottomWrap>
+        <S.SignupButton>가입하기</S.SignupButton>
       </S.SignupWrap>
     </CommonWrapper>
   );

@@ -15,6 +15,8 @@ const colors = {
   dark_navy: '#121212',
 
   kakao: '#FEE500',
+  error: '#FF334B',
+  success: '#07FA6A',
 };
 
 const flex = {

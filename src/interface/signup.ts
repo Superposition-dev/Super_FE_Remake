@@ -8,7 +8,7 @@ export interface UserInfoType {
   userId?: number;
   nickName?: string;
   email?: string;
-  year?: number;
+  year?: string;
   sex?: string;
   picture?: string;
 }
