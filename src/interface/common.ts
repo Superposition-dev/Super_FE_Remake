@@ -6,3 +6,9 @@ export interface CommonTitleProps {
 export interface CommonWrapperProps {
   children: React.ReactNode;
 }
+
+export interface CommonFloatingProps {
+  title: string;
+  src: string;
+  handler?: () => void;
+}
