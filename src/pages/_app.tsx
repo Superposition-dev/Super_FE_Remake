@@ -41,7 +41,6 @@ export default function App({ Component, pageProps }: AppProps) {
             <Component {...pageProps} />
           </Hydrate>
         </Layout>
-        <Floating />
       </ThemeProvider>
     </QueryClientProvider>
   );

@@ -10,7 +10,7 @@ export const ExhibitionWrap = styled.div`
   width: 100%;
   height: 14.5rem;
   min-height: 14.5rem;
-  padding: 16px 0;
+  padding: 0 0 16px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.gray};
 `;
 

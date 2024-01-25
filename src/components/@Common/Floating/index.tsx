@@ -1,15 +1,15 @@
 import React from 'react';
 import * as S from './styles';
 import Image from 'next/image';
+import { CommonFloatingProps } from '@/interface/common';
 
-function Floating() {
+function Floating({ title, src, handler }: CommonFloatingProps) {
   return (
-    <S.FloatingWrap>
-      {/* <S.FloatingImage /> */}
+    <S.FloatingWrap onClick={handler}>
       <S.FloatingImageWrap>
-        <Image src="/images/floatingImage.webp" alt="작가 신청" width="24" height="26" />
+        <Image src={src} alt="" width="24" height="26" />
       </S.FloatingImageWrap>
-      <S.FloatingTitle>작가 신청</S.FloatingTitle>
+      <S.FloatingTitle>{title}</S.FloatingTitle>
     </S.FloatingWrap>
   );
 }
