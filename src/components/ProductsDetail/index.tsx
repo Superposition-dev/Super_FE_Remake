@@ -31,7 +31,7 @@ function ProductDetail({ data }: { data: ProductDetailProps }) {
     },
   });
 
-  const {mutate: formMutate} = useMutation(patchFormClick);
+  const { mutate: formMutate } = useMutation(patchFormClick);
 
   const handleLike = useCallback(() => {
     setLike((prevLike) => !prevLike);
@@ -103,7 +103,9 @@ function ProductDetail({ data }: { data: ProductDetailProps }) {
       </S.ProductInfoWrap>
       <S.PriceBox>
         <S.Price>{priceNum}원</S.Price>
-        <S.BuyButton href={'https://forms.gle/8aV6YfbUjbHFKgf7A'} target='_blank' onClick={()=>formMutate(productId)}>구매하기</S.BuyButton>
+        <S.BuyButton href={'https://forms.gle/8aV6YfbUjbHFKgf7A'} target="_blank" onClick={() => formMutate(productId)}>
+          구매하기
+        </S.BuyButton>
       </S.PriceBox>
     </S.DetailContainer>
   );

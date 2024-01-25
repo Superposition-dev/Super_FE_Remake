@@ -335,6 +335,9 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# nvm intergration
+.nvmrc
+
 ### yarn ###
 # https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
 

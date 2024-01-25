@@ -1,5 +1,8 @@
 import styled from '@emotion/styled';
 import Link from 'next/link';
+import { BiUser } from 'react-icons/bi';
+import { GrMenu } from 'react-icons/gr';
+
 export const HeaderWrap = styled.div<{ path: string }>`
   max-width: 1660px;
   width: 100%;
@@ -9,7 +12,7 @@ export const HeaderWrap = styled.div<{ path: string }>`
   align-items: center;
   position: fixed;
   z-index: 100;
-  /* background-color: ${({ theme, path }) => (path === '/' ? 'transprent' : theme.colors.black)}; */
+  background-color: ${({ theme, path }) => (path === '/' ? 'transprent' : theme.colors.black)};
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -22,8 +25,8 @@ export const HeaderWrap = styled.div<{ path: string }>`
 
 export const LogoWrap = styled(Link)`
   position: relative;
-    width: 250px;
-    height: 33px;
+  width: 250px;
+  height: 33px;
   @media (max-width: 768px) {
     width: 150px;
     height: 20px;
@@ -32,19 +35,23 @@ export const LogoWrap = styled(Link)`
 
 export const NavWrap = styled.div`
   ${({ theme }) => theme.flex.flexRow};
+  align-items: center;
   gap: 4rem;
   @media (max-width: 768px) {
-    gap: 2rem;
+    gap: 1.5rem;
   }
 `;
-export const NavItem = styled(Link)<{active:boolean}>`
+
+export const NavLogin = styled(BiUser)`
   color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
-  text-decoration: none;
-  font-weight: 500;
-  border-bottom: ${({active})=>active?`2px solid #fff`:'none'};
-  ${({ theme }) => theme.font.bold_24};
-  @media (max-width: 768px) {
-    ${({ theme }) => theme.font.regular_14};
-  }
+  width: 2rem;
+  height: 2rem;
+`;
+
+export const NavMenu = styled(GrMenu)`
+  color: ${({ theme }) => theme.colors.white};
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
 `;
