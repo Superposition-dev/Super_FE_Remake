@@ -2,18 +2,24 @@ import styled from '@emotion/styled';
 import Image from 'next/image';
 
 export const AuthorWrap = styled.div`
-  width: 42vw;
+  width: 15vw;
   text-align: center;
   position: relative;
   margin-bottom: 2rem;
+  @media (max-width: 768px) {
+    width: 42vw
+  }
 `;
 
 export const AuthorImageWrap = styled.div`
   width: 100%;
-  height: 52vw;
+  height: 18vw;
   position: relative;
   border-radius: 8px;
   overflow: hidden;
+  @media (max-width: 768px) {
+    height: 52vw;
+  }
 `;
 
 export const AuthorImage = styled(Image)`

@@ -57,30 +57,33 @@ export const ImageSwiperWrap = styled(Swiper)`
   width: 100%;
   margin: 1vh 0;
   margin-bottom: 2rem;
+  height: 43rem;
   .swiper-slide {
     width: 60rem;
+    height: 43rem;
   }
   @media (max-width: 768px) {
+    height:100%;
     .swiper-slide {
       width: 100%;
+      height: 18.5rem;
     }
   }
 `;
 
 export const ImageSwiper = styled(SwiperSlide)`
   width: 100%;
+  height: 43rem;
   position: relative;
   border-radius: 20px;
   overflow: hidden;
-
   img {
-    width: 100%;
-    height: 43rem;
     object-fit: cover;
     object-position: center;
   }
   @media (max-width: 768px) {
     border-radius: 0;
+
     img {
       width: 100%;
       height: 40%;

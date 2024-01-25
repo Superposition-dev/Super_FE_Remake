@@ -2,11 +2,15 @@ import styled from '@emotion/styled';
 import Image from 'next/image';
 
 export const ProductWrap = styled.div`
-  width: 42vw;
+  width: 20vw;
+  @media (max-width: 768px) {
+    width: 42vw
+  }
 `;
 
 export const ProductImageWrap = styled.div`
   width: 100%;
+  position: relative;
 `;
 export const ProductImage = styled(Image)`
   width: 100%;

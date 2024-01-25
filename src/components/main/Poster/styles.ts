@@ -88,6 +88,8 @@ export const PosterImage = styled.div`
   }
   @media (max-width: 768px) {
     width: 50%;
+    height: 100%;
+    z-index: -1;
   }
 `;
 

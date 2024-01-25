@@ -12,16 +12,15 @@ const Kakao = () => {
       try{
         const res = await instance.get(`/auth/login/kakao?code=${code}`)
         console.log(res.data)
-        router.push('/')
-      }catch(e:any){
-        console.log(e.response)
-        if(e.response?.status === 303){
-          sessionStorage.setItem('kakaoInfo', JSON.stringify(e.response.data))
+        if(res.data?.statusCodeValue
+          === 303){
+          sessionStorage.setItem('userInfo', JSON.stringify(res.data.body))
           router.push('/signup')
           return
-        }else{
+        }
+      }catch(e:any){
+        console.log(e.response)
           router.push('/404')
-        }      
       }
     }
   ,[router])

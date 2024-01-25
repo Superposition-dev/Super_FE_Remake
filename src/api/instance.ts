@@ -2,11 +2,11 @@ import axios from 'axios';
 
 const getAxiosInstans = (type: string) => {
   const config = {
-    baseURL: 'http://61.97.186.40:8080',
+    baseURL: process.env.NEXT_PUBLIC_BASE_URL,
     headers: {
       'Content-Type': type,
     },
-    origin: 'http://61.97.186.40:8080',
+    origin: process.env.NEXT_PUBLIC_BASE_URL,
     withCredentials: true,
   };
   const instance = axios.create(config);

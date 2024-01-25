@@ -9,11 +9,15 @@ export const AuthorsContainer = styled.div`
 `;
 
 export const AuthorsWrap = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin-top: 3rem;
+  width: 65%;
+  display: grid;
+  grid-template-columns: repeat(4, 0.5fr);
+  place-items: center;
+  padding-top: 2rem;
+  @media (max-width: 768px) {
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 export const NoResult = styled.div`

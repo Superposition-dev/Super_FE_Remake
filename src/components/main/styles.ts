@@ -8,5 +8,4 @@ export const SwiperWrap = styled(Swiper)`
 
 export const SwiperItem = styled(SwiperSlide)`
   width: 100%;
-  height: 100%;
 `;
