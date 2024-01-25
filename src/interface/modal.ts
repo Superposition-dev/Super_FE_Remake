@@ -1,5 +1,5 @@
 export interface InduceLoginModalProps {
-  title: string;
+  desc: string;
   state: boolean;
   setState: React.Dispatch<React.SetStateAction<boolean>>;
 }

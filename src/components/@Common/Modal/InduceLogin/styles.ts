@@ -28,7 +28,8 @@ export const Modal = styled.div`
   ${({ theme }) => theme.flex.flexColumn}
   ${({ theme }) => theme.flex.flexCenter}
   width: 75%;
-  height: 16rem;
+  height: 18rem;
+  padding: 20px 28px 12px;
   background-color: ${({ theme }) => theme.colors.navy};
   border-radius: 1rem;
   transform: translate(-50%, -50%);
@@ -39,7 +40,7 @@ export const Modal = styled.div`
 export const ModalInnerWrap = styled.div`
   ${({ theme }) => theme.flex.flexColumn}
   ${({ theme }) => theme.flex.flexCenter}
-  gap: 2rem;
+  gap: 2.5rem;
   width: 100%;
   height: 100%;
 `;
@@ -65,29 +66,28 @@ export const ModalSubTitle = styled.p`
 `;
 
 export const ModalButtonWrap = styled.div`
-  ${({ theme }) => theme.flex.flexRow}
+  ${({ theme }) => theme.flex.flexColumn}
   ${({ theme }) => theme.flex.flexCenter}
   justify-content: center;
-  gap: 1.2rem;
+  gap: 1rem;
   width: 100%;
 `;
 
 export const CancelButton = styled.button`
   ${({ theme }) => theme.flex.flexCenter}
   justify-content: center;
-  width: 108px;
-  height: 42px;
+  width: 100%;
+  height: 24px;
   border-radius: 0.75rem;
   ${({ theme }) => theme.font.medium_12};
   color: ${({ theme }) => theme.colors.gray};
-  background-color: ${({ theme }) => theme.colors.dark_navy};
   cursor: pointer;
 `;
 
 export const KaKaoButton = styled.button`
   ${({ theme }) => theme.flex.flexCenter}
-  gap: 0.5rem;
-  width: 108px;
+  gap: 0.75rem;
+  width: 100%;
   height: 42px;
   border-radius: 0.75rem;
   background-color: ${({ theme }) => theme.colors.kakao};

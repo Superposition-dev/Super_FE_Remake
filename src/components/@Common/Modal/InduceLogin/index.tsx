@@ -5,7 +5,7 @@ import { InduceLoginModalProps } from '@/interface/modal';
 import { useRouter } from 'next/router';
 
 function InduceLoginModal(props: InduceLoginModalProps) {
-  const { title, state, setState } = props;
+  const { desc, state, setState } = props;
   const router = useRouter();
 
   const onClose = () => {
@@ -23,14 +23,14 @@ function InduceLoginModal(props: InduceLoginModalProps) {
         <S.ModalInnerWrap>
           <S.ModalTitleWrap>
             <S.ModalTitle>로그인 하시겠어요?</S.ModalTitle>
-            <S.ModalSubTitle>회원이 되면 내 취향을 모아볼 수 있어요.</S.ModalSubTitle>
+            <S.ModalSubTitle>{desc}</S.ModalSubTitle>
           </S.ModalTitleWrap>
           <S.ModalButtonWrap>
-            <S.CancelButton onClick={onClose}>취소</S.CancelButton>
             <S.KaKaoButton onClick={onLinkedLogin}>
               <Image src="/images/kakaoSymbol.png" alt="카카오로 시작하기" width="24" height="24" />
-              <S.KaKaoText>시작하기</S.KaKaoText>
+              <S.KaKaoText>카카오로 시작하기</S.KaKaoText>
             </S.KaKaoButton>
+            <S.CancelButton onClick={onClose}>취소</S.CancelButton>
           </S.ModalButtonWrap>
         </S.ModalInnerWrap>
       </S.Modal>

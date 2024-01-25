@@ -37,7 +37,13 @@ function Header() {
         </S.NavWrap>
       </S.HeaderWrap>
       <SideBar open={open} setOpen={setOpen} />
-      <Portal>{like ? <InduceLoginModal title="좋아요" state={like} setState={setLike} /> : <></>}</Portal>
+      <Portal>
+        {like ? (
+          <InduceLoginModal desc="회원이 되면 내 취향을 모아볼 수 있어요." state={like} setState={setLike} />
+        ) : (
+          <></>
+        )}
+      </Portal>
     </>
   );
 }
