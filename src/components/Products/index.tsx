@@ -1,9 +1,9 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import * as S from './styles';
 import Author from './Author';
-import Search from '../common/Search';
+import Search from '../@Common/Search';
 import Product from './Product';
-import CommonTitle from '../common/Title';
+import CommonTitle from '../@Common/Title';
 import { QueryClient, dehydrate, useQuery } from 'react-query';
 import { getMainAuthors } from '@/api/authors';
 import { getProducts } from '@/api/products';
@@ -50,7 +50,7 @@ function ProductsPage() {
   useEffect(() => {
     const scrollHeight = document.body.scrollHeight;
     setMaxScroll(scrollHeight);
-  }, [productsData,searchData]);
+  }, [productsData, searchData]);
   return (
     <S.ProductsContainer>
       <CommonTitle data={CONCEPT} />

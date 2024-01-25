@@ -1,4 +1,4 @@
-import ProductsPage from '@/components/products';
+import ProductsPage from '@/components/Products';
 import React from 'react';
 
 function Products() {

@@ -1,14 +1,13 @@
 import React, { useMemo } from 'react';
 import * as S from './styles';
-import CommonTitle from '../common/Title';
-import Search from '../common/Search';
+import CommonTitle from '../@Common/Title';
+import Search from '../@Common/Search';
 import Author from './Author';
 import { QueryClient, dehydrate, useQuery } from 'react-query';
 import { getAuthors } from '@/api/authors';
 import { AuthorsProps } from '@/interface/authors';
 import { ARITST_TITLE } from '@/constants/title';
-
-
+import Floating from '../@Common/Floating';
 
 export const getStaticProps = async () => {
   const queryClient = new QueryClient();
@@ -36,16 +35,19 @@ function Authors() {
   const memoizedSearchData = useMemo(() => searchData, [searchData]);
 
   return (
-    <S.AuthorsContainer>
-      <CommonTitle data={ARITST_TITLE} />
-      <Search setData={setSearchData} /> {/* Placeholder for Search component */}
-      <S.AuthorsWrap>
-        {memoizedSearchData?.length === 0
-          ? memoizedAuthorsData?.map((author: AuthorsProps, index: number) => <Author key={index} data={author} />)
-          : memoizedSearchData?.map((author: AuthorsProps, index: number) => <Author key={index} data={author} />)}
-        {searchData === undefined && <S.NoResult>검색 결과가 없습니다.</S.NoResult>}
-      </S.AuthorsWrap>
-    </S.AuthorsContainer>
+    <>
+      <S.AuthorsContainer>
+        <CommonTitle data={ARITST_TITLE} />
+        <Search setData={setSearchData} /> {/* Placeholder for Search component */}
+        <S.AuthorsWrap>
+          {memoizedSearchData?.length === 0
+            ? memoizedAuthorsData?.map((author: AuthorsProps, index: number) => <Author key={index} data={author} />)
+            : memoizedSearchData?.map((author: AuthorsProps, index: number) => <Author key={index} data={author} />)}
+          {searchData === undefined && <S.NoResult>검색 결과가 없습니다.</S.NoResult>}
+        </S.AuthorsWrap>
+      </S.AuthorsContainer>
+      <Floating title="작가 신청" src="/images/floatingImage.webp" />
+    </>
   );
 }
 

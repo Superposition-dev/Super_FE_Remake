@@ -6,10 +6,10 @@ export const SearchWrap = styled.form`
   width: 100vw;
   height: 3.4rem;
   position: sticky;
-  z-index: 200;
+  z-index: 100;
   top: 5rem;
   font-size: 1.6rem;
-  padding:1rem 0;
+  padding: 1rem 0;
   color: ${({ theme }) => theme.colors.white};
   background-color: ${({ theme }) => theme.colors.black};
   ${({ theme }) => theme.flex.flexRow};
@@ -27,7 +27,6 @@ export const SearchInput = styled.input`
   outline: none;
   color: ${({ theme }) => theme.colors.white};
   background-color: ${({ theme }) => theme.colors.dark_gray};
-
 
   &::placeholder {
     color: ${({ theme }) => theme.colors.gray};
