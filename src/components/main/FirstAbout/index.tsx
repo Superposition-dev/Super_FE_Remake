@@ -36,19 +36,19 @@ function FirstAbout() {
             loop={true}
           >
             <S.ImageSwiper>
-              <Image src="/images/aboutImage1.webp" loading="eager" alt="슬라이드 이미지" width={360} height={185} />
+              <Image src="/images/aboutImage1.webp" loading="eager" alt="슬라이드 이미지" fill />
             </S.ImageSwiper>
             <S.ImageSwiper>
-              <Image src="/images/aboutImage2.webp" loading="eager" alt="슬라이드 이미지" width={360} height={185} />
+              <Image src="/images/aboutImage2.webp" loading="eager" alt="슬라이드 이미지" fill />
             </S.ImageSwiper>
             <S.ImageSwiper>
-              <Image src="/images/aboutImage3.webp" loading="eager" alt="슬라이드 이미지" width={360} height={185} />
+              <Image src="/images/aboutImage3.webp" loading="eager" alt="슬라이드 이미지" fill />
             </S.ImageSwiper>
             <S.ImageSwiper>
-              <Image src="/images/aboutImage4.webp" loading="eager" alt="슬라이드 이미지" width={360} height={185} />
+              <Image src="/images/aboutImage4.webp" loading="eager" alt="슬라이드 이미지" fill />
             </S.ImageSwiper>
             <S.ImageSwiper>
-              <Image src="/images/aboutImage5.webp" loading="eager" alt="슬라이드 이미지" width={360} height={185} />
+              <Image src="/images/aboutImage5.webp" loading="eager" alt="슬라이드 이미지" fill />
             </S.ImageSwiper>
           </S.ImageSwiperWrap>
           <S.TextWrap>
