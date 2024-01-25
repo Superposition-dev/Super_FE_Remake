@@ -34,10 +34,12 @@ export const Authors = styled.div`
 `;
 
 export const Products = styled(MasonryGrid)<{maxScroll:number}>`
+  max-width: 1200px;
   min-height: calc(max(100vh, ${({ maxScroll }) => maxScroll}px) - 20rem);
   width: 100%;
   height: auto !important;
   margin-top: 3rem;
+  
 `;
 
 export const NoResult = styled.div`

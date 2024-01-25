@@ -10,6 +10,7 @@ import { getProducts } from '@/api/products';
 import { AuthorsProps } from '@/interface/authors';
 import { MainProduct } from '@/interface/product';
 import { CONCEPT } from '@/constants/title';
+import { useIsMobile } from '@/hook/useView';
 
 //
 export async function getStaticProps() {
@@ -45,6 +46,7 @@ function ProductsPage() {
   const [maxScroll, setMaxScroll] = useState(0);
   const memoizedProductsData = useMemo(() => productsData, [productsData]);
   const memoizedAuthorsData = useMemo(() => authorsData, [authorsData]);
+  const mobile = useIsMobile();
   useEffect(() => {
     const scrollHeight = document.body.scrollHeight;
     setMaxScroll(scrollHeight);
@@ -59,9 +61,9 @@ function ProductsPage() {
       </S.Authors>
       <Search setData={setSearchData} />
       <S.Products
-        column={2}
-        gap={20}
-        align={'justify'}
+        column={mobile ? 2 : 4}
+        gap={10}
+        align='center'
         defaultDirection={'end'}
         observeChildren={true}
         useResizeObserver={true}
