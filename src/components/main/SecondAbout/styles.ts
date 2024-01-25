@@ -6,8 +6,6 @@ export const SecondeAboutSection = styled.section`
   width: 100%;
   height: 100%;
   ${({ theme }) => theme.flex.flexRow};
-  align-items: center;
-  justify-content: center;
   padding: 5rem 2rem;
   overflow: hidden;
   margin: 0 auto;

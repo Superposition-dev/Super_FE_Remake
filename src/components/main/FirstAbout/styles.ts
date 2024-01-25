@@ -63,8 +63,10 @@ export const ImageSwiperWrap = styled(Swiper)`
     height: 43rem;
   }
   @media (max-width: 768px) {
+    height:100%;
     .swiper-slide {
       width: 100%;
+      height: 18.5rem;
     }
   }
 `;
@@ -81,6 +83,7 @@ export const ImageSwiper = styled(SwiperSlide)`
   }
   @media (max-width: 768px) {
     border-radius: 0;
+
     img {
       width: 100%;
       height: 40%;
