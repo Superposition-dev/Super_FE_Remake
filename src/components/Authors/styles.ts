@@ -13,7 +13,9 @@ export const AuthorsWrap = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 0.5fr);
   place-items: center;
+  padding-top: 2rem;
   @media (max-width: 768px) {
+    width: 100%;
     grid-template-columns: repeat(2, 1fr);
   }
 `;
