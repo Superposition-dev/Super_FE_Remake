@@ -61,7 +61,7 @@ export const UserInfoYearWrap = styled.div`
   ${({ theme }) => theme.font.medium_14};
 `;
 
-export const YearWrap = styled.div`
+export const BirthYearWrap = styled.div`
   ${({ theme }) => theme.flex.flexRow};
   align-items: center;
   gap: 0.25rem;
@@ -69,37 +69,32 @@ export const YearWrap = styled.div`
   color: ${({ theme }) => theme.colors.white};
 `;
 
-export const Year = styled.input`
+export const BirthYear = styled.input`
   width: 48%;
   ${({ theme }) => theme.font.regular_14};
   color: ${({ theme }) => theme.colors.dark_gray};
 `;
 
-export const UserInfoSexWrap = styled.div`
+export const UserInfoGenderWrap = styled.div`
   ${({ theme }) => theme.flex.flexColumn};
   gap: 0.75rem;
   width: 52%;
   ${({ theme }) => theme.font.medium_14};
 `;
 
-export const SexsWrap = styled.div`
+export const GendersWrap = styled.div`
   ${({ theme }) => theme.flex.flexRow};
   align-items: center;
   gap: 2rem;
 `;
 
-export const SexWrap = styled.label`
+export const GenderWrap = styled.label`
   ${({ theme }) => theme.flex.flexRow};
   align-items: center;
   gap: 1rem;
 `;
 
-export const RadioButton = styled.div`
-  border: 2px solid ${({ theme }) => theme.colors.dark_navy};
-  background-color: transparent;
-`;
-
-export const HiddenRadioButton = styled.input`
+export const RadioButton = styled.input`
   position: relative;
   width: 20px;
   height: 20px;

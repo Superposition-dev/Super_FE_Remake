@@ -29,4 +29,9 @@ export const SignupButton = styled.button`
   color: ${({ theme }) => theme.colors.white};
   border-radius: 0.75rem;
   background-color: ${({ theme }) => theme.colors.purple};
+
+  &:disabled {
+    color: ${({ theme }) => theme.colors.gray};
+    background-color: ${({ theme }) => theme.colors.dark_gray};
+  }
 `;

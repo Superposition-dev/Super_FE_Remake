@@ -3,7 +3,8 @@ import * as S from './styles';
 import CommonWrapper from '../@Common/Wrap';
 import UserImage from './Image';
 import UserInfo from './Info';
-import { UserInfoType } from '@/interface/signup';
+import { UserInfoType, ValidateNickNameType } from '@/interface/signup';
+import { validateNickName } from '@/util/utils';
 
 function SignupPage() {
   const [userInfo, setUserInfo] = useState<UserInfoType>();
@@ -20,7 +21,13 @@ function SignupPage() {
         <S.SignupBottomWrap>
           <UserInfo userInfo={userInfo} setUserInfo={setUserInfo} />
         </S.SignupBottomWrap>
-        <S.SignupButton>가입하기</S.SignupButton>
+        <S.SignupButton
+          disabled={
+            userInfo?.nickName && validateNickName(userInfo.nickName) === ValidateNickNameType.success ? false : true
+          }
+        >
+          가입하기
+        </S.SignupButton>
       </S.SignupWrap>
     </CommonWrapper>
   );
