@@ -22,7 +22,7 @@ function UserImage(props: UserImageProps) {
     fileReader.onload = () => {
       setUserInfo((userInfo) => ({
         ...userInfo,
-        picture: fileReader.result as string,
+        image: fileReader.result as string,
       }));
     };
 
@@ -33,7 +33,7 @@ function UserImage(props: UserImageProps) {
     <>
       <S.UserImageWrap onClick={onUploadImage}>
         <S.UserImage>
-          <S.Image src={customNullImg(userInfo?.picture ? userInfo.picture : '')} />
+          <S.Image src={customNullImg(userInfo?.image ? userInfo.image : '')} />
         </S.UserImage>
         <S.IconWrap>
           <S.Icon />

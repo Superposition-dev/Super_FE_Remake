@@ -17,17 +17,17 @@ function UserInfo(props: UserInfoProps) {
     setValidate(validateNickName(e.target.value));
   };
 
-  const onChangeYear = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeBirthYear = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInfo((userInfo) => ({
       ...userInfo,
-      year: e.target.value,
+      birthYear: e.target.value,
     }));
   };
 
-  const onChangeSex = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeGender = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInfo((userInfo) => ({
       ...userInfo,
-      sex: e.target.value,
+      gender: e.target.value,
     }));
   };
 
@@ -59,46 +59,46 @@ function UserInfo(props: UserInfoProps) {
       <S.UserInfoBottomWrap>
         <S.UserInfoYearWrap>
           <S.Title>출생년도</S.Title>
-          <S.YearWrap>
-            <S.Year
+          <S.BirthYearWrap>
+            <S.BirthYear
               type="text"
-              value={userInfo?.year}
+              value={userInfo?.birthYear}
               placeholder="YYYY"
-              onChange={(e) => onChangeYear(e)}
+              onChange={(e) => onChangeBirthYear(e)}
               maxLength={4}
             />
             년생
-          </S.YearWrap>
+          </S.BirthYearWrap>
         </S.UserInfoYearWrap>
-        <S.UserInfoSexWrap>
+        <S.UserInfoGenderWrap>
           <S.Title>성별</S.Title>
-          <S.SexsWrap>
-            <S.SexWrap htmlFor="woman">
+          <S.GendersWrap>
+            <S.GenderWrap htmlFor="woman">
               <S.RadioButton
                 type="radio"
                 name="sex"
                 id="woman"
                 value="woman"
                 onChange={(e) => {
-                  onChangeSex(e);
+                  onChangeGender(e);
                 }}
               />
               여성
-            </S.SexWrap>
-            <S.SexWrap htmlFor="man">
+            </S.GenderWrap>
+            <S.GenderWrap htmlFor="man">
               <S.RadioButton
                 type="radio"
                 name="sex"
                 id="man"
                 value="man"
                 onChange={(e) => {
-                  onChangeSex(e);
+                  onChangeGender(e);
                 }}
               />
               남성
-            </S.SexWrap>
-          </S.SexsWrap>
-        </S.UserInfoSexWrap>
+            </S.GenderWrap>
+          </S.GendersWrap>
+        </S.UserInfoGenderWrap>
       </S.UserInfoBottomWrap>
     </>
   );

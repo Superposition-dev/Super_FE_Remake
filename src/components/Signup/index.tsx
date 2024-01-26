@@ -10,7 +10,7 @@ function SignupPage() {
 
   // 세션 스토리지에 저장된 카카오에서 받아온 데이터를 userInfo에 넣어주시면 됩니다.
   // 가입하기 클릭 시, 해당 데이터를 서버에 post 요청
-
+  console.log(userInfo);
   return (
     <CommonWrapper>
       <S.SignupWrap>

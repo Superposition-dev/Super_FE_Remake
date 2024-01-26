@@ -6,11 +6,12 @@ export enum ValidateNickNameType {
 
 export interface UserInfoType {
   userId?: number;
+  name?: string;
   nickName?: string;
   email?: string;
-  year?: string;
-  sex?: string;
-  picture?: string;
+  birthYear?: string;
+  gender?: string;
+  image?: string;
 }
 
 export interface UserImageProps {
