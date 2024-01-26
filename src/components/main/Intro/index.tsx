@@ -8,7 +8,7 @@ function Intro() {
   return (
     <S.IntroSection>
       <S.PlanetWrap vh={vh}>
-        <Image src="/images/planets.webp" alt="보라행성" loading="eager" width={0} height={0} layout="responsive" />
+        <Image src="/images/planets.webp" alt="보라행성" loading="eager" width={1237} height={1238} layout="responsive" />
       </S.PlanetWrap>
       <S.DarkPlanetWrap vh={vh}>
         <Image
@@ -24,7 +24,7 @@ function Intro() {
         <Image src="/images/logo.svg" alt="로고" loading="lazy" width={0} height={0} layout="responsive" />
       </S.LogoWrap>
       <S.MainLogoWrap>
-        <Image src="/images/mainLogo.webp" alt="슈퍼포지션" loading="lazy" width={0} height={0} layout="responsive" />
+        <Image src="/images/mainLogo.webp" alt="슈퍼포지션" loading="lazy" width={804} height={305} layout="responsive" />
       </S.MainLogoWrap>
       <S.SmallPlanetWrap>
         <Image src="/images/planet1.svg" alt="작은행성" loading="lazy" width={0} height={0} layout="responsive" />
@@ -34,7 +34,7 @@ function Intro() {
       </S.MediumPlanetWrap>
       <S.BottomWrap>
         <S.CatWrap>
-          <Image src="/images/cat.webp" loading="lazy" alt="고양이" width={0} height={0} layout="responsive" />
+          <Image src="/images/cat.webp" loading="lazy" alt="고양이" width={127} height={182} layout="responsive" />
         </S.CatWrap>
         <S.TextWrap>
           <S.TitleWrap>
