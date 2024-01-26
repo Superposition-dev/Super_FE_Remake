@@ -94,12 +94,7 @@ export const SexWrap = styled.label`
   gap: 1rem;
 `;
 
-export const RadioButton = styled.div`
-  border: 2px solid ${({ theme }) => theme.colors.dark_navy};
-  background-color: transparent;
-`;
-
-export const HiddenRadioButton = styled.input`
+export const RadioButton = styled.input`
   position: relative;
   width: 20px;
   height: 20px;

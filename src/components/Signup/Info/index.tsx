@@ -74,7 +74,7 @@ function UserInfo(props: UserInfoProps) {
           <S.Title>성별</S.Title>
           <S.SexsWrap>
             <S.SexWrap htmlFor="woman">
-              <S.HiddenRadioButton
+              <S.RadioButton
                 type="radio"
                 name="sex"
                 id="woman"
@@ -83,11 +83,10 @@ function UserInfo(props: UserInfoProps) {
                   onChangeSex(e);
                 }}
               />
-              {/* <S.RadioButton /> */}
               여성
             </S.SexWrap>
             <S.SexWrap htmlFor="man">
-              <S.HiddenRadioButton
+              <S.RadioButton
                 type="radio"
                 name="sex"
                 id="man"
@@ -97,7 +96,6 @@ function UserInfo(props: UserInfoProps) {
                 }}
               />
               남성
-              {/* <S.RadioButton /> */}
             </S.SexWrap>
           </S.SexsWrap>
         </S.UserInfoSexWrap>
