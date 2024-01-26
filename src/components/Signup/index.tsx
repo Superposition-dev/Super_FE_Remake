@@ -22,8 +22,8 @@ function SignupPage() {
           <UserInfo userInfo={userInfo} setUserInfo={setUserInfo} />
         </S.SignupBottomWrap>
         <S.SignupButton
-          active={
-            userInfo?.nickName && validateNickName(userInfo.nickName) === ValidateNickNameType.success ? true : false
+          disabled={
+            userInfo?.nickName && validateNickName(userInfo.nickName) === ValidateNickNameType.success ? false : true
           }
         >
           가입하기

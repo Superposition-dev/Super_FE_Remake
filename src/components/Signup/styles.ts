@@ -20,13 +20,18 @@ export const SignupBottomWrap = styled.div`
   width: 95%;
 `;
 
-export const SignupButton = styled.button<{ active: boolean }>`
+export const SignupButton = styled.button`
   ${({ theme }) => theme.flex.flexColumn};
   ${({ theme }) => theme.flex.flexCenter};
   width: 100%;
   height: 4.5rem;
   ${({ theme }) => theme.font.medium_14};
-  color: ${({ active, theme }) => (active ? theme.colors.white : theme.colors.gray)};
+  color: ${({ theme }) => theme.colors.white};
   border-radius: 0.75rem;
-  background-color: ${({ active, theme }) => (active ? theme.colors.purple : theme.colors.dark_gray)};
+  background-color: ${({ theme }) => theme.colors.purple};
+
+  &:disabled {
+    color: ${({ theme }) => theme.colors.gray};
+    background-color: ${({ theme }) => theme.colors.dark_gray};
+  }
 `;
