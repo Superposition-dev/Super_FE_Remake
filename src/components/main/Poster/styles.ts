@@ -43,7 +43,6 @@ export const SubTitle = styled.h3`
 export const ContentWrap = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  height: 70vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -87,8 +86,8 @@ export const PosterImage = styled.div`
     object-position: center;
   }
   @media (max-width: 768px) {
-    width: 50%;
-    height: 100%;
+    width: 21rem;
+    height: 30rem;
     z-index: -1;
   }
 `;
