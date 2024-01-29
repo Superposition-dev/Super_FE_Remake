@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './styles';
-import { ExhibitionListProps, ExhibitionType, FilterType } from '@/interface/exhibition';
-import Exhibition from '../Item';
 import { QueryClient, dehydrate, useQuery } from 'react-query';
 import { getExhibitionList } from '@/api/exhibition';
+import { ExhibitionListProps, ExhibitionType, FilterType } from '@/interface/exhibition';
+import Exhibition from '../Item';
 
 export async function getStaticProps() {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery('exhibitionList', getExhibitionList);
+  await queryClient.prefetchQuery('exhibitionList', () => getExhibitionList('', 1, 10));
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
@@ -19,7 +19,7 @@ function ExhibitionList(props: ExhibitionListProps) {
   const { type } = props;
   const [filterList, setFilterList] = useState<ExhibitionType[]>();
 
-  const { data: exhibitionList } = useQuery(['exhibitionList'], getExhibitionList, {
+  const { data: exhibitionList } = useQuery(['exhibitionList'], () => getExhibitionList('', 1, 10), {
     initialData: () => {
       const queryClient = new QueryClient();
       return queryClient.getQueryData('exhibitionList');
@@ -31,8 +31,12 @@ function ExhibitionList(props: ExhibitionListProps) {
   useEffect(() => {
     if (type === undefined || exhibitionList === undefined) return;
 
-    const filterList = exhibitionList?.filter((item) =>
-      type === FilterType.all ? item : type === FilterType.progress ? item.isDisplay : !item.isDisplay,
+    const filterList = exhibitionList.data?.filter((item: ExhibitionType) =>
+      type === FilterType.all
+        ? item
+        : type === FilterType.progress
+        ? item.status === '전시중'
+        : item.status === '전시 종료',
     );
     setFilterList(filterList);
   }, [type, exhibitionList]);
@@ -40,7 +44,7 @@ function ExhibitionList(props: ExhibitionListProps) {
   return (
     <S.ExhibitionList>
       {filterList?.map((exhibition: ExhibitionType) => {
-        return <Exhibition key={exhibition.exbihitionNum} exhibition={exhibition} />;
+        return <Exhibition key={exhibition.exhibitionId} exhibition={exhibition} />;
       })}
     </S.ExhibitionList>
   );

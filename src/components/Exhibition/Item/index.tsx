@@ -5,19 +5,25 @@ import { customNullImg } from '@/util/utils';
 
 function Exhibition(props: ExhibitionProps) {
   const { exhibition } = props;
-  const isDisplay = exhibition.isDisplay ? '전시 중' : '전시 종료';
 
   return (
     <S.ExhibitionWrap>
       <S.ImageWrap>
-        <S.CustomImage src={customNullImg(exhibition.picture)} alt="전시 이미지" fill />
+        <S.CustomImage
+          src={
+            // customNullImg(exhibition.poster)
+            customNullImg('')
+          }
+          alt="전시 이미지"
+          fill
+        />
       </S.ImageWrap>
       <S.InnerWrap>
         <S.InnerTopWrap>
-          <S.Type isDisplay={exhibition.isDisplay ? true : false}>{isDisplay}</S.Type>
+          <S.Type isDisplay={exhibition.status === '전시중' ? true : false}>{exhibition.status}</S.Type>
           <S.TitleWrap>
             <S.Title>{exhibition.title}</S.Title>
-            <S.SubTitle>{exhibition.subtitle}</S.SubTitle>
+            <S.SubTitle>{exhibition.subheading}</S.SubTitle>
           </S.TitleWrap>
         </S.InnerTopWrap>
         <S.InnerBottomWrap>

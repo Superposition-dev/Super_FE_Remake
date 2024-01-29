@@ -13,12 +13,12 @@ export interface ExhibitionProps {
 }
 
 export interface ExhibitionType {
-  exbihitionNum: number;
+  exhibitionId: number;
   title: string;
-  subtitle: string;
-  picture: string;
+  subheading: string;
   location: string;
   startDate: string;
   endDate: string;
-  isDisplay: boolean;
+  status: string;
+  poster: string;
 }
