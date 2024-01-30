@@ -2,12 +2,18 @@ import React from 'react';
 import * as S from './styles';
 import { ExhibitionProps } from '@/interface/exhibition';
 import { customNullImg } from '@/util/utils';
+import { useRouter } from 'next/router';
 
 function Exhibition(props: ExhibitionProps) {
   const { exhibition } = props;
+  const router = useRouter();
+
+  const onLinked = () => {
+    router.push(`/exhibition/${exhibition.exhibitionId}`);
+  };
 
   return (
-    <S.ExhibitionWrap>
+    <S.ExhibitionWrap onClick={onLinked}>
       <S.ImageWrap>
         <S.CustomImage
           src={

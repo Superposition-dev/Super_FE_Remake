@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import * as S from './styles';
 import CommonWrapper from '../@Common/Wrap';
 import { FilterType } from '@/interface/exhibition';
-import ExhibitionList from './List';
+import Exhibitions from './List';
 
-function ExhibitionPage() {
+function ExhibitionsPage() {
   const [type, setType] = useState<FilterType>(FilterType.all);
 
   const FILTER_TAB = [
@@ -19,7 +19,7 @@ function ExhibitionPage() {
 
   return (
     <CommonWrapper>
-      <S.ExhibitionWrap>
+      <S.ExhibitionsWrap>
         <S.Title>
           전시
           <S.FilterWrap>
@@ -38,10 +38,10 @@ function ExhibitionPage() {
             })}
           </S.FilterWrap>
         </S.Title>
-        <ExhibitionList type={type} />
-      </S.ExhibitionWrap>
+        <Exhibitions type={type} />
+      </S.ExhibitionsWrap>
     </CommonWrapper>
   );
 }
 
-export default ExhibitionPage;
+export default ExhibitionsPage;

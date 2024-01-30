@@ -4,7 +4,7 @@ export enum FilterType {
   end = 'end',
 }
 
-export interface ExhibitionListProps {
+export interface ExhibitionsProps {
   type: FilterType;
 }
 

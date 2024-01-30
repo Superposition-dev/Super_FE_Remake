@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const ExhibitionList = styled.section`
+export const Exhibitions = styled.section`
   ${({ theme }) => theme.flex.flexColumn};
   align-items: center;
   gap: 20px;
