@@ -15,7 +15,7 @@ export interface ExhibitionProps {
 export interface ExhibitionType {
   exhibitionId: number;
   title: string;
-  subheading: string;
+  subHeading: string;
   location: string;
   startDate: string;
   endDate: string;

@@ -1,6 +1,6 @@
 import { instance } from './instance';
 
-export const getExhibitionList = async (status: string, page: number, size: number) => {
+export const getExhibitionList = async (status?: string, page?: number, size?: number) => {
   try {
     const res = await instance.get('/exhibitions', {
       params: {

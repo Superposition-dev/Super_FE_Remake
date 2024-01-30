@@ -23,7 +23,7 @@ function Exhibition(props: ExhibitionProps) {
           <S.Type isDisplay={exhibition.status === '전시중' ? true : false}>{exhibition.status}</S.Type>
           <S.TitleWrap>
             <S.Title>{exhibition.title}</S.Title>
-            <S.SubTitle>{exhibition.subheading}</S.SubTitle>
+            <S.SubTitle>{exhibition.subHeading}</S.SubTitle>
           </S.TitleWrap>
         </S.InnerTopWrap>
         <S.InnerBottomWrap>

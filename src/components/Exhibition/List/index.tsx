@@ -7,7 +7,7 @@ import Exhibition from '../Item';
 
 export async function getStaticProps() {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery('exhibitionList', () => getExhibitionList('', 1, 10));
+  await queryClient.prefetchQuery('exhibitionList', () => getExhibitionList());
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
@@ -19,7 +19,7 @@ function ExhibitionList(props: ExhibitionListProps) {
   const { type } = props;
   const [filterList, setFilterList] = useState<ExhibitionType[]>();
 
-  const { data: exhibitionList } = useQuery(['exhibitionList'], () => getExhibitionList('', 1, 10), {
+  const { data: exhibitionList } = useQuery(['exhibitionList'], () => getExhibitionList(), {
     initialData: () => {
       const queryClient = new QueryClient();
       return queryClient.getQueryData('exhibitionList');
@@ -40,6 +40,8 @@ function ExhibitionList(props: ExhibitionListProps) {
     );
     setFilterList(filterList);
   }, [type, exhibitionList]);
+
+  console.log(exhibitionList);
 
   return (
     <S.ExhibitionList>

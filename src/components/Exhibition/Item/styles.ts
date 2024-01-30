@@ -94,6 +94,8 @@ export const LocationIcon = styled(HiOutlineLocationMarker)`
 `;
 
 export const DateIcon = styled(IoCalendarOutline)`
+  position: relative;
+  top: -1px;
   width: 16px;
   height: 16px;
   ${({ theme }) => theme.colors.white};
