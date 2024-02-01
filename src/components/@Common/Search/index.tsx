@@ -1,4 +1,4 @@
-import React, { useRef, useState, useCallback, useMemo } from 'react';
+import React, { useRef, useState, useCallback, useMemo, useEffect } from 'react';
 import * as S from './styles';
 import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
@@ -16,7 +16,7 @@ function Search({ setData }: { setData: Function }) {
     setSearch(true);
   }, []);
 
-  const isProductsPath = useMemo(() => pathname === '/products', [pathname]);
+  const isProductsPath = useMemo(() => pathname.includes('exhibition'), [pathname]);
   const isAuthorsPath = useMemo(() => pathname === '/authors', [pathname]);
 
   useQuery('searchProducts', () => getSearchProducts(searchValue), {
@@ -50,13 +50,15 @@ function Search({ setData }: { setData: Function }) {
 
   return (
     <S.SearchWrap onSubmit={onSearch}>
-      <S.SearchInput
-        value={searchValue}
-        onChange={(e) => setSearchValue(e.target.value)}
-        placeholder={isProductsPath ? '작품 제목, 작가 이름을 입력하세요.' : '작가 이름을 입력하세요.'}
-      />
-      <S.SearchIcon />
-      {searchValue.length !== 0 && <S.DeleteIcon onClick={onSearchDelete} />}
+      <S.SearchInputWrap>
+        <S.SearchIcon />
+        <S.SearchInput
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
+          placeholder={isProductsPath ? '작품 제목, 작가 이름을 입력하세요.' : '작가 이름을 입력하세요.'}
+        />
+        {searchValue.length !== 0 && <S.DeleteIcon onClick={onSearchDelete} />}
+      </S.SearchInputWrap>
     </S.SearchWrap>
   );
 }

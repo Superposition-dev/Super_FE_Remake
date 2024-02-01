@@ -1,12 +1,13 @@
 import { MasonryGrid } from '@egjs/react-grid';
 import styled from '@emotion/styled';
 
-export const ProductsContainer = styled.div`
+export const ExhibitionDetailContainer = styled.div`
   width: 100%;
-  padding: 6rem 2rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 2rem;
+  padding-top: 2rem;
 `;
 
 export const ProductsTitleWrap = styled.div`
@@ -24,13 +25,18 @@ export const ProductsSubTitle = styled.h2`
   ${({ theme }) => theme.font.medium_14};
 `;
 
+export const ExhibitionDetailWrap = styled.div`
+  ${({ theme }) => theme.flex.flexColumn};
+  width: 100%;
+  padding-top: 1.5rem;
+`;
+
 export const Authors = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 2rem;
-  gap: 1rem;
+  gap: 1.4rem;
 `;
 
 export const Products = styled(MasonryGrid)<{ maxScroll: number }>`
@@ -38,7 +44,6 @@ export const Products = styled(MasonryGrid)<{ maxScroll: number }>`
   min-height: calc(max(100vh, ${({ maxScroll }) => maxScroll}px) - 20rem);
   width: 100%;
   height: auto !important;
-  margin-top: 3rem;
 `;
 
 export const NoResult = styled.div`

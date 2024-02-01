@@ -35,3 +35,11 @@ export type ProductDetailProps = {
   description: string;
   price: number;
 };
+
+export interface ProductType {
+  productId: string;
+  picture: string;
+  tags: string[];
+  title: string;
+  artist: string;
+}

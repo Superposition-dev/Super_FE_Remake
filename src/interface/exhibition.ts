@@ -1,3 +1,6 @@
+import { AuthorType } from './authors';
+import { ProductType } from './product';
+
 export enum FilterType {
   all = 'all',
   progress = 'progress',
@@ -21,4 +24,12 @@ export interface ExhibitionType {
   endDate: string;
   status: string;
   poster: string;
+}
+
+export interface ExhibitionDetailProps {
+  exhibitionId: number;
+  title: string;
+  subHeading: string;
+  productInfo: ProductType[];
+  artistInfo: AuthorType[];
 }
