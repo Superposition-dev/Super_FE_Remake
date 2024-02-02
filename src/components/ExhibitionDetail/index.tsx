@@ -25,16 +25,18 @@ function ExhibitionDetailPage({ data }: { data: ExhibitionDetailProps }) {
     setMaxScroll(scrollHeight);
   }, [data.productInfo, searchData]);
 
+  console.log(maxScroll);
+
   return (
-    <CommonWrapper>
-      <S.ExhibitionDetailContainer>
+    <CommonWrapper transparent={false}>
+      <S.ExhibitionDetailWrap>
         <CommonTitle data={TITLE} />
         <S.Authors>
           {data.artistInfo?.map((author: AuthorType, index: number) => (
             <Author key={index} data={author} />
           ))}
         </S.Authors>
-        <S.ExhibitionDetailWrap>
+        <S.ExhibitionBodyWrap>
           <Search setData={setSearchData} />
           <S.Products
             column={mobile ? 2 : 4}
@@ -50,8 +52,8 @@ function ExhibitionDetailPage({ data }: { data: ExhibitionDetailProps }) {
               : searchData?.map((product: ProductType, index: number) => <Product key={index} data={product} />)}
           </S.Products>
           {searchData === undefined && <S.NoResult>검색 결과가 없습니다.</S.NoResult>}
-        </S.ExhibitionDetailWrap>
-      </S.ExhibitionDetailContainer>
+        </S.ExhibitionBodyWrap>
+      </S.ExhibitionDetailWrap>
     </CommonWrapper>
   );
 }

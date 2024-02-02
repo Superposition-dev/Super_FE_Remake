@@ -2,20 +2,20 @@ import styled from '@emotion/styled';
 import { IoSearch } from 'react-icons/io5';
 import { AiFillCloseCircle } from 'react-icons/ai';
 export const SearchWrap = styled.form`
-  box-sizing: content-box;
-  width: 100%;
-  height: 3.4rem;
   position: sticky;
-  z-index: 100;
   top: 5rem;
-  font-size: 1.6rem;
-  color: ${({ theme }) => theme.colors.white};
-  background-color: ${({ theme }) => theme.colors.black};
   ${({ theme }) => theme.flex.flexRow};
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  width: 100%;
+  height: 3.4rem;
   padding-bottom: 1.5rem;
+  font-size: 1.6rem;
+  color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.black};
+  overflow: hidden;
+  box-sizing: content-box;
+  z-index: 100;
 `;
 
 export const SearchInputWrap = styled.div`
@@ -28,6 +28,7 @@ export const SearchInputWrap = styled.div`
   padding: 0.5rem 0.75rem;
   border: 1px solid ${({ theme }) => theme.colors.dark_gray};
   border-radius: 1rem;
+  background-color: ${({ theme }) => theme.colors.black};
 `;
 
 export const SearchInput = styled.input`
