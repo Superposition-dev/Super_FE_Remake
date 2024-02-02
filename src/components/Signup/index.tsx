@@ -13,7 +13,7 @@ function SignupPage() {
   // 가입하기 클릭 시, 해당 데이터를 서버에 post 요청
 
   return (
-    <CommonWrapper>
+    <CommonWrapper transparent={true}>
       <S.SignupWrap>
         <S.SignupTopWrap>
           <UserImage userInfo={userInfo} setUserInfo={setUserInfo} />
