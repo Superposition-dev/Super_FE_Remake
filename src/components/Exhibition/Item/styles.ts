@@ -8,15 +8,15 @@ export const ExhibitionWrap = styled.div`
   ${({ theme }) => theme.flex.flexCenter};
   justify-content: space-between;
   width: 100%;
-  height: 14.5rem;
-  min-height: 14.5rem;
+  height: 16rem;
+  min-height: 16rem;
   padding: 0 0 16px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.gray};
 `;
 
 export const ImageWrap = styled.div`
   position: relative;
-  width: 9rem;
+  width: 11rem;
   height: 100%;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.light_gray};
@@ -31,11 +31,11 @@ export const InnerWrap = styled.div`
   ${({ theme }) => theme.flex.flexColumn};
   ${({ theme }) => theme.flex.flexCenter};
   justify-content: space-between;
-  width: 70%;
+  width: 65%;
   height: 100%;
 
   @media (max-width: 375px) {
-    width: 68%;
+    width: 61%;
   }
 `;
 
