@@ -1,4 +1,4 @@
-import { getAuthor, getAuthors } from '@/api/authors';
+import { getAuthor, getAuthors } from '@/api/author';
 import AuthorsDetail from '@/components/AuthorsDetail';
 import { AuthorDetailProps, AuthorsProps } from '@/interface/authors';
 import React from 'react';

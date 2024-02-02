@@ -4,7 +4,7 @@ import CommonTitle from '../@Common/Title';
 import Search from '../@Common/Search';
 import Author from './Author';
 import { QueryClient, dehydrate, useQuery } from 'react-query';
-import { getAuthors } from '@/api/authors';
+import { getAuthors } from '@/api/author';
 import { AuthorsProps } from '@/interface/authors';
 import { ARITST_TITLE } from '@/constants/title';
 import Floating from '../@Common/Floating';

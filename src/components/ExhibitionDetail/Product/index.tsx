@@ -8,7 +8,7 @@ function Product({ data }: { data: ProductType }) {
   const router = useRouter();
 
   const onLink = () => {
-    router.push(`/products/${productId}`);
+    router.push(`/product/${productId}`);
   };
 
   return (

@@ -12,3 +12,11 @@ export const validateNickName = (nickName: string) => {
     return ValidateNickNameType.success;
   }
 };
+
+export const seqFormatter = (id: number) => {
+  return String(id).padStart(3, '0');
+};
+
+export const priceFormatter = (price: number) => {
+  return String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+};

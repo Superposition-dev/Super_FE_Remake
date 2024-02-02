@@ -2,8 +2,8 @@ import React, { useRef, useState, useCallback, useMemo, useEffect } from 'react'
 import * as S from './styles';
 import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
-import { getSearchProducts } from '@/api/products';
-import { getSearchAuthors } from '@/api/authors';
+import { getSearchProducts } from '@/api/product';
+import { getSearchAuthors } from '@/api/author';
 
 function Search({ setData }: { setData: Function }) {
   const router = useRouter();
