@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import * as S from './styles';
 import { SideBarProps } from '@/interface/header';
+import usePreventScroll from '@/hook/usePreventScroll';
 
 const menuData = [
   {
@@ -39,21 +40,7 @@ function SideBar(props: SideBarProps) {
     setOpen(false);
   };
 
-  // 모달 오버레이에서 스크롤 방지
-  useEffect(() => {
-    if (open) {
-      document.body.style.cssText = `
-        position: fixed; 
-        top: -${window.scrollY}px;
-        overflow-y: scroll;
-        width: 100%;`;
-      return () => {
-        const scrollY = document.body.style.top;
-        document.body.style.cssText = '';
-        window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
-      };
-    } else return;
-  }, [open]);
+  usePreventScroll(open);
 
   // 사이드바 외 영역 클릭시 닫기
   useEffect(() => {
