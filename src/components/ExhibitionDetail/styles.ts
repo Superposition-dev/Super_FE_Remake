@@ -3,17 +3,18 @@ import styled from '@emotion/styled';
 
 export const ExhibitionDetailWrap = styled.div`
   width: 100%;
+  height: 100;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-  padding-top: 2rem;
+  padding: 7rem 1rem 2rem;
 `;
 
-export const ExhibitionBodyWrap = styled.div`
-  ${({ theme }) => theme.flex.flexColumn};
+export const ProductsWrap = styled.div`
+  display: flex;
   width: 100%;
-  padding-top: 1.5rem;
+  padding: 0 1rem;
 `;
 
 export const Authors = styled.div`

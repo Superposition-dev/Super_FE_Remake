@@ -28,33 +28,33 @@ function ExhibitionDetailPage({ data }: { data: ExhibitionDetailProps }) {
   console.log(maxScroll);
 
   return (
-    <CommonWrapper transparent={false}>
-      <S.ExhibitionDetailWrap>
-        <CommonTitle data={TITLE} />
-        <S.Authors>
-          {data.artistInfo?.map((author: AuthorType, index: number) => (
-            <Author key={index} data={author} />
-          ))}
-        </S.Authors>
-        <S.ExhibitionBodyWrap>
-          <Search setData={setSearchData} />
-          <S.Products
-            column={mobile ? 2 : 4}
-            gap={12}
-            align="justify"
-            defaultDirection={'end'}
-            observeChildren={true}
-            useResizeObserver={true}
-            maxScroll={maxScroll}
-          >
-            {searchData?.length === 0
-              ? data.productInfo?.map((product: ProductType, index: number) => <Product key={index} data={product} />)
-              : searchData?.map((product: ProductType, index: number) => <Product key={index} data={product} />)}
-          </S.Products>
-          {searchData === undefined && <S.NoResult>검색 결과가 없습니다.</S.NoResult>}
-        </S.ExhibitionBodyWrap>
-      </S.ExhibitionDetailWrap>
-    </CommonWrapper>
+    <S.ExhibitionDetailWrap>
+      <CommonTitle data={TITLE} />
+      <S.Authors>
+        {data.artistInfo?.map((author: AuthorType, index: number) => (
+          <Author key={index} data={author} />
+        ))}
+      </S.Authors>
+      <Search setData={setSearchData} />
+      {/* <S.ExhibitionBodyWrap> */}
+      <S.ProductsWrap>
+        <S.Products
+          column={mobile ? 2 : 4}
+          gap={12}
+          align="justify"
+          defaultDirection={'end'}
+          observeChildren={true}
+          useResizeObserver={true}
+          maxScroll={maxScroll}
+        >
+          {searchData?.length === 0
+            ? data.productInfo?.map((product: ProductType, index: number) => <Product key={index} data={product} />)
+            : searchData?.map((product: ProductType, index: number) => <Product key={index} data={product} />)}
+        </S.Products>
+      </S.ProductsWrap>
+      {searchData === undefined && <S.NoResult>검색 결과가 없습니다.</S.NoResult>}
+      {/* </S.ExhibitionBodyWrap> */}
+    </S.ExhibitionDetailWrap>
   );
 }
 

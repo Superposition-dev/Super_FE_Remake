@@ -8,6 +8,8 @@ import { getSearchAuthors } from '@/api/author';
 function Search({ setData }: { setData: Function }) {
   const router = useRouter();
   const pathname = router.pathname;
+  const searchRef = useRef<HTMLFormElement>(null);
+
   const [search, setSearch] = useState(false);
   const [searchValue, setSearchValue] = useState('');
 
@@ -49,7 +51,7 @@ function Search({ setData }: { setData: Function }) {
   }, []);
 
   return (
-    <S.SearchWrap onSubmit={onSearch}>
+    <S.SearchWrap onSubmit={onSearch} ref={searchRef}>
       <S.SearchInputWrap>
         <S.SearchIcon />
         <S.SearchInput

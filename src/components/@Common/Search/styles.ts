@@ -8,13 +8,13 @@ export const SearchWrap = styled.form`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 3.4rem;
-  padding-bottom: 1.5rem;
+  height: 5rem;
+  padding: 0.5rem;
   font-size: 1.6rem;
   color: ${({ theme }) => theme.colors.white};
   background-color: ${({ theme }) => theme.colors.black};
+  border-radius: 1rem;
   overflow: hidden;
-  box-sizing: content-box;
   z-index: 100;
 `;
 

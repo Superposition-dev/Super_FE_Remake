@@ -8,7 +8,6 @@ import { patchFormClick, patchLike } from '@/api/patchData';
 import { priceFormatter, seqFormatter } from '@/util/utils';
 import Portal from '../@Common/Modal';
 import InduceLoginModal from '../@Common/Modal/InduceLogin';
-import usePreventOverlay from '@/hook/usePreventScroll';
 
 function ProductDetail({ data }: { data: ProductDetailProps }) {
   const { picture, title, tags, artistInfo, pictureInfo, description, price, productId } = data;
