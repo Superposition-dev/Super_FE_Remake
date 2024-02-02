@@ -11,7 +11,7 @@ export const ProductWrap = styled.div`
 export const ProductImageWrap = styled.div`
   width: 100%;
   position: relative;
-  border-radius: 1rem;
+  border-radius: 8px;
   overflow: hidden;
 `;
 export const ProductImage = styled(Image)`
@@ -19,6 +19,16 @@ export const ProductImage = styled(Image)`
   height: auto !important;
   object-fit: cover;
   object-position: center;
+`;
+
+export const Border = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background-color: transparent;
+  border-radius: 8px;
+  border: 4px solid rgba(255, 255, 255, 0.2);
 `;
 
 export const ProductInfoWrap = styled.div`

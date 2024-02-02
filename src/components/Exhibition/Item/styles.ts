@@ -27,6 +27,15 @@ export const CustomImage = styled(Image)`
   object-fit: cover;
 `;
 
+export const Border = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border-radius: 8px;
+  border: 4px solid rgba(255, 255, 255, 0.2);
+`;
+
 export const InnerWrap = styled.div`
   ${({ theme }) => theme.flex.flexColumn};
   ${({ theme }) => theme.flex.flexCenter};

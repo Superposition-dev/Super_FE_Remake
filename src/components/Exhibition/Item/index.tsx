@@ -23,6 +23,7 @@ function Exhibition(props: ExhibitionProps) {
           alt="전시 이미지"
           fill
         />
+        <S.Border />
       </S.ImageWrap>
       <S.InnerWrap>
         <S.InnerTopWrap>

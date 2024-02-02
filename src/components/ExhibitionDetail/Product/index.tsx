@@ -15,6 +15,7 @@ function Product({ data }: { data: ProductType }) {
     <S.ProductWrap onClick={onLink}>
       <S.ProductImageWrap>
         <S.ProductImage src={customNullImg(picture)} alt="이미지" loading="lazy" width={150} height={150} />
+        <S.Border />
       </S.ProductImageWrap>
       <S.ProductInfoWrap>
         <S.Tags>
