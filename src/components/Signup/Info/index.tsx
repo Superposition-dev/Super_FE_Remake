@@ -11,7 +11,7 @@ function UserInfo(props: UserInfoProps) {
   const onChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInfo((userInfo) => ({
       ...userInfo,
-      nickName: e.target.value,
+      nickname: e.target.value,
     }));
 
     setValidate(validateNickName(e.target.value));
@@ -27,7 +27,7 @@ function UserInfo(props: UserInfoProps) {
   const onChangeGender = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInfo((userInfo) => ({
       ...userInfo,
-      gender: e.target.value,
+      gender: e.target.value as 'M' | 'F',
     }));
   };
 
@@ -37,10 +37,10 @@ function UserInfo(props: UserInfoProps) {
         <S.Title>닉네임</S.Title>
         <S.Text
           type="text"
-          value={userInfo?.nickName}
+          value={userInfo?.nickname!}
           placeholder=""
           onFocus={() => setIsEdit(true)}
-          onBlur={() => (userInfo?.nickName ? setIsEdit(true) : setIsEdit(false))}
+          onBlur={() => (userInfo?.nickname ? setIsEdit(true) : setIsEdit(false))}
           onChange={(e) => onChangeText(e)}
           maxLength={30}
           isEdit={isEdit ? true : false}
@@ -78,7 +78,7 @@ function UserInfo(props: UserInfoProps) {
                 type="radio"
                 name="sex"
                 id="woman"
-                value="woman"
+                value="F"
                 onChange={(e) => {
                   onChangeGender(e);
                 }}
@@ -90,7 +90,7 @@ function UserInfo(props: UserInfoProps) {
                 type="radio"
                 name="sex"
                 id="man"
-                value="man"
+                value="M"
                 onChange={(e) => {
                   onChangeGender(e);
                 }}

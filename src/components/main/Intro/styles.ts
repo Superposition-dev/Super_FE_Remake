@@ -158,6 +158,7 @@ export const BottomWrap = styled.div`
   justify-content: center;
   transform: translateX(-2%);
   z-index: 20;
+  bottom: 0;
   @media (max-width: 768px) {
     flex-direction: column;
     transform: translateX(0);
