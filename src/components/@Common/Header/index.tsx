@@ -5,13 +5,15 @@ import { useRouter } from 'next/router';
 import SideBar from './SideBar';
 import Portal from '../Modal';
 import InduceLoginModal from '../Modal/InduceLogin';
+import { useQuery } from 'react-query';
+import { getMe } from '@/api/auth';
 
 function Header() {
   const [open, setOpen] = useState<boolean>(false);
   const [like, setLike] = useState<boolean>(false);
   const router = useRouter();
   const pathname = router.pathname;
-
+  const { data } = useQuery('user', getMe);
   const onLinkedLogin = () => {
     router.push('/login');
   };
@@ -32,7 +34,7 @@ function Header() {
         </S.LogoWrap>
         <S.NavWrap>
           <div onClick={onSendLike}>좋아요</div>
-          <S.NavLogin onClick={onLinkedLogin} />
+          {!data ? <S.NavLogin onClick={onLinkedLogin} /> : <p>로그인완료</p>}
           <S.NavMenu onClick={onOpenMenu} />
         </S.NavWrap>
       </S.HeaderWrap>
