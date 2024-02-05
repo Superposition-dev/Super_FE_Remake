@@ -17,7 +17,6 @@ const KakaoMiddleware = () => {
           return
         }
         setCookie('token', res.data.accessToken,{path: '/'})
-        console.log(res.data.accessToken)
         router.push('/')
         
 
