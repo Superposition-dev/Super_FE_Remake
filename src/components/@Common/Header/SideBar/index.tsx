@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import * as S from './styles';
 import { SideBarProps } from '@/interface/header';
+import usePreventScroll from '@/hook/usePreventScroll';
 
 const menuData = [
   {
@@ -38,6 +39,8 @@ function SideBar(props: SideBarProps) {
   const onLinkMenu = () => {
     setOpen(false);
   };
+
+  usePreventScroll(open);
 
   // 사이드바 외 영역 클릭시 닫기
   useEffect(() => {

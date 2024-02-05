@@ -1,12 +1,12 @@
-export type MainProduct = {
+export interface ProductType {
   productId: string;
   picture: string;
   tags: string[];
   title: string;
   artist: string;
-};
+}
 
-export type ProductProps = MainProduct & {
+export interface ProductProps extends ProductType {
   productNum: number;
   pictureInfo: {
     type: string;
@@ -15,7 +15,7 @@ export type ProductProps = MainProduct & {
   };
   description: string;
   price: number;
-};
+}
 
 export type ProductDetailProps = {
   productId: number;
