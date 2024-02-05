@@ -39,7 +39,7 @@ function SignupPage() {
   
 
   return (
-    <CommonWrapper>
+    <CommonWrapper transparent={true}>
       <S.SignupWrap>
         <S.SignupTopWrap>
           <UserImage userInfo={userInfo} setUserInfo={setUserInfo} />

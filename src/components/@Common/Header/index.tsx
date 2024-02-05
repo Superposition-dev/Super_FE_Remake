@@ -8,9 +8,9 @@ import InduceLoginModal from '../Modal/InduceLogin';
 import { useQuery } from 'react-query';
 import { getMe } from '@/api/auth';
 
+
 function Header() {
   const [open, setOpen] = useState<boolean>(false);
-  const [like, setLike] = useState<boolean>(false);
   const router = useRouter();
   const pathname = router.pathname;
   const { data } = useQuery('user', getMe);
@@ -20,10 +20,6 @@ function Header() {
 
   const onOpenMenu = () => {
     setOpen(true);
-  };
-
-  const onSendLike = () => {
-    setLike(true);
   };
 
   return (
@@ -39,13 +35,6 @@ function Header() {
         </S.NavWrap>
       </S.HeaderWrap>
       <SideBar open={open} setOpen={setOpen} />
-      <Portal>
-        {like ? (
-          <InduceLoginModal desc="회원이 되면 내 취향을 모아볼 수 있어요." state={like} setState={setLike} />
-        ) : (
-          <></>
-        )}
-      </Portal>
     </>
   );
 }

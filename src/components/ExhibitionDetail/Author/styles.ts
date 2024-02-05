@@ -5,6 +5,7 @@ export const AuthorWrap = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  gap: 0.5rem;
 `;
 
 export const AuthorImage = styled.div`
@@ -22,6 +23,5 @@ export const AuthorImage = styled.div`
 `;
 
 export const AuthorName = styled.div`
-  ${({ theme }) => theme.font.medium_14};
-  margin-top: 0.5rem;
+  ${({ theme }) => theme.font.regular_14};
 `;

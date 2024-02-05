@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { IoIosArrowBack } from 'react-icons/io';
 
 export const BackgroundWrap = styled.div<{ open: boolean }>`
-  position: absolute;
+  position: fixed;
   display: ${({ open }) => (open ? 'block' : 'none')};
   top: 0;
   right: 0;
@@ -15,7 +15,7 @@ export const BackgroundWrap = styled.div<{ open: boolean }>`
 `;
 
 export const SideBarWrap = styled.div<{ open: boolean }>`
-  position: absolute;
+  position: fixed;
   top: 0;
   right: ${({ open }) => (open ? '0' : '-100%')};
   ${({ theme }) => theme.flex.flexColumn};
