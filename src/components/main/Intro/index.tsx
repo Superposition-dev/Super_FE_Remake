@@ -8,7 +8,7 @@ function Intro() {
   return (
     <S.IntroSection>
       <S.PlanetWrap vh={vh}>
-        <Image src="/images/planets.webp" alt="보라행성" loading="eager" width={1237} height={1238} layout="responsive" />
+        <Image src="/images/planets.webp" alt="보라행성" loading="eager" width={1237} height={1238} layout="responsive" priority />
       </S.PlanetWrap>
       <S.DarkPlanetWrap vh={vh}>
         <Image
@@ -18,6 +18,7 @@ function Intro() {
           width={0}
           height={0}
           layout="responsive"
+          priority
         />
       </S.DarkPlanetWrap>
       <S.LogoWrap>
