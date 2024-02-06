@@ -3,11 +3,8 @@ import * as S from './styles';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import SideBar from './SideBar';
-import Portal from '../Modal';
-import InduceLoginModal from '../Modal/InduceLogin';
 import { useQuery } from 'react-query';
 import { getMe } from '@/api/auth';
-
 
 function Header() {
   const [open, setOpen] = useState<boolean>(false);
@@ -29,7 +26,6 @@ function Header() {
           <Image src="/images/main_logo.webp" alt="로고" fill />
         </S.LogoWrap>
         <S.NavWrap>
-          <div onClick={onSendLike}>좋아요</div>
           {!data ? <S.NavLogin onClick={onLinkedLogin} /> : <p>로그인완료</p>}
           <S.NavMenu onClick={onOpenMenu} />
         </S.NavWrap>
