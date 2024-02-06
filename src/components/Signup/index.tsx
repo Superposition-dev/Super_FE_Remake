@@ -19,7 +19,6 @@ function SignupPage() {
       sessionStorage.removeItem('userInfo')
       setCookie('accessToken', data.accessToken, {path: '/'})
       router.push('/')
-      console.log(data)
     }
   })
 
