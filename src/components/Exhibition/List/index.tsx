@@ -41,7 +41,6 @@ function Exhibitions(props: ExhibitionsProps) {
     setFilterList(filterList);
   }, [type, exhibitions]);
 
-  console.log(exhibitions);
 
   return (
     <S.Exhibitions>
