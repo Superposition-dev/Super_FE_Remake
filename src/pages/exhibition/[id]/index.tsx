@@ -5,7 +5,7 @@ import { ExhibitionType } from '@/interface/exhibition';
 
 export async function getStaticPaths() {
   const exhibitionList = await getExhibitions();
-  const paths = exhibitionList.data.map((item: ExhibitionType) => {
+  const paths = exhibitionList.map((item: ExhibitionType) => {
     return {
       params: { id: item.exhibitionId.toString() },
     };
