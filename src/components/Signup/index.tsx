@@ -34,7 +34,7 @@ function SignupPage() {
     } else {
       router.push('/login');
     }
-  }, [kakaoData]);
+  }, []);
 
   return (
     <CommonWrapper>
