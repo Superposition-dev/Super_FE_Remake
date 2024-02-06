@@ -16,7 +16,13 @@ function Author({ data }: { data: AuthorType }) {
   return (
     <S.AuthorWrap onClick={onLinked}>
       <S.AuthorImage>
-        <Image src={customNullImg('')} alt="작가 이미지" loading="lazy" width={46} height={46} />
+        <Image
+          src={customNullImg(`https://kr.object.ncloudstorage.com/superposition-bucket/${profile}`)}
+          alt="작가 이미지"
+          loading="lazy"
+          width={46}
+          height={46}
+        />
       </S.AuthorImage>
       <S.AuthorName>{name}</S.AuthorName>
     </S.AuthorWrap>
