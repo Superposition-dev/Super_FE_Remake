@@ -1,7 +1,5 @@
 import { UserInfoType } from '@/interface/signup';
 import { instance } from './instance';
-import { getCookie } from '@/util/cookie';
-
 export const postSignup = async (data:UserInfoType) => {
   try {
     const res = await instance.post('/users/signup',data);
@@ -11,8 +9,7 @@ export const postSignup = async (data:UserInfoType) => {
   }
 };
 
-export const getMe = async () => {
-  const cookie = await getCookie('token');
+export const getMe = async (cookie : string) => {
   try{
     const res = await instance.get('/users/me',{
       headers: {

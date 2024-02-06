@@ -17,7 +17,7 @@ function SignupPage() {
   const {mutate, isLoading} = useMutation('userInfo',()=>postSignup(userInfo as UserInfoType),{
     onSuccess: (data) => {
       sessionStorage.removeItem('userInfo')
-      setCookie('token', data.accessToken, {path: '/'})
+      setCookie('accessToken', data.accessToken, {path: '/'})
       router.push('/')
       console.log(data)
     }

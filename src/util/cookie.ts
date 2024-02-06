@@ -5,7 +5,6 @@ const cookies = new Cookies()
 
 export const getCookie = (name: string) => {
   try {
-    console.log(cookies.get(name))
     return cookies.get(name)
   } catch (error) {
     console.error(error)
