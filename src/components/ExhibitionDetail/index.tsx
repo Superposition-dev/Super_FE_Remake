@@ -4,7 +4,6 @@ import Author from './Author';
 import Search from '../@Common/Search';
 import Product from './Product';
 import CommonTitle from '../@Common/Title';
-import CommonWrapper from '../@Common/Wrap';
 import { ExhibitionDetailProps } from '@/interface/exhibition';
 import { ProductType } from '@/interface/product';
 import { AuthorType } from '@/interface/authors';

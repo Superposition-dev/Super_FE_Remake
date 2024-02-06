@@ -14,7 +14,7 @@ function SignupPage() {
   const [userInfo, setUserInfo] = useState<UserInfoType>();
   const router = useRouter();
   const kakaoData = typeof window !== 'undefined' ? sessionStorage.getItem('userInfo') : null;
-  const {mutate, isLoading} = useMutation('userInfo',()=>postSignup(userInfo as UserInfoType),{
+  const { mutate, isLoading } = useMutation('userInfo', () => postSignup(userInfo as UserInfoType), {
     onSuccess: (data) => {
       sessionStorage.removeItem('userInfo')
       setCookie('accessToken', data.accessToken, {path: '/'})
@@ -24,22 +24,21 @@ function SignupPage() {
   })
 
   const onSignup = () => {
-    mutate()
-  }
+    mutate();
+  };
 
   // 세션 스토리지에 저장된 카카오에서 받아온 데이터를 userInfo에 넣어주시면 됩니다.
   // 가입하기 클릭 시, 해당 데이터를 서버에 post 요청
   useEffect(() => {
     if (kakaoData) {
       setUserInfo(JSON.parse(kakaoData));
-    }else{
-      router.push('/login')
+    } else {
+      router.push('/login');
     }
-  },[kakaoData])
-  
+  }, [kakaoData]);
 
   return (
-    <CommonWrapper transparent={true}>
+    <CommonWrapper>
       <S.SignupWrap>
         <S.SignupTopWrap>
           <UserImage userInfo={userInfo} setUserInfo={setUserInfo} />
@@ -49,13 +48,13 @@ function SignupPage() {
         </S.SignupBottomWrap>
         <S.SignupButton
           disabled={
-            (userInfo?.nickname && validateNickName(userInfo.nickname) === ValidateNickNameType.success) || isLoading ? false : true
+            (userInfo?.nickname && validateNickName(userInfo.nickname) === ValidateNickNameType.success) || isLoading
+              ? false
+              : true
           }
           onClick={onSignup}
         >
-          {
-            isLoading ? '가입중...' : '가입하기'
-          }
+          {isLoading ? '가입중...' : '가입하기'}
         </S.SignupButton>
       </S.SignupWrap>
     </CommonWrapper>

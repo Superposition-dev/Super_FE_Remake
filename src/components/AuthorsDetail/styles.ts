@@ -1,34 +1,28 @@
 import styled from '@emotion/styled';
-import Image from 'next/image';
-import { FaInstagram } from 'react-icons/fa6';
 import { Swiper } from 'swiper/react';
+import { FaCheck } from 'react-icons/fa6';
 
 export const AuthorDetailWrap = styled.div`
+  ${({ theme }) => theme.flex.flexColumn};
+  gap: 2rem;
   width: 100%;
-  padding: 6rem 2rem 0;
-  display: flex;
-  flex-direction: column;
+  padding: 2rem 0;
 `;
 
 export const AuthorInfoWrap = styled.div`
   width: 100%;
+  height: 10rem;
   ${({ theme }) => theme.flex.flexRow};
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  gap: 1.25rem;
 `;
 export const AuthorImage = styled.div`
-  width: 25vw;
-  height: 25vw;
+  width: 8.5rem;
+  height: 8.5rem;
   position: relative;
   border-radius: 50%;
   overflow: hidden;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
+
   &::after {
     content: '';
     box-sizing: border-box;
@@ -43,7 +37,9 @@ export const AuthorImage = styled.div`
   }
 `;
 export const AuthorInfo = styled.div`
-  width: 65%;
+  ${({ theme }) => theme.flex.flexColumn};
+  gap: 0.25rem;
+  width: 50%;
 `;
 
 export const AuthorState = styled.div`
@@ -57,51 +53,74 @@ export const AuthorState = styled.div`
 `;
 
 export const AuthorName = styled.h1`
+  width: 100%;
+  margin-top: 0.75rem;
   ${({ theme }) => theme.font.bold_20};
-  margin-top: 1rem;
+  ${({ theme }) => theme.layout.ellipsis};
 `;
 
-export const AuthorMsg = styled.p`
-  width: 80%;
+export const AuthorIntro = styled.p`
+  width: 100%;
   ${({ theme }) => theme.font.regular_12};
   color: ${({ theme }) => theme.colors.gray};
+  ${({ theme }) => theme.layout.ellipsis};
+`;
+
+export const FollowButton = styled.button<{ follow: boolean }>`
+  ${({ theme }) => theme.flex.flexCenter};
+  width: 5.6rem;
+  height: 2.9rem;
+  margin-left: auto;
+  border-radius: 4rem;
+  border: ${({ follow }) => (follow ? '1px solid white' : '')};
+  ${({ theme }) => theme.font.bold_12};
+  background-color: ${({ theme, follow }) => (follow ? 'transparent' : theme.colors.purple)};
+  color: ${({ theme }) => theme.colors.white};
+`;
+
+export const CheckIcon = styled(FaCheck)`
+  width: 2rem;
+  height: 2rem;
+  color: ${({ theme }) => theme.colors.white};
+`;
+
+export const AuthorWrap = styled.div`
+  ${({ theme }) => theme.flex.flexColumn};
+  gap: 0.5rem;
 `;
 
 export const Title = styled.h2`
   ${({ theme }) => theme.font.regular_14};
   font-weight: 700;
-  margin-bottom: 1rem;
 `;
 
 export const Description = styled.p<{ plus: boolean }>`
   ${({ theme }) => theme.font.regular_14};
-  color: ${({ theme }) => theme.colors.gray}; /* Updated */
-  /* Specific transition for max-height */
+  color: ${({ theme }) => theme.colors.gray};
   text-overflow: ellipsis;
   white-space: normal;
   display: -webkit-box;
   -webkit-line-clamp: ${({ plus }) => (plus ? '100' : '5')};
   -webkit-box-orient: vertical;
   overflow: hidden;
-  margin-bottom: 1rem;
   transition: all 1s ease-in-out;
   white-space: pre-line;
   word-break: keep-all;
 `;
 
 export const PlusButton = styled.button`
+  padding: 0.5rem 0;
   border: none;
   background-color: rgba(0, 0, 0, 0.2);
-  ${({ theme }) => theme.font.bold_14};
+  ${({ theme }) => theme.font.bold_12};
   color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
-  margin-bottom: 1rem;
 `;
 
 export const ImageSwiper = styled(Swiper)`
   max-width: 100%;
   width: 100%;
-  margin-bottom: 2rem;
+  padding-top: 0.25rem;
 `;
 
 export const ImageWrap = styled.div`
