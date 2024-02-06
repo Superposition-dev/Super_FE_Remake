@@ -1,8 +1,8 @@
-import Authors from '@/components/Authors';
+import AuthorsPage from '@/components/Authors';
 import React from 'react';
 
-function AuthorsPage() {
-  return <Authors />;
+function Authors() {
+  return <AuthorsPage />;
 }
 
-export default AuthorsPage;
+export default Authors;

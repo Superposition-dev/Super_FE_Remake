@@ -1,6 +1,18 @@
 import { setItemWithExpire } from '@/util/localstorage';
-import axios from 'axios';
 import { instance } from './instance';
+
+export const patchLike = async ({ id, like }: { id: number; like: boolean }) => {
+  const res = await instance.patch(`/products/${id}/like`, like);
+  console.log(res);
+  return res.data;
+};
+
+export const patchFormClick = async (id: number) => {
+  const res = await instance.patch(`/products/${id}/google`);
+  console.log(res);
+  return res.data;
+};
+
 
 export const patchView = async ({ title, id }: { title: string; id: string | number }) => {
   try {
@@ -12,15 +24,3 @@ export const patchView = async ({ title, id }: { title: string; id: string | num
     console.error(e);
   }
 };
-
-export const patchLike = async ({ id, like }: { id: number; like: boolean }) => {
-  const res = await instance.patch(`/products/${id}/like`, like);
-  console.log(res);
-  return res.data;
-};
-
-export const patchFormClick = async (id:number) => {
-  const res = await instance.patch(`/products/${id}/google`);
-  console.log(res);
-  return res.data;
-}

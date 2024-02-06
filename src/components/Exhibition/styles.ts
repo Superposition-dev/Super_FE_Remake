@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const ExhibitionWrap = styled.div`
+export const ExhibitionsWrap = styled.div`
   ${({ theme }) => theme.flex.flexColumn};
   gap: 10px;
   width: 100%;

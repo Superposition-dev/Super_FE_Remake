@@ -1,5 +1,5 @@
-import { getProduct, getProducts, getQrProduct } from '@/api/products';
-import ProductDetail from '@/components/ProductsDetail';
+import { getProduct, getProducts, getQrProduct } from '@/api/product';
+import ProductDetail from '@/components/ProductDetail';
 import { ProductProps } from '@/interface/product';
 import { useRouter } from 'next/router';
 import React from 'react';

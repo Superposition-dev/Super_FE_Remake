@@ -8,12 +8,12 @@ function Footer() {
     <S.FooterWrap>
       <S.FooterTopWrap>
         <S.FooterCat>
-          <Image src="/images/desktop/footer_image.webp" alt="footer" fill />
+          <Image src="/images/desktop/footer_image.webp" alt="footer" fill priority />
         </S.FooterCat>
         <S.TitleWrap>
           <S.Title>예술과 공간을 잇는 새로운 우주</S.Title>
           <S.LogoWrap>
-            <Image src="/images/whiteLogo.webp" alt="logo" fill></Image>
+            <Image src="/images/whiteLogo.webp" alt="logo" fill/>
           </S.LogoWrap>
           <S.ContactUsWrap>
             <S.ContactUsTitle>Contact Us</S.ContactUsTitle>

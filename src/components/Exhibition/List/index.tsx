@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './styles';
-import { ExhibitionListProps, ExhibitionType, FilterType } from '@/interface/exhibition';
-import Exhibition from '../Item';
 import { QueryClient, dehydrate, useQuery } from 'react-query';
-import { getExhibitionList } from '@/api/exhibition';
+import { getExhibitions } from '@/api/exhibition';
+import { ExhibitionsProps, ExhibitionType, FilterType } from '@/interface/exhibition';
+import Exhibition from '../Item';
 
 export async function getStaticProps() {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery('exhibitionList', getExhibitionList);
+  await queryClient.prefetchQuery('exhibitions', () => getExhibitions());
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
@@ -15,35 +15,41 @@ export async function getStaticProps() {
   };
 }
 
-function ExhibitionList(props: ExhibitionListProps) {
+function Exhibitions(props: ExhibitionsProps) {
   const { type } = props;
   const [filterList, setFilterList] = useState<ExhibitionType[]>();
 
-  const { data: exhibitionList } = useQuery(['exhibitionList'], getExhibitionList, {
+  const { data: exhibitions } = useQuery(['exhibitions'], () => getExhibitions(), {
     initialData: () => {
       const queryClient = new QueryClient();
-      return queryClient.getQueryData('exhibitionList');
+      return queryClient.getQueryData('exhibitions');
     },
     refetchOnWindowFocus: false,
     staleTime: 1000 * 60 * 60 * 24,
   });
 
   useEffect(() => {
-    if (type === undefined || exhibitionList === undefined) return;
+    if (type === undefined || exhibitions === undefined) return;
 
-    const filterList = exhibitionList?.filter((item) =>
-      type === FilterType.all ? item : type === FilterType.progress ? item.isDisplay : !item.isDisplay,
+    const filterList = exhibitions?.filter((item: ExhibitionType) =>
+      type === FilterType.all
+        ? item
+        : type === FilterType.progress
+        ? item.status === '전시중'
+        : item.status === '전시 종료',
     );
     setFilterList(filterList);
-  }, [type, exhibitionList]);
+  }, [type, exhibitions]);
+
+  console.log(exhibitions);
 
   return (
-    <S.ExhibitionList>
+    <S.Exhibitions>
       {filterList?.map((exhibition: ExhibitionType) => {
-        return <Exhibition key={exhibition.exbihitionNum} exhibition={exhibition} />;
+        return <Exhibition key={exhibition.exhibitionId} exhibition={exhibition} />;
       })}
-    </S.ExhibitionList>
+    </S.Exhibitions>
   );
 }
 
-export default ExhibitionList;
+export default Exhibitions;

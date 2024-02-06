@@ -1,24 +1,27 @@
 import React from 'react';
 import * as S from './styles';
-import { MainProduct } from '@/interface/product';
+import { ProductType } from '@/interface/product';
 import { useRouter } from 'next/router';
-function Product({ data }: { data: MainProduct }) {
+import { customNullImg } from '@/util/utils';
+function Product({ data }: { data: ProductType }) {
   const { picture, tags, title, artist, productId } = data;
   const router = useRouter();
+
   const onLink = () => {
-    router.push(`/products/${productId}`);
+    router.push(`/product/${productId}`);
   };
 
   return (
     <S.ProductWrap onClick={onLink}>
       <S.ProductImageWrap>
         <S.ProductImage
-          src={`https://kr.object.ncloudstorage.com/superposition-bucket/${picture}`}
+          src={customNullImg(`https://kr.object.ncloudstorage.com/superposition-bucket/${picture}`)}
           alt="이미지"
           loading="lazy"
           width={150}
           height={150}
         />
+        <S.Border />
       </S.ProductImageWrap>
       <S.ProductInfoWrap>
         <S.Tags>

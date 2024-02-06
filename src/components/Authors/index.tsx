@@ -1,10 +1,10 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect, useState } from 'react';
 import * as S from './styles';
 import CommonTitle from '../@Common/Title';
 import Search from '../@Common/Search';
 import Author from './Author';
 import { QueryClient, dehydrate, useQuery } from 'react-query';
-import { getAuthors } from '@/api/authors';
+import { getAuthors } from '@/api/author';
 import { AuthorsProps } from '@/interface/authors';
 import { ARITST_TITLE } from '@/constants/title';
 import Floating from '../@Common/Floating';
@@ -19,7 +19,7 @@ export const getStaticProps = async () => {
   };
 };
 
-function Authors() {
+function AuthorsPage() {
   const { data: authorsData } = useQuery('authors', getAuthors, {
     initialData: () => {
       const queryClient = new QueryClient();
@@ -30,7 +30,7 @@ function Authors() {
     staleTime: 1000 * 60 * 60 * 24,
   });
 
-  const [searchData, setSearchData] = React.useState<AuthorsProps[]>([]);
+  const [searchData, setSearchData] = useState<AuthorsProps[]>([]);
   const memoizedAuthorsData = useMemo(() => authorsData, [authorsData]);
   const memoizedSearchData = useMemo(() => searchData, [searchData]);
 
@@ -38,7 +38,7 @@ function Authors() {
     <>
       <S.AuthorsContainer>
         <CommonTitle data={ARITST_TITLE} />
-        <Search setData={setSearchData} /> {/* Placeholder for Search component */}
+        <Search setData={setSearchData} />
         <S.AuthorsWrap>
           {memoizedSearchData?.length === 0
             ? memoizedAuthorsData?.map((author: AuthorsProps, index: number) => <Author key={index} data={author} />)
@@ -51,4 +51,4 @@ function Authors() {
   );
 }
 
-export default Authors;
+export default AuthorsPage;

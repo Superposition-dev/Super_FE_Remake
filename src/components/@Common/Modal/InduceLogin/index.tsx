@@ -3,6 +3,7 @@ import * as S from './styles';
 import Image from 'next/image';
 import { InduceLoginModalProps } from '@/interface/modal';
 import { useRouter } from 'next/router';
+import usePreventScroll from '@/hook/usePreventScroll';
 
 function InduceLoginModal(props: InduceLoginModalProps) {
   const { desc, state, setState } = props;
@@ -15,6 +16,8 @@ function InduceLoginModal(props: InduceLoginModalProps) {
   const onLinkedLogin = () => {
     router.push('/login');
   };
+
+  usePreventScroll(state);
 
   return (
     <S.ModalWrap>

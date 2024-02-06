@@ -8,7 +8,8 @@ export const PosterWrap = styled.div`
 
 export const Box = styled.div<{ img: string }>`
   width: 50%;
-  height: 100%;
+  min-height: 34vh;
+  height: auto;
   background-image: url(${(props) => props.img});
   background-size: cover;
   background-position: center;
@@ -21,6 +22,7 @@ export const Box = styled.div<{ img: string }>`
   position: relative;
   filter: drop-shadow(0px 4px 8px rgba(230, 154, 249, 0.3));
   @media (max-width: 768px) {
+    min-height: 0;
     width: 100%;
     height: 14vh;
     background-position: top;
@@ -29,6 +31,7 @@ export const Box = styled.div<{ img: string }>`
 
 export const TextWrap = styled.div`
   display: none;
+  height: 100%;
   @media (max-width: 768px) {
   display: block;
   display: flex;

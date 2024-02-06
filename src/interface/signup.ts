@@ -7,11 +7,11 @@ export enum ValidateNickNameType {
 export interface UserInfoType {
   userId?: number;
   name?: string;
-  nickName?: string;
+  nickname?: string;
   email?: string;
   birthYear?: string;
-  gender?: string;
-  image?: string;
+  gender?: 'M' | 'F';
+  profile?: string;
 }
 
 export interface UserImageProps {
