@@ -8,12 +8,13 @@ import { patchFormClick, patchLike } from '@/api/patchData';
 import { priceFormatter, seqFormatter } from '@/util/utils';
 import Portal from '../@Common/Modal';
 import InduceLoginModal from '../@Common/Modal/InduceLogin';
+import { getCookie } from '@/util/cookie';
 
 function ProductDetail({ data }: { data: ProductDetailProps }) {
   const { picture, title, tags, artistInfo, pictureInfo, description, price, productId } = data;
   const [like, setLike] = useState(false);
-  const [isLogin, setIsLogin] = useState(false);
   const [open, setOpen] = useState<boolean>(false);
+  const token = getCookie('accessToken');
   const router = useRouter();
 
   const { mutate: formMutate } = useMutation(patchFormClick);
@@ -31,8 +32,8 @@ function ProductDetail({ data }: { data: ProductDetailProps }) {
   };
 
   const handleLike = useCallback(() => {
-    isLogin ? likeMutate({ id: productId, like: !like }) : setOpen(true);
-  }, [like, productId, likeMutate, isLogin]);
+    token ? likeMutate({ id: productId, like: !like }) : setOpen(true);
+  }, [like, productId, likeMutate, token]);
 
   return (
     <>
