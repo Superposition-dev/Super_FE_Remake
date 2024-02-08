@@ -18,7 +18,6 @@ function Header() {
   const { data } = useQuery('user', () => getMe(accessToken),{
     enabled: !!accessToken,
   });
-  console.log(accessToken)
   const onLinkedLogin = () => {
     router.push('/login');
   };

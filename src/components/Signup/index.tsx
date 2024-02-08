@@ -19,7 +19,6 @@ function SignupPage() {
       sessionStorage.removeItem('userInfo')
       setCookie('accessToken', data.accessToken, {path: '/'})
       router.push('/')
-      console.log(data)
     }
   })
 
@@ -35,7 +34,7 @@ function SignupPage() {
     } else {
       router.push('/login');
     }
-  }, [kakaoData]);
+  }, []);
 
   return (
     <CommonWrapper>
