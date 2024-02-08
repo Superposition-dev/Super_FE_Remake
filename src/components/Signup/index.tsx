@@ -16,11 +16,11 @@ function SignupPage() {
   const kakaoData = typeof window !== 'undefined' ? sessionStorage.getItem('userInfo') : null;
   const { mutate, isLoading } = useMutation('userInfo', () => postSignup(userInfo as UserInfoType), {
     onSuccess: (data) => {
-      sessionStorage.removeItem('userInfo')
-      setCookie('accessToken', data.accessToken, {path: '/'})
-      router.push('/')
-    }
-  })
+      sessionStorage.removeItem('userInfo');
+      setCookie('accessToken', data.accessToken, { path: '/' });
+      router.push('/');
+    },
+  });
 
   const onSignup = () => {
     mutate();

@@ -12,13 +12,14 @@ import { useMutation } from 'react-query';
 import Portal from '../@Common/Modal';
 import InduceLoginModal from '../@Common/Modal/InduceLogin';
 import { postFollow } from '@/api/author';
+import { getCookie } from '@/util/cookie';
 
 function AuthorsDetail({ data }: { data: AuthorDetailProps }) {
   const { name, profile, introduce, display, products, instagramId, description } = data;
   const [plus, setPlus] = React.useState<boolean>(false);
   const [follow, setFollow] = useState<boolean>(false);
-  const [token, setToken] = useState<string>('');
   const [open, setOpen] = useState<boolean>(false);
+  const token = getCookie('accessToken');
   const router = useRouter();
   const length = description.length;
 
