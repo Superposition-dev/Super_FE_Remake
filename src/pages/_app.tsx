@@ -9,9 +9,9 @@ import { useVh } from '@/hook/useVh';
 import { useState } from 'react';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import Head from 'next/head';
-import Floating from '@/components/@Common/Floating';
 import Script from 'next/script';
 import { CookiesProvider } from 'react-cookie';
+import { RecoilRoot } from 'recoil';
 
 declare global {
   // Kakao 함수를 전역에서 사용할 수 있도록 선언
@@ -29,21 +29,26 @@ export default function App({ Component, pageProps }: AppProps) {
   }
   return (
     <QueryClientProvider client={queryClient}>
-      <CookiesProvider>
-        <Script src="https://developers.kakao.com/sdk/js/kakao.js" onLoad={kakaoInit}></Script>
-        <ThemeProvider theme={theme}>
-          <Header />
-          <Layout height={vh}>
-            <Hydrate state={pageProps.dehydratedState}>
-              <Head>
-                <title>슈퍼 포지션 (SuperPosition)</title>
-                <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
-              </Head>
-              <Component {...pageProps} />
-            </Hydrate>
-          </Layout>
-        </ThemeProvider>
-      </CookiesProvider>
+      <RecoilRoot>
+        <CookiesProvider>
+          <Script src="https://developers.kakao.com/sdk/js/kakao.js" onLoad={kakaoInit}></Script>
+          <ThemeProvider theme={theme}>
+            <Header />
+            <Layout height={vh}>
+              <Hydrate state={pageProps.dehydratedState}>
+                <Head>
+                  <title>슈퍼 포지션 (SuperPosition)</title>
+                  <meta
+                    name="viewport"
+                    content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width"
+                  />
+                </Head>
+                <Component {...pageProps} />
+              </Hydrate>
+            </Layout>
+          </ThemeProvider>
+        </CookiesProvider>
+      </RecoilRoot>
     </QueryClientProvider>
   );
 }
