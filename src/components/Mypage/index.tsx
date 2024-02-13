@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import * as S from './styles';
 import CommonWrapper from '../@Common/Wrap';
+import Profile from './Profile';
+import Taste from './Taste';
+import List from './List';
+import { getCookie } from '@/util/cookie';
 
 function Mypage() {
   const [user, setUser] = useState<boolean>(true);
   const [author, setAuthor] = useState<boolean>(false);
+  const token = getCookie('accessToken');
 
   const handleDivision = () => {
     setUser(!user);
@@ -24,6 +29,13 @@ function Mypage() {
             </S.Division>
           </S.DivisionWrap>
         </S.MypageTopWrap>
+        {user && (
+          <>
+            <Profile />
+            <Taste />
+            <List />
+          </>
+        )}
       </S.MypageWrap>
     </CommonWrapper>
   );

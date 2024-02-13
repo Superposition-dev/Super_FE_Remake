@@ -1,39 +1,10 @@
-import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaHeart, FaRegHeart } from 'react-icons/fa6';
 import { MdArrowForwardIos } from 'react-icons/md';
+import { whiteShadowLight, redShadowLight, heartBling } from '@/styles/@common';
 
-const redShadowLight = keyframes`
-  0%{
-    filter: drop-shadow(0px 4px 8px rgba(254, 8, 8, 0.1));
-  }
-  50%{
-    filter: drop-shadow(0px 4px 8px rgba(254, 8, 8, 0.2));
-  }
-  100%{
-    filter: drop-shadow(0px 4px 8px rgba(254, 8, 8, 0.1));
-  }
-`;
-const whiteShadowLight = keyframes`
-  0%{
-    filter: drop-shadow(0px 4px 8px rgba(255, 255, 255, 0.1));
-  }
-  50%{
-    filter: drop-shadow(0px 4px 8px rgba(255, 255, 255, 0.2));
-  }
-  100%{
-    filter: drop-shadow(0px 4px 8px rgba(255, 255, 255, 0.1));
-  }
-`;
-const heartBling = keyframes`
-  0% { transform: scale( 1.0 ); }
-    30% { transform: scale( 0.9 ); }
-    50% { transform: scale( 1.0 ); }
-    70% { transform: scale( 0.9 ); }
-    100% { transform: scale( 1.0 ); }
-`;
 export const ProductContainer = styled.div`
   width: 100%;
   padding: 5rem 0 6rem;
