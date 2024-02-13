@@ -76,7 +76,7 @@ function AuthorsDetail({ data }: { data: AuthorDetailProps }) {
                 <SwiperSlide key={index}>
                   <S.ImageWrap
                     onClick={() => {
-                      router.push(`/products/${item.productId}`);
+                      router.push(`/product/${item.productId}`);
                     }}
                   >
                     <Image
