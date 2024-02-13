@@ -29,7 +29,7 @@ export const SideBarWrap = styled.div<{ open: boolean }>`
   z-index: 200;
 `;
 
-export const MenuWrap = styled(Link)`
+export const MenuWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
