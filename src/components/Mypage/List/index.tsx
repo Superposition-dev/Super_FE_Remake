@@ -11,8 +11,8 @@ function List() {
 
   const ACTIVITY = [
     { title: '내가 쓴 글', icon: <S.Writing />, url: '/mypage/post' },
-    { title: '내가 쓴 댓글', icon: <S.Message />, url: '/mypage/reply' },
-    { title: '좋아요', icon: <S.Heart />, url: '/mypage/like' },
+    { title: '내가 쓴 댓글', icon: <S.Message />, url: '/mypage/post' },
+    { title: '좋아요한 글', icon: <S.Heart />, url: '/mypage/post' },
   ];
 
   const HELP = [
