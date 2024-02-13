@@ -25,11 +25,11 @@ export const Title = styled.div`
   color: ${({ theme }) => theme.colors.dark_gray};
 `;
 
-export const InnerList = styled.div`
+export const InnerList = styled.div<{ isDivided: boolean }>`
   ${({ theme }) => theme.flex.flexColumn};
   width: 100%;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.dark_gray};
+  border-bottom: ${({ theme, isDivided }) => (isDivided ? `1px solid ${theme.colors.dark_gray}` : '')};
 `;
 
 export const Item = styled.div`

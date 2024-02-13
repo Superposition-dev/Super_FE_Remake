@@ -30,7 +30,7 @@ function List() {
     <S.ListWrap>
       <S.List>
         <S.Title>나의 활동</S.Title>
-        <S.InnerList>
+        <S.InnerList isDivided={true}>
           {ACTIVITY.map((item, index) => {
             return (
               <S.Item key={index} onClick={() => onLink(item.url)}>
@@ -43,7 +43,7 @@ function List() {
       </S.List>
       <S.List>
         <S.Title>이용 관련</S.Title>
-        <S.InnerList>
+        <S.InnerList isDivided={false}>
           {HELP.map((item, index) => {
             return (
               <S.Item key={index} onClick={() => (item.title !== '로그아웃' ? onLink(item.url) : setOpen(true))}>
