@@ -6,7 +6,7 @@ const Login = () => {
 
   function kakaoLogin() {
     window.Kakao.Auth.authorize({
-      redirectUri: 'http://localhost:3000/login/kakao',
+      redirectUri: process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI,
     });
   }
 

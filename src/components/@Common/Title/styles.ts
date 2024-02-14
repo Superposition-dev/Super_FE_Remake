@@ -16,4 +16,5 @@ export const Title = styled.h1`
 
 export const SubTitle = styled.h2`
   ${({ theme }) => theme.font.medium_14};
+  padding: 0 1rem;
 `;

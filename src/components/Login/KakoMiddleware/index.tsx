@@ -17,16 +17,13 @@ const KakaoMiddleware = () => {
           router.push('/signup')
           return
         }
-        setCookie('token', res.data.token.accessToken,{path: '/'})
-        setCookie('token', res.data.token.accessToken,{path: '/'})
-        console.log(res.data.accessToken)
-        router.push('/')
-        
 
+        setCookie('token', res.data.token.accessToken,{path: '/'})
+        router.push('/')
+      
       }catch(e:any){
         console.log(e)
         if(e.response?.status === 303){
-          console.log(e.response.data)
           sessionStorage.setItem('userInfo', JSON.stringify(e.response.data))
           router.push('/signup')
           return

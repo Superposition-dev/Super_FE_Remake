@@ -31,7 +31,7 @@ function Exhibitions(props: ExhibitionsProps) {
   useEffect(() => {
     if (type === undefined || exhibitions === undefined) return;
 
-    const filterList = exhibitions.data?.filter((item: ExhibitionType) =>
+    const filterList = exhibitions?.filter((item: ExhibitionType) =>
       type === FilterType.all
         ? item
         : type === FilterType.progress
@@ -40,6 +40,7 @@ function Exhibitions(props: ExhibitionsProps) {
     );
     setFilterList(filterList);
   }, [type, exhibitions]);
+
 
   return (
     <S.Exhibitions>

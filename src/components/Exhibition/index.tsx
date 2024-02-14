@@ -18,7 +18,7 @@ function ExhibitionsPage() {
   };
 
   return (
-    <CommonWrapper transparent={true}>
+    <CommonWrapper>
       <S.ExhibitionsWrap>
         <S.Title>
           전시

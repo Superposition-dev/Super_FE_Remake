@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './styles';
 import CommonWrapper from '../@Common/Wrap';
-import UserImage from './Image';
+import CommonUserImage from '../@Common/Image';
 import UserInfo from './Info';
-import { UserInfoType, ValidateNickNameType } from '@/interface/signup';
+import { UserInfoType } from '@/interface/user';
+import { ValidateNickNameType } from '@/interface/signup';
 import { validateNickName } from '@/util/utils';
 import { useRouter } from 'next/router';
 import { useMutation } from 'react-query';
@@ -14,17 +15,17 @@ function SignupPage() {
   const [userInfo, setUserInfo] = useState<UserInfoType>();
   const router = useRouter();
   const kakaoData = typeof window !== 'undefined' ? sessionStorage.getItem('userInfo') : null;
-  const {mutate, isLoading} = useMutation('userInfo',()=>postSignup(userInfo as UserInfoType),{
+  const { mutate, isLoading } = useMutation('userInfo', () => postSignup(userInfo as UserInfoType), {
     onSuccess: (data) => {
       sessionStorage.removeItem('userInfo')
-      setCookie('token', data.accessToken, {path: '/'})
+      setCookie('token', data.token.accessToken, {path: '/'})
       router.push('/')
     }
   })
 
   const onSignup = () => {
-    mutate()
-  }
+    mutate();
+  };
 
   // 세션 스토리지에 저장된 카카오에서 받아온 데이터를 userInfo에 넣어주시면 됩니다.
   // 가입하기 클릭 시, 해당 데이터를 서버에 post 요청
@@ -35,23 +36,23 @@ function SignupPage() {
   },[])
   
   return (
-    <CommonWrapper transparent={true}>
+    <CommonWrapper>
       <S.SignupWrap>
         <S.SignupTopWrap>
-          <UserImage userInfo={userInfo} setUserInfo={setUserInfo} />
+          <CommonUserImage userInfo={userInfo} setUserInfo={setUserInfo} />
         </S.SignupTopWrap>
         <S.SignupBottomWrap>
           <UserInfo userInfo={userInfo} setUserInfo={setUserInfo} />
         </S.SignupBottomWrap>
         <S.SignupButton
           disabled={
-            (userInfo?.nickname && validateNickName(userInfo.nickname) === ValidateNickNameType.success) || isLoading ? false : true
+            (userInfo?.nickname && validateNickName(userInfo.nickname) === ValidateNickNameType.success) || isLoading
+              ? false
+              : true
           }
           onClick={onSignup}
         >
-          {
-            isLoading ? '가입중...' : '가입하기'
-          }
+          {isLoading ? '가입중...' : '가입하기'}
         </S.SignupButton>
       </S.SignupWrap>
     </CommonWrapper>
