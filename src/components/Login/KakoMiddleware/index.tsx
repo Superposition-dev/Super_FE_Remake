@@ -29,7 +29,6 @@ const KakaoMiddleware = () => {
           router.push('/signup')
           return
       }
-      router.push('/login')
     }
     }
   ,[router])
@@ -37,8 +36,6 @@ const KakaoMiddleware = () => {
   useEffect(() => {
     if(code){
       loginHandler(code)
-    }else if(error){
-      router.push('/login')
     }
   },[loginHandler, code, error, router])
 
