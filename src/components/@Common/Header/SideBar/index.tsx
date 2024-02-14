@@ -45,11 +45,14 @@ function SideBar(props: SideBarProps) {
 
   const onLinkMenu = (url: string) => {
     setOpen(false);
-
-    if (token) {
-      router.push(url);
+    if (url === '/mypage') {
+      if (token) {
+        router.push(url);
+      } else {
+        setNotify(true);
+      }
     } else {
-      setNotify(true);
+      router.push(url);
     }
   };
 

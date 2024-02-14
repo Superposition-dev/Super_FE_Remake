@@ -1,4 +1,4 @@
-interface UserInfoType {
+export interface UserType {
   email: string;
   nickname: string;
   profile: string;

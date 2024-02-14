@@ -1,6 +1,7 @@
+import { UserType } from '@/interface/user';
 import { atom } from 'recoil';
 
-export const userInfoAtom = atom<UserInfoType>({
+export const userInfoAtom = atom<UserType>({
   key: 'userInfo',
   default: {
     email: '',
