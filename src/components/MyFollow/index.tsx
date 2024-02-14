@@ -1,7 +1,5 @@
 import * as S from './styles';
-import { useEffect, useState } from 'react';
-import { getMyFollow, getMyLike } from '@/api/user';
-import { useIsMobile } from '@/hook/useView';
+import { getMyFollow } from '@/api/user';
 import { QueryClient, dehydrate, useQuery } from 'react-query';
 import { getCookie } from '@/util/cookie';
 import { AuthorsProps } from '@/interface/authors';
@@ -10,7 +8,8 @@ import Author from '../Authors/Author';
 export async function getStaticProps() {
   const queryClient = new QueryClient();
   const token = getCookie('accessToken');
-  await queryClient.prefetchQuery('myFollow', () => getMyLike(token));
+
+  await queryClient.prefetchQuery('myFollow', () => getMyFollow(token));
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
@@ -19,8 +18,6 @@ export async function getStaticProps() {
 }
 
 function MyFollowPage() {
-  const [maxScroll, setMaxScroll] = useState(0);
-  const mobile = useIsMobile();
   const token = getCookie('accessToken');
 
   const { data: authors } = useQuery(['myFollow'], () => getMyFollow(token), {
@@ -31,11 +28,6 @@ function MyFollowPage() {
     refetchOnWindowFocus: false,
     staleTime: 1000 * 60 * 60 * 24,
   });
-
-  useEffect(() => {
-    const scrollHeight = document.body.scrollHeight;
-    setMaxScroll(scrollHeight);
-  }, [authors]);
 
   return (
     <S.MyFollowWrap>
