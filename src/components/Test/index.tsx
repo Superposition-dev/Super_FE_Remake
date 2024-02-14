@@ -8,9 +8,9 @@ const TestComponents = () => {
   const [reissueToken, setReissueToken] = useState(false)
   const {data:token} = useQuery('token', refreshTest, {
     enabled: makeToken,
-    onSuccess: () => {
+    onSuccess: (data) => {
       setMakeToken(false)
-      console.log('토큰생성완료',token)
+      console.log('토큰생성완료',data)
     },
     onError: (e) => {
       setMakeToken(false)
@@ -19,9 +19,9 @@ const TestComponents = () => {
   })
   const {data:reToken} = useQuery('reToken', getReToken, {
     enabled: reissueToken,
-    onSuccess: () => {
+    onSuccess: (data) => {
       setReissueToken(false)
-      console.log('토큰재발급완료',reToken)
+      console.log('토큰재발급완료',data)
     },
     onError: (e) => {
       setReissueToken(false)
