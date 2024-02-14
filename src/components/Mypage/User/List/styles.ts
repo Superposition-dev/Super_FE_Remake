@@ -3,6 +3,7 @@ import { whiteShadowLight } from '@/styles/@common';
 import { BiNews } from 'react-icons/bi';
 import { TbMessage2 } from 'react-icons/tb';
 import { FiHeart } from 'react-icons/fi';
+import Link from 'next/link';
 
 export const ListWrap = styled.div`
   ${({ theme }) => theme.flex.flexColumn};
@@ -32,12 +33,14 @@ export const InnerList = styled.div<{ isDivided: boolean }>`
   border-bottom: ${({ theme, isDivided }) => (isDivided ? `1px solid ${theme.colors.dark_gray}` : '')};
 `;
 
-export const Item = styled.div`
+export const Item = styled(Link)`
   ${({ theme }) => theme.flex.flexRow};
   align-items: center;
   gap: 0.75rem;
   width: 100%;
   padding: 1.25rem 0;
+  color: ${({ theme }) => theme.colors.white};
+  text-decoration: none;
 `;
 
 export const Writing = styled(BiNews)`
