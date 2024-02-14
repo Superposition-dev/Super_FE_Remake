@@ -34,9 +34,9 @@ const heartBling = keyframes`
     70% { transform: scale( 0.9 ); }
     100% { transform: scale( 1.0 ); }
 `;
-export const DetailContainer = styled.div`
+export const ProductContainer = styled.div`
   width: 100%;
-  padding: 6rem 0 8rem;
+  padding: 5rem 0 6rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -47,11 +47,6 @@ export const ImageWrap = styled.div`
   position: relative;
 `;
 
-export const ProductInfoWrap = styled.div`
-  width: 100%;
-  padding: 0 2rem;
-`;
-
 export const ProductImage = styled(Image)`
   width: 100%;
   height: 100%;
@@ -59,30 +54,39 @@ export const ProductImage = styled(Image)`
   object-position: center;
 `;
 
+export const ProductInfoWrap = styled.div`
+  ${({ theme }) => theme.flex.flexColumn};
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.8rem 2rem 2rem;
+`;
+
 export const Copy = styled.div`
+  margin-bottom: 1rem;
   text-align: center;
   color: ${({ theme }) => theme.colors.gray};
   ${({ theme }) => theme.font.bold_10};
-  margin: 0.8rem 0;
 `;
 
 export const CopyText = styled.p``;
 
-export const FlexBox = styled.div`
-  width: 100%;
+export const NameWrap = styled.div`
   ${({ theme }) => theme.flex.flexRow};
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+  height: 5rem;
 `;
 
 export const TitleWrap = styled.div`
+  ${({ theme }) => theme.flex.flexColumn};
   width: 80%;
-  margin: 1rem 0 1.4rem;
+  height: 100%;
 `;
 
 export const Title = styled.h1`
   ${({ theme }) => theme.font.bold_20};
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.3rem;
 `;
 
 export const Code = styled.p`
@@ -90,7 +94,7 @@ export const Code = styled.p`
   color: ${({ theme }) => theme.colors.dark_gray};
 `;
 
-export const IsLike = styled.div<{ like: boolean }>`
+export const Like = styled.div<{ like: boolean }>`
   width: 5rem;
   height: 5rem;
   background-color: ${({ theme }) => theme.colors.black};
@@ -110,17 +114,22 @@ export const Heart = styled(FaHeart)`
 export const UnHeart = styled(FaRegHeart)``;
 
 export const InfoWrap = styled.div`
+  ${({ theme }) => theme.flex.flexColumn};
+  gap: 0.3rem;
+  margin-top: 0.2rem;
+`;
+
+export const DescWrap = styled.div`
   ${({ theme }) => theme.font.regular_14};
 `;
 
-export const InfoType = styled.span``;
+export const Type = styled.span``;
 
 export const Tags = styled.div`
   ${({ theme }) => theme.flex.flexRow};
-  gap: 0.5rem;
+  gap: 0.6rem;
   ${({ theme }) => theme.flex.bold_12};
   color: ${({ theme }) => theme.colors.gray};
-  margin-top: 0.5rem;
 `;
 
 export const Tag = styled.span``;

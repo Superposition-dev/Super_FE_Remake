@@ -5,6 +5,7 @@ export interface CommonTitleProps {
 
 export interface CommonWrapperProps {
   children: React.ReactNode;
+  transparent: boolean;
 }
 
 export interface CommonFloatingProps {

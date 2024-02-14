@@ -8,15 +8,15 @@ export const ExhibitionWrap = styled.div`
   ${({ theme }) => theme.flex.flexCenter};
   justify-content: space-between;
   width: 100%;
-  height: 14.5rem;
-  min-height: 14.5rem;
+  height: 16rem;
+  min-height: 16rem;
   padding: 0 0 16px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.gray};
 `;
 
 export const ImageWrap = styled.div`
   position: relative;
-  width: 9rem;
+  width: 11rem;
   height: 100%;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.light_gray};
@@ -27,15 +27,24 @@ export const CustomImage = styled(Image)`
   object-fit: cover;
 `;
 
+export const Border = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border-radius: 8px;
+  border: 4px solid rgba(255, 255, 255, 0.2);
+`;
+
 export const InnerWrap = styled.div`
   ${({ theme }) => theme.flex.flexColumn};
   ${({ theme }) => theme.flex.flexCenter};
   justify-content: space-between;
-  width: 70%;
+  width: 65%;
   height: 100%;
 
   @media (max-width: 375px) {
-    width: 68%;
+    width: 61%;
   }
 `;
 
@@ -94,6 +103,8 @@ export const LocationIcon = styled(HiOutlineLocationMarker)`
 `;
 
 export const DateIcon = styled(IoCalendarOutline)`
+  position: relative;
+  top: -1px;
   width: 16px;
   height: 16px;
   ${({ theme }) => theme.colors.white};
