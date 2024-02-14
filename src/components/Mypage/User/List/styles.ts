@@ -28,7 +28,7 @@ export const Title = styled.div`
 export const InnerList = styled.div<{ isDivided: boolean }>`
   ${({ theme }) => theme.flex.flexColumn};
   width: 100%;
-  padding-bottom: 0.5rem;
+  /* padding-bottom: 0.5rem; */
   border-bottom: ${({ theme, isDivided }) => (isDivided ? `1px solid ${theme.colors.dark_gray}` : '')};
 `;
 

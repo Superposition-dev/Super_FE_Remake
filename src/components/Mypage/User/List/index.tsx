@@ -28,7 +28,7 @@ function List() {
 
   return (
     <S.ListWrap>
-      <S.List>
+      {/* <S.List>
         <S.Title>나의 활동</S.Title>
         <S.InnerList isDivided={true}>
           {ACTIVITY.map((item, index) => {
@@ -40,7 +40,7 @@ function List() {
             );
           })}
         </S.InnerList>
-      </S.List>
+      </S.List> */}
       <S.List>
         <S.Title>이용 관련</S.Title>
         <S.InnerList isDivided={false}>
