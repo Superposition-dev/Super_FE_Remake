@@ -1,4 +1,6 @@
 import axios from 'axios';
+let isRefreshing = false;
+let failedQueue: any = [];
 
 const getAxiosInstans = (type: string) => {
   const config = {
@@ -11,6 +13,42 @@ const getAxiosInstans = (type: string) => {
   };
   const instance = axios.create(config);
   instance.defaults.timeout = 2500;
+  instance.interceptors.response.use(
+    response => response,
+    async error => {
+      console.log(error);
+      const originalRequest = error.config;
+      if (error.response?.status === 401) {
+        if (isRefreshing) {
+          return new Promise((resolve, reject) => {
+            failedQueue.push({ resolve, reject });
+          })
+            .then(token => {
+              originalRequest.headers['Authorization'] = 'Bearer ' + token;
+              return instance(originalRequest);
+            })
+            .catch(err => {
+              return Promise.reject(err);
+            });
+        }
+        isRefreshing = true;
+        try {
+          const res = await axios.get(
+            `${process.env.NEXT_PUBLIC_BASE_URL}/users/regenerateToken`
+          );
+          const { accessToken } = res.data;
+          originalRequest.headers['Authorization'] = 'Bearer ' + accessToken;
+          failedQueue.forEach((request: any) => request.resolve(accessToken));
+          return instance(originalRequest);
+        } catch (err) {
+          failedQueue.forEach((request:any) => request.reject(error));
+          failedQueue = [];
+        } finally {
+          isRefreshing = false;
+        }
+      }
+  }
+  )
   return instance;
 };
 

@@ -17,11 +17,11 @@ function SignupPage() {
   const kakaoData = typeof window !== 'undefined' ? sessionStorage.getItem('userInfo') : null;
   const { mutate, isLoading } = useMutation('userInfo', () => postSignup(userInfo as UserInfoType), {
     onSuccess: (data) => {
-      sessionStorage.removeItem('userInfo');
-      setCookie('accessToken', data.accessToken, { path: '/' });
-      router.push('/');
-    },
-  });
+      sessionStorage.removeItem('userInfo')
+      setCookie('token', data.token.accessToken, {path: '/'})
+      router.push('/')
+    }
+  })
 
   const onSignup = () => {
     mutate();
@@ -32,11 +32,9 @@ function SignupPage() {
   useEffect(() => {
     if (kakaoData) {
       setUserInfo(JSON.parse(kakaoData));
-    } else {
-      router.push('/login');
     }
-  }, []);
-
+  },[])
+  
   return (
     <CommonWrapper>
       <S.SignupWrap>
