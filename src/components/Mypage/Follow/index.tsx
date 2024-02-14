@@ -3,7 +3,7 @@ import { getMyFollow } from '@/api/user';
 import { QueryClient, dehydrate, useQuery } from 'react-query';
 import { getCookie } from '@/util/cookie';
 import { AuthorsProps } from '@/interface/authors';
-import Author from '../Authors/Author';
+import Author from '../../Authors/Author';
 
 export async function getStaticProps() {
   const queryClient = new QueryClient();

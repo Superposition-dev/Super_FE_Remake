@@ -1,4 +1,4 @@
-import MyFollowPage from '@/components/MyFollow';
+import MyFollowPage from '@/components/Mypage/Follow';
 import React from 'react';
 
 function MyFollow() {

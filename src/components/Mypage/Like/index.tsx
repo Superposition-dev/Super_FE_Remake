@@ -4,7 +4,7 @@ import { getMyLike } from '@/api/user';
 import { useIsMobile } from '@/hook/useView';
 import { QueryClient, dehydrate, useQuery } from 'react-query';
 import { getCookie } from '@/util/cookie';
-import Product from '../ExhibitionDetail/Product';
+import Product from '../../ExhibitionDetail/Product';
 
 export async function getStaticProps() {
   const queryClient = new QueryClient();

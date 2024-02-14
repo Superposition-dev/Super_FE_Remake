@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import * as S from './styles';
 import CommonWrapper from '../@Common/Wrap';
-import Profile from './Profile';
-import Taste from './Taste';
-import List from './List';
+import Profile from './User/Profile';
+import Taste from './User/Taste';
+import List from './User/List';
 import { getCookie } from '@/util/cookie';
 
 function Mypage() {

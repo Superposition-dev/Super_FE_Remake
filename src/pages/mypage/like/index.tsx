@@ -1,4 +1,4 @@
-import MyLikePage from '@/components/MyLike';
+import MyLikePage from '@/components/Mypage/Like';
 import React from 'react';
 
 function MyLike() {

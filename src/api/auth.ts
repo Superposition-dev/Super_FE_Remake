@@ -1,5 +1,5 @@
-import { UserInfoType } from '@/interface/signup';
 import { instance } from './instance';
+import { UserInfoType } from '@/interface/user';
 
 export const postSignup = async (data: UserInfoType) => {
   try {

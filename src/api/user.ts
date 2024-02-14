@@ -1,23 +1,43 @@
 import { instance } from './instance';
 
-export const addLike = async ({ id, token }: { id: number; token: string }) => {
-  const res = await instance.post(`/products/${id}/like`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+export const getIsChange = async ({ token }: { token: string }) => {
+  try {
+    const res = await instance.post(`/users/isAvaliable`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-  return res.data;
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const addLike = async ({ id, token }: { id: number; token: string }) => {
+  try {
+    const res = await instance.post(`/products/${id}/like`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export const deleteLike = async ({ id, token }: { id: number; token: string }) => {
-  const res = await instance.delete(`/products/${id}/dislike`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  return res.data;
+  try {
+    const res = await instance.delete(`/products/${id}/dislike`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export const addFollow = async ({ instagramId, token }: { instagramId: string; token: string }) => {
@@ -54,39 +74,39 @@ export const getMyLike = async (token: string) => {
     //   },
     // });
 
-    // const res = {
-    //   data: {
-    //     products: [
-    //       {
-    //         productId: 1,
-    //         picture: 'ddbe4913-271f-4fd5-846c-f9fa39e788f7.jpg',
-    //         artist: '작가1',
-    //         title: '작품 이름1',
-    //         tags: ['수채화', '카페', '은은한'],
-    //       },
-    //       {
-    //         productId: 2,
-    //         picture: 'ddbe4913-271f-4fd5-846c-f9fa39e788f7.jpg',
-    //         artist: '작가2',
-    //         title: '작품 이름2',
-    //         tags: ['화려한', '조명', '어둠'],
-    //       },
-    //       {
-    //         productId: 3,
-    //         picture: 'ddbe4913-271f-4fd5-846c-f9fa39e788f7.jpg',
-    //         artist: '작가3',
-    //         title: '작품 이름3',
-    //         tags: ['조용한', '시골', '나른한'],
-    //       },
-    //     ],
-    //   },
-    // };
-
     const res = {
       data: {
-        products: [],
+        products: [
+          {
+            productId: 1,
+            picture: 'ddbe4913-271f-4fd5-846c-f9fa39e788f7.jpg',
+            artist: '작가1',
+            title: '작품 이름1',
+            tags: ['수채화', '카페', '은은한'],
+          },
+          {
+            productId: 3,
+            picture: '6e305a70-0ed7-4f40-a59e-e28bb495887d.jpg',
+            artist: '작가3',
+            title: '작품 이름3',
+            tags: ['조용한', '시골', '나른한'],
+          },
+          {
+            productId: 2,
+            picture: 'ff87e276-3545-4822-8f2f-f9bc75f3d6ea.jpg',
+            artist: '작가2',
+            title: '작품 이름2',
+            tags: ['화려한', '조명', '어둠'],
+          },
+        ],
       },
     };
+
+    // const res = {
+    //   data: {
+    //     products: [],
+    //   },
+    // };
 
     return res.data;
   } catch (e) {

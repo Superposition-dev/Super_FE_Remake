@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { MasonryGrid } from '@egjs/react-grid';
 
 export const MyFollowWrap = styled.div`
   width: 100%;

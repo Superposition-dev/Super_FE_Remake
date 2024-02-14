@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react';
 import * as S from './styles';
-import { UserImageProps } from '@/interface/signup';
+import { CommonUserImageProps } from '@/interface/common';
 import { customNullImg } from '@/util/utils';
 
-function UserImage(props: UserImageProps) {
+function CommonUserImage(props: CommonUserImageProps) {
   const { userInfo, setUserInfo } = props;
   const [imageFile, setImageFile] = useState<File>();
   const inputRef = useRef<HTMLInputElement>(null);
@@ -44,4 +44,4 @@ function UserImage(props: UserImageProps) {
   );
 }
 
-export default UserImage;
+export default CommonUserImage;
