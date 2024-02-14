@@ -17,8 +17,9 @@ const KakaoMiddleware = () => {
           router.push('/signup')
           return
         }
-
-        setCookie('token', res.data.token.accessToken,{path: '/'})
+        setCookie('accessToken', res.data.token.accessToken,{path: '/'})
+        setCookie('refreshToken', res.data.token.refreshToken,{path: '/'})
+        console.log(res.data.token.accessToken, res.data.token.refreshToken)
         router.push('/')
       
       }catch(e:any){
