@@ -1,3 +1,4 @@
+import { getCookie, setCookie } from '@/util/cookie';
 import axios from 'axios';
 let isRefreshing = false;
 let failedQueue: any = [];
@@ -33,10 +34,18 @@ const getAxiosInstans = (type: string) => {
         }
         isRefreshing = true;
         try {
+          const refresh = getCookie('refreshToken');
           const res = await axios.get(
-            `${process.env.NEXT_PUBLIC_BASE_URL}/users/regenerateToken`
+            `${process.env.NEXT_PUBLIC_BASE_URL}/users/regenerateToken`,
+            {
+              headers: {
+                Authorization: `Bearer ${refresh}`
+              }
+            }
           );
-          const { accessToken } = res.data;
+          const { accessToken, refreshToken } = res.data;
+          setCookie('accessToken', accessToken, { path: '/' });
+          setCookie('refreshToken',refreshToken, { path: '/' });
           originalRequest.headers['Authorization'] = 'Bearer ' + accessToken;
           failedQueue.forEach((request: any) => request.resolve(accessToken));
           return instance(originalRequest);
@@ -47,6 +56,7 @@ const getAxiosInstans = (type: string) => {
           isRefreshing = false;
         }
       }
+      return Promise.reject(error);
   }
   )
   return instance;
