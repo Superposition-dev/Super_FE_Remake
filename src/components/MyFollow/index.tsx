@@ -4,7 +4,6 @@ import { getMyFollow, getMyLike } from '@/api/user';
 import { useIsMobile } from '@/hook/useView';
 import { QueryClient, dehydrate, useQuery } from 'react-query';
 import { getCookie } from '@/util/cookie';
-import Product from '../ExhibitionDetail/Product';
 import { AuthorsProps } from '@/interface/authors';
 import Author from '../Authors/Author';
 
