@@ -15,7 +15,11 @@ function Product({ data }: { data: ProductType }) {
     <S.ProductWrap onClick={onLink}>
       <S.ProductImageWrap>
         <S.ProductImage
-          src={customNullImg(`https://kr.object.ncloudstorage.com/superposition-bucket/${picture}`)}
+          src={
+            picture
+              ? customNullImg(`https://kr.object.ncloudstorage.com/superposition-bucket/${picture}`)
+              : customNullImg('')
+          }
           alt="이미지"
           loading="lazy"
           width={150}

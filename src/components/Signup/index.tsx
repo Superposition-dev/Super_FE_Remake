@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './styles';
 import CommonWrapper from '../@Common/Wrap';
-import UserImage from './Image';
+import CommonUserImage from '../@Common/Image';
 import UserInfo from './Info';
-import { UserInfoType, ValidateNickNameType } from '@/interface/signup';
+import { UserInfoType } from '@/interface/user';
+import { ValidateNickNameType } from '@/interface/signup';
 import { validateNickName } from '@/util/utils';
 import { useRouter } from 'next/router';
 import { useMutation } from 'react-query';
@@ -17,7 +18,8 @@ function SignupPage() {
   const { mutate, isLoading } = useMutation('userInfo', () => postSignup(userInfo as UserInfoType), {
     onSuccess: (data) => {
       sessionStorage.removeItem('userInfo')
-      setCookie('accessToken', data.accessToken, {path: '/'})
+      setCookie('accessToken', data.token.accessToken, {path: '/'})
+      setCookie('refreshToken', data.token.refreshToken, {path: '/'})
       router.push('/')
     }
   })
@@ -31,16 +33,14 @@ function SignupPage() {
   useEffect(() => {
     if (kakaoData) {
       setUserInfo(JSON.parse(kakaoData));
-    } else {
-      router.push('/login');
     }
-  }, []);
-
+  },[])
+  
   return (
     <CommonWrapper>
       <S.SignupWrap>
         <S.SignupTopWrap>
-          <UserImage userInfo={userInfo} setUserInfo={setUserInfo} />
+          <CommonUserImage userInfo={userInfo} setUserInfo={setUserInfo} />
         </S.SignupTopWrap>
         <S.SignupBottomWrap>
           <UserInfo userInfo={userInfo} setUserInfo={setUserInfo} />

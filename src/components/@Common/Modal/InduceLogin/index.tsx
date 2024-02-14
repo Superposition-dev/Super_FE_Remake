@@ -15,6 +15,7 @@ function InduceLoginModal(props: InduceLoginModalProps) {
 
   const onLinkedLogin = () => {
     router.push('/login');
+    setState(false);
   };
 
   usePreventScroll(state);
