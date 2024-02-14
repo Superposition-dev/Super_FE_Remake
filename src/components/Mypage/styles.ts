@@ -2,9 +2,11 @@ import styled from '@emotion/styled';
 
 export const MypageWrap = styled.div`
   ${({ theme }) => theme.flex.flexColumn};
-  padding: 1rem 0;
+  gap: 2rem;
+  padding: 1rem 0.5rem;
   width: 100%;
   height: 100%;
+  overflow: auto;
 `;
 export const MypageTopWrap = styled.div`
   ${({ theme }) => theme.flex.flexRow};
@@ -23,4 +25,15 @@ export const Division = styled.button<{ active: boolean }>`
   ${({ theme }) => theme.font.bold_14};
   color: ${({ active, theme }) => (active ? theme.colors.white : theme.colors.dark_gray)};
   background-color: ${({ active, theme }) => (active ? theme.colors.purple : theme.colors.black)};
+`;
+
+export const NoticeWrap = styled.div`
+  ${({ theme }) => theme.flex.flexCenter};
+  width: 100%;
+  height: 100%;
+`;
+
+export const Message = styled.h2`
+  ${({ theme }) => theme.font.regular_14};
+  ${({ theme }) => theme.colors.white};
 `;

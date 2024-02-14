@@ -1,7 +1,8 @@
 @import './reset.css';
-@import './pretendard.css';
-@import './lemon.css';
-@import './sangju.css';
+@import './fonts/pretendard.css';
+@import './fonts/lemon.css';
+@import './fonts/sangju.css';
+
 html {
   font-size: 10px;
 }

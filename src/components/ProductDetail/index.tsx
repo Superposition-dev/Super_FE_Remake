@@ -4,11 +4,12 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useMutation } from 'react-query';
 import { ProductDetailProps } from '@/interface/product';
-import { patchFormClick, patchLike } from '@/api/patchData';
+import { patchFormClick } from '@/api/patchData';
+import { addLike, deleteLike } from '@/api/user';
 import { priceFormatter, seqFormatter } from '@/util/utils';
+import { getCookie } from '@/util/cookie';
 import Portal from '../@Common/Modal';
 import InduceLoginModal from '../@Common/Modal/InduceLogin';
-import { getCookie } from '@/util/cookie';
 
 function ProductDetail({ data }: { data: ProductDetailProps }) {
   const { picture, title, tags, artistInfo, pictureInfo, description, price, productId } = data;
@@ -18,7 +19,7 @@ function ProductDetail({ data }: { data: ProductDetailProps }) {
   const router = useRouter();
 
   const { mutate: formMutate } = useMutation(patchFormClick);
-  const { mutate: likeMutate } = useMutation(patchLike, {
+  const { mutate: addLikeMutate } = useMutation(addLike, {
     onSuccess: () => {
       setLike((prevLike) => !prevLike);
     },
@@ -27,13 +28,26 @@ function ProductDetail({ data }: { data: ProductDetailProps }) {
     },
   });
 
+  const { mutate: deleteLikeMutate } = useMutation(deleteLike, {
+    onSuccess: () => {
+      setLike((prevLike) => !prevLike);
+    },
+    onError: () => {
+      setLike(!like);
+    },
+  });
+
+  const handleLike = useCallback(() => {
+    if (token) {
+      like ? deleteLikeMutate({ id: productId, token: token }) : addLikeMutate({ id: productId, token: token });
+    } else {
+      setOpen(true);
+    }
+  }, [productId, token, like, addLikeMutate, deleteLikeMutate]);
+
   const onLinked = () => {
     router.push(`/authors/${artistInfo.instagramId}`);
   };
-
-  const handleLike = useCallback(() => {
-    token ? likeMutate({ id: productId, like: !like }) : setOpen(true);
-  }, [like, productId, likeMutate, token]);
 
   return (
     <>

@@ -1,18 +1,18 @@
 import React, { useCallback, useState } from 'react';
 import * as S from './styles';
-import { AuthorDetailProps, AuthorProductsProps } from '@/interface/authors';
 import Image from 'next/image';
 import 'swiper/css';
+import { AuthorDetailProps, AuthorProductsProps } from '@/interface/authors';
 import { Pagination, FreeMode } from 'swiper/modules';
 import { SwiperSlide } from 'swiper/react';
 import { FaInstagram } from 'react-icons/fa6';
 import { useRouter } from 'next/router';
-import CommonWrapper from '../@Common/Wrap';
 import { useMutation } from 'react-query';
+import { getCookie } from '@/util/cookie';
+import { addFollow, deleteFollow } from '@/api/user';
+import CommonWrapper from '../@Common/Wrap';
 import Portal from '../@Common/Modal';
 import InduceLoginModal from '../@Common/Modal/InduceLogin';
-import { postFollow } from '@/api/author';
-import { getCookie } from '@/util/cookie';
 
 function AuthorsDetail({ data }: { data: AuthorDetailProps }) {
   const { name, profile, introduce, display, products, instagramId, description } = data;
@@ -23,7 +23,16 @@ function AuthorsDetail({ data }: { data: AuthorDetailProps }) {
   const router = useRouter();
   const length = description.length;
 
-  const { mutate: followMutate } = useMutation(postFollow, {
+  const { mutate: addFollowMutate } = useMutation(addFollow, {
+    onSuccess: () => {
+      setFollow((prevFollow) => !prevFollow);
+    },
+    onError: () => {
+      setFollow(!follow);
+    },
+  });
+
+  const { mutate: deleteFollowMutate } = useMutation(deleteFollow, {
     onSuccess: () => {
       setFollow((prevFollow) => !prevFollow);
     },
@@ -36,9 +45,13 @@ function AuthorsDetail({ data }: { data: AuthorDetailProps }) {
     setPlus((prevPlus) => !prevPlus);
   }, []);
 
-  const handleLike = useCallback(() => {
-    token ? followMutate({ instagramId, token }) : setOpen(true);
-  }, [instagramId, followMutate, token]);
+  const handleFollow = useCallback(() => {
+    if (token) {
+      follow ? deleteFollowMutate({ instagramId, token }) : addFollowMutate({ instagramId, token });
+    } else {
+      setOpen(true);
+    }
+  }, [instagramId, token, follow, addFollowMutate, deleteFollowMutate]);
 
   return (
     <>
@@ -60,7 +73,7 @@ function AuthorsDetail({ data }: { data: AuthorDetailProps }) {
               <S.AuthorName>{name}</S.AuthorName>
               <S.AuthorIntro>{introduce}</S.AuthorIntro>
             </S.AuthorInfo>
-            <S.FollowButton onClick={handleLike} follow={follow}>
+            <S.FollowButton onClick={handleFollow} follow={follow}>
               {follow ? <S.CheckIcon /> : '팔로우'}
             </S.FollowButton>
           </S.AuthorInfoWrap>
@@ -76,7 +89,7 @@ function AuthorsDetail({ data }: { data: AuthorDetailProps }) {
                 <SwiperSlide key={index}>
                   <S.ImageWrap
                     onClick={() => {
-                      router.push(`/products/${item.productId}`);
+                      router.push(`/product/${item.productId}`);
                     }}
                   >
                     <Image
