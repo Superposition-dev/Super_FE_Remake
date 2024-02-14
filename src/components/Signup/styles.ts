@@ -34,5 +34,5 @@ export const SignupButton = styled.button`
     color: ${({ theme }) => theme.colors.gray};
     background-color: ${({ theme }) => theme.colors.dark_gray};
   }
-  cursor: pointer;  
+  cursor: pointer;
 `;

@@ -18,15 +18,22 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: any) {
   const data = await getExhibition(params.id as string);
-  return {
-    props: {
-      data,
-    },
-  };
+
+  if (data) {
+    return {
+      props: {
+        data,
+      },
+    };
+  } else {
+    return {
+      props: {},
+    };
+  }
 }
 
 function ExhibitionDetail({ data }: any) {
-  return <ExhibitionDetailPage data={data} />;
+  return data ? <ExhibitionDetailPage data={data} /> : <></>;
 }
 
 export default ExhibitionDetail;

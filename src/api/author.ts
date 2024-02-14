@@ -35,12 +35,3 @@ export const getSearchAuthors = async (name: string) => {
     console.log(e);
   }
 };
-
-export const postFollow = async ({ instagramId, token }: { instagramId: string; token: string }) => {
-  try {
-    const res = await instance.post(`/artist/${instagramId}/follow`);
-    return res.data;
-  } catch (e) {
-    console.log(e);
-  }
-};
