@@ -10,13 +10,15 @@ const KakaoMiddleware = () => {
     async (code: string | string[]) => {
       try{
         const res = await instance.get(`/users/login/kakao?code=${code}`)
+        console.log(res.data.token)
         if(res.data?.statusCodeValue
           === 303){
           sessionStorage.setItem('userInfo', JSON.stringify(res.data.body))
           router.push('/signup')
           return
         }
-        setCookie('token', res.data.accessToken,{path: '/'})
+        setCookie('token', res.data.token.accessToken,{path: '/'})
+        setCookie('token', res.data.token.accessToken,{path: '/'})
         console.log(res.data.accessToken)
         router.push('/')
         

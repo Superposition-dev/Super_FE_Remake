@@ -19,7 +19,6 @@ function SignupPage() {
       sessionStorage.removeItem('userInfo')
       setCookie('token', data.accessToken, {path: '/'})
       router.push('/')
-      console.log(data)
     }
   })
 
@@ -32,12 +31,9 @@ function SignupPage() {
   useEffect(() => {
     if (kakaoData) {
       setUserInfo(JSON.parse(kakaoData));
-    }else{
-      router.push('/login')
     }
-  },[kakaoData])
+  },[])
   
-
   return (
     <CommonWrapper>
       <S.SignupWrap>
