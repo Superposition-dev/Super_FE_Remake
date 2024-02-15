@@ -1,6 +1,6 @@
 import * as S from './styles';
 import { useEffect, useState } from 'react';
-import { getUserInfo } from '@/api/user';
+import { getUserLike } from '@/api/user';
 import { useIsMobile } from '@/hook/useView';
 import { QueryClient, dehydrate, useQuery } from 'react-query';
 import { getCookie } from '@/util/cookie';
@@ -9,7 +9,7 @@ import Product from '../../ExhibitionDetail/Product';
 export async function getStaticProps() {
   const queryClient = new QueryClient();
   const token = getCookie('accessToken');
-  await queryClient.prefetchQuery('userLike', () => getUserInfo(token));
+  await queryClient.prefetchQuery('userLike', () => getUserLike(token));
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
@@ -22,9 +22,10 @@ function MyLikePage() {
   const mobile = useIsMobile();
   const token = getCookie('accessToken');
 
-  const { data: products } = useQuery(['userLike'], () => getUserInfo(token), {
+  const { data: products } = useQuery(['userLike'], () => getUserLike(token), {
     initialData: () => {
       const queryClient = new QueryClient();
+      console.log('dd');
       return queryClient.getQueryData('userLike');
     },
     refetchOnWindowFocus: false,
