@@ -1,11 +1,15 @@
 import { customNullImg } from '@/util/utils';
 import * as S from './styles';
-import { useRecoilValue } from 'recoil';
-import { userInfoAtom } from '@/atoms/user';
 import { ProfileProps } from '@/interface/user';
+import { useRouter } from 'next/router';
 
 function Profile(props: ProfileProps) {
   const { userInfo } = props;
+  const router = useRouter();
+
+  const onLink = () => {
+    router.push('/mypage/edit');
+  };
 
   return (
     userInfo && (
@@ -24,7 +28,7 @@ function Profile(props: ProfileProps) {
             </S.EmailWrap>
           </S.DescWrap>
         </S.Profile>
-        <S.EditButton>수정</S.EditButton>
+        <S.EditButton onClick={onLink}>수정</S.EditButton>
       </S.ProfileWrap>
     )
   );

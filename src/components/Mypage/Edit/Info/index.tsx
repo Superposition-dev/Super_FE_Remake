@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import * as S from './styles';
-import { ValidateNickNameType } from '@/interface/signup';
+import { ValidateNickNameType } from '@/interface/common';
 import { validateNickName } from '@/util/utils';
 import { UserInfoProps } from '@/interface/user';
 import { getIsChange } from '@/api/user';
@@ -17,7 +17,7 @@ function UserInfo(props: UserInfoProps) {
   const { data: isChange } = useQuery('user', () => getIsChange(token), {
     enabled: !!token,
     onSuccess: (isChange) => {
-      setChange(isChange);
+      setChange(false);
     },
   });
 
@@ -44,7 +44,7 @@ function UserInfo(props: UserInfoProps) {
     }));
   };
 
-  console.log(change);
+  console.log(data);
 
   return (
     <>

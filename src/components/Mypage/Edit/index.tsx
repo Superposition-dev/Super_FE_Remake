@@ -3,17 +3,20 @@ import * as S from './styles';
 import CommonWrapper from '@/components/@Common/Wrap';
 import CommonUserImage from '@/components/@Common/Image';
 import UserInfo from './Info';
-import { UserInfoType } from '@/interface/user';
+import Portal from '@/components/@Common/Modal';
+import ResignModal from '@/components/@Common/Modal/Resign';
+import { UserInfoType, UserType } from '@/interface/user';
 import { validateNickName } from '@/util/utils';
-import { ValidateNickNameType } from '@/interface/signup';
-import { QueryClient, dehydrate, useQuery } from 'react-query';
-import { getMe } from '@/api/auth';
-import { getCookie } from '@/util/cookie';
+import { ValidateNickNameType } from '@/interface/common';
+import { QueryClient, dehydrate, useMutation, useQuery } from 'react-query';
+import { getCookie, removeCookie } from '@/util/cookie';
+import { deleteUser, getUserInfo } from '@/api/user';
+import { useRouter } from 'next/router';
 
 export async function getStaticProps() {
   const queryClient = new QueryClient();
   const token = getCookie('accessToken');
-  await queryClient.prefetchQuery('userInfo', () => getMe(token));
+  await queryClient.prefetchQuery('userInfo', () => getUserInfo(token));
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
@@ -23,31 +26,35 @@ export async function getStaticProps() {
 
 function MyEditPage() {
   const [userInfo, setUserInfo] = useState<UserInfoType>();
+  const [open, setOpen] = useState<boolean>(false);
   const token = getCookie('accessToken');
+  const router = useRouter();
 
-  const { data } = useQuery(['userInfo'], () => getMe(token), {
+  const { data } = useQuery<UserType>(['userInfo'], () => getUserInfo(token), {
     initialData: () => {
       const queryClient = new QueryClient();
-      return queryClient.getQueryData('exhibitions');
+      return queryClient.getQueryData('userInfo');
     },
     refetchOnWindowFocus: false,
     staleTime: 1000 * 60 * 60 * 24,
   });
 
+  const { mutate: deleteUserMutate } = useMutation(deleteUser, {
+    onSuccess: () => {
+      onLink('/');
+      removeCookie('accessToken', { path: '/' });
+    },
+  });
+
   const onEditUserInfo = () => {};
 
+  const onLink = (url: string) => {
+    router.push(url);
+  };
+
   useEffect(() => {
-    // setUserInfo(data);
-    setUserInfo({
-      userId: 1,
-      name: '김규리',
-      nickname: '규리4418',
-      email: 'aliyah521@naver.com',
-      birthYear: '2000',
-      gender: undefined,
-      profile: 'http://k.kakaocdn.net/dn/OwFk5/btsDjWT7KPk/AsNXO08jJ6Zr1KaMY20NJk/img_640x640.jpg',
-    });
-  }, []);
+    setUserInfo(data);
+  }, [data]);
 
   return (
     <CommonWrapper>
@@ -67,9 +74,16 @@ function MyEditPage() {
           >
             수정하기
           </S.EditButton>
-          <S.CancelButton>회원 탈퇴</S.CancelButton>
+          <S.ResignButton onClick={() => setOpen(true)}>회원 탈퇴</S.ResignButton>
         </S.ButtonWrap>
       </S.MyEditWrap>
+      <Portal>
+        {open ? (
+          <ResignModal state={open} setState={setOpen} data={data} handler={deleteUserMutate}></ResignModal>
+        ) : (
+          <></>
+        )}
+      </Portal>
     </CommonWrapper>
   );
 }

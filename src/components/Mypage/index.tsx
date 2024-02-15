@@ -6,13 +6,13 @@ import Taste from './User/Taste';
 import List from './User/List';
 import { getCookie } from '@/util/cookie';
 import { QueryClient, dehydrate, useQuery } from 'react-query';
-import { getMe } from '@/api/auth';
 import { UserType } from '@/interface/user';
+import { getUserInfo } from '@/api/user';
 
 export async function getStaticProps() {
   const queryClient = new QueryClient();
   const token = getCookie('accessToken');
-  await queryClient.prefetchQuery('userInfo', () => getMe(token));
+  await queryClient.prefetchQuery('userInfo', () => getUserInfo(token));
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
@@ -25,7 +25,7 @@ function Mypage() {
   const [author, setAuthor] = useState<boolean>(false);
   const token = getCookie('accessToken');
 
-  const { data: userInfo } = useQuery<UserType>(['userInfo'], () => getMe(token), {
+  const { data: userInfo } = useQuery<UserType>(['userInfo'], () => getUserInfo(token), {
     initialData: () => {
       const queryClient = new QueryClient();
       return queryClient.getQueryData('userInfo');

@@ -8,7 +8,7 @@ import { ValidateNickNameType } from '@/interface/signup';
 import { validateNickName } from '@/util/utils';
 import { useRouter } from 'next/router';
 import { useMutation } from 'react-query';
-import { postSignup } from '@/api/auth';
+import { postSignup } from '@/api/user';
 import { setCookie } from '@/util/cookie';
 
 function SignupPage() {
@@ -17,12 +17,12 @@ function SignupPage() {
   const kakaoData = typeof window !== 'undefined' ? sessionStorage.getItem('userInfo') : null;
   const { mutate, isLoading } = useMutation('userInfo', () => postSignup(userInfo as UserInfoType), {
     onSuccess: (data) => {
-      sessionStorage.removeItem('userInfo')
-      setCookie('accessToken', data.token.accessToken, {path: '/'})
-      setCookie('refreshToken', data.token.refreshToken, {path: '/'})
-      router.push('/')
-    }
-  })
+      sessionStorage.removeItem('userInfo');
+      setCookie('accessToken', data.token.accessToken, { path: '/' });
+      setCookie('refreshToken', data.token.refreshToken, { path: '/' });
+      router.push('/');
+    },
+  });
 
   const onSignup = () => {
     mutate();
@@ -34,8 +34,8 @@ function SignupPage() {
     if (kakaoData) {
       setUserInfo(JSON.parse(kakaoData));
     }
-  },[])
-  
+  }, []);
+
   return (
     <CommonWrapper>
       <S.SignupWrap>

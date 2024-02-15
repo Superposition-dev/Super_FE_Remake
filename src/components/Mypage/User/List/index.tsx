@@ -4,10 +4,23 @@ import { useRouter } from 'next/router';
 import RequestModal from '@/components/@Common/Modal/Request';
 import { removeCookie } from '@/util/cookie';
 import { useState } from 'react';
+import { useQuery } from 'react-query';
+import { getLogout } from '@/api/user';
 
 function List() {
   const [open, setOpen] = useState<boolean>(false);
   const router = useRouter();
+
+  const { refetch } = useQuery('getLogout', () => getLogout(), {
+    enabled: false,
+    onSuccess: () => {
+      onLink('/');
+      removeCookie('accessToken', { path: '/' });
+    },
+    onError: () => {
+      console.log('error');
+    },
+  });
 
   const ACTIVITY = [
     { title: '내가 쓴 글', icon: <S.Writing />, url: '/mypage/post' },
@@ -67,8 +80,7 @@ function List() {
             cancel="취소"
             accept="로그아웃"
             handler={() => {
-              onLink('/');
-              removeCookie('accessToken', { path: '/' });
+              refetch();
             }}
           />
         ) : (

@@ -1,24 +1,11 @@
+import { UserInfoType } from '@/interface/user';
 import { instance } from './instance';
 
-export const getIsChange = async ({ token }: { token: string }) => {
+export const getUserInfo = async (cookie: string) => {
   try {
-    const res = await instance.post(`/users/isAvaliable`, {
+    const res = await instance.get('/users/me', {
       headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    return res.data;
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-export const addLike = async ({ id, token }: { id: number; token: string }) => {
-  try {
-    const res = await instance.post(`/products/${id}/like`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${cookie}`,
       },
     });
     return res.data;
@@ -27,48 +14,9 @@ export const addLike = async ({ id, token }: { id: number; token: string }) => {
   }
 };
 
-export const deleteLike = async ({ id, token }: { id: number; token: string }) => {
+export const getUserLike = async (token: string) => {
   try {
-    const res = await instance.delete(`/products/${id}/dislike`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return res.data;
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-export const addFollow = async ({ instagramId, token }: { instagramId: string; token: string }) => {
-  try {
-    const res = await instance.post(`/artist/${instagramId}/follow`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return res.data;
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-export const deleteFollow = async ({ instagramId, token }: { instagramId: string; token: string }) => {
-  try {
-    const res = await instance.post(`/artist/${instagramId}/follow`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return res.data;
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-export const getMyLike = async (token: string) => {
-  try {
-    // const res = await instance.get('/mylike', {
+    // const res = await instance.get('/users/me/like', {
     //   headers: {
     //     Authorization: `Bearer ${token}`,
     //   },
@@ -114,9 +62,9 @@ export const getMyLike = async (token: string) => {
   }
 };
 
-export const getMyFollow = async (token: string) => {
+export const getUserFollow = async (token: string) => {
   try {
-    // const res = await instance.get('/users/artist/follow', {
+    // const res = await instance.get('/users/me/follow', {
     //   headers: {
     //     Authorization: `Bearer ${token}`,
     //   },
@@ -162,6 +110,99 @@ export const getMyFollow = async (token: string) => {
     //   },
     // };
 
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getIsChange = async ({ token }: { token: string }) => {
+  try {
+    const res = await instance.post(`/users/isAvaliable`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getLogout = async () => {
+  try {
+    const res = await instance.get('/users/logout');
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const postSignup = async (data: UserInfoType) => {
+  try {
+    const res = await instance.post('/users/signup', data);
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const addLike = async ({ id, token }: { id: number; token: string }) => {
+  try {
+    const res = await instance.post(`/products/${id}/like`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const addFollow = async ({ instagramId, token }: { instagramId: string; token: string }) => {
+  try {
+    const res = await instance.post(`/artist/${instagramId}/follow`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const deleteLike = async ({ id, token }: { id: number; token: string }) => {
+  try {
+    const res = await instance.delete(`/products/${id}/dislike`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const deleteFollow = async ({ instagramId, token }: { instagramId: string; token: string }) => {
+  try {
+    const res = await instance.delete(`/products/${instagramId}/dislike`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const deleteUser = async () => {
+  try {
+    const res = await instance.delete(`/users`);
     return res.data;
   } catch (e) {
     console.log(e);
