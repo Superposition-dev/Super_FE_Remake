@@ -43,9 +43,8 @@ const getAxiosInstans = (type: string) => {
               }
             }
           );
-          const { accessToken, refreshToken } = res.data;
+          const { accessToken } = res.data;
           setCookie('accessToken', accessToken, { path: '/' });
-          setCookie('refreshToken',refreshToken, { path: '/' });
           originalRequest.headers['Authorization'] = 'Bearer ' + accessToken;
           failedQueue.forEach((request: any) => request.resolve(accessToken));
           return instance(originalRequest);
