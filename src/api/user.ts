@@ -83,10 +83,10 @@ export const getUserFollow = async (token: string) => {
 
 export const getIsChange = async ({ token }: { token: string }) => {
   try {
-    const res = await instance.get(`/users/isAvaliable`, {
-      // headers: {
-      //   Authorization: `Bearer ${token}`,
-      // },
+    const res = await instance.get(`/users/isAvailable`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
 
     return res.data;

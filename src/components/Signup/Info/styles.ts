@@ -1,4 +1,4 @@
-import { ValidateNickNameType } from '@/interface/signup';
+import { ValidateNickNameType } from '@/interface/common';
 import styled from '@emotion/styled';
 
 export const UserInfoTopWrap = styled.div`

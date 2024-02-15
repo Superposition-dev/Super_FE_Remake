@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './styles';
 import { ValidateNickNameType } from '@/interface/common';
 import { validateNickName } from '@/util/utils';
@@ -14,10 +14,10 @@ function UserInfo(props: UserInfoProps) {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [validate, setValidate] = useState<ValidateNickNameType>(ValidateNickNameType.default);
 
-  const { data: isChange } = useQuery('user', () => getIsChange(token), {
-    enabled: !!token,
+  const { data: isChange, refetch } = useQuery('user', () => getIsChange(token), {
+    enabled: false,
     onSuccess: (isChange) => {
-      setChange(false);
+      setChange(isChange);
     },
   });
 
@@ -43,6 +43,10 @@ function UserInfo(props: UserInfoProps) {
       gender: e.target.value as 'M' | 'F',
     }));
   };
+
+  useEffect(() => {
+    token && refetch;
+  }, [token, refetch]);
 
   return (
     <>
