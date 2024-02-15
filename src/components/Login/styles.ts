@@ -1,4 +1,5 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
+import Link from 'next/link';
 
 export const LoginContainer = styled.div`
   ${({ theme }) => theme.layout.flexColumn};
@@ -10,7 +11,7 @@ export const LoginContainer = styled.div`
   @media (max-width: 768px) {
     padding: 0;
   }
-`
+`;
 
 export const LoginWrap = styled.div`
   max-width: 580px;
@@ -29,12 +30,12 @@ export const LoginWrap = styled.div`
     justify-content: center;
     gap: 8rem;
   }
-`
+`;
 export const LogoImage = styled.div`
   width: calc(37.5rem * 1.1);
   height: calc(33.4rem * 1.1);
   position: relative;
-  img{
+  img {
     object-fit: cover;
     object-position: center;
   }
@@ -42,7 +43,7 @@ export const LogoImage = styled.div`
     width: 37.5rem;
     height: 33.4rem;
   }
-`
+`;
 
 export const TextWrap = styled.div`
   margin-bottom: 1rem;
@@ -50,22 +51,29 @@ export const TextWrap = styled.div`
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-`
+`;
 
-export const Text = styled.span`
-  font-size: 1.2rem;
+export const Text = styled.p`
+  color: ${({ theme }) => theme.font.bold_10};
   color: ${({ theme }) => theme.colors.gray};
-`
+  text-align: center;
+  white-space: pre-wrap;
+`;
+
+export const Span = styled(Link)`
+  /* text-decoration: none; */
+  color: ${({ theme }) => theme.colors.gray};
+`;
 
 export const SmallPlanetImage = styled.div`
   position: relative;
   width: 1.5rem;
   height: 1.5rem;
-  img{
+  img {
     object-fit: cover;
     object-position: center;
   }
-`
+`;
 
 export const LoginButtonWrap = styled.div`
   width: 100%;
@@ -75,4 +83,4 @@ export const LoginButtonWrap = styled.div`
   align-items: center;
   justify-content: center;
   gap: 1rem;
-`
+`;
