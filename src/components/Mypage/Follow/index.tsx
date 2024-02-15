@@ -1,5 +1,5 @@
 import * as S from './styles';
-import { getMyFollow } from '@/api/user';
+import { getUserFollow } from '@/api/user';
 import { QueryClient, dehydrate, useQuery } from 'react-query';
 import { getCookie } from '@/util/cookie';
 import { AuthorsProps } from '@/interface/authors';
@@ -9,7 +9,7 @@ export async function getStaticProps() {
   const queryClient = new QueryClient();
   const token = getCookie('accessToken');
 
-  await queryClient.prefetchQuery('myFollow', () => getMyFollow(token));
+  await queryClient.prefetchQuery('userFollow', () => getUserFollow(token));
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
@@ -20,10 +20,10 @@ export async function getStaticProps() {
 function MyFollowPage() {
   const token = getCookie('accessToken');
 
-  const { data: authors } = useQuery(['myFollow'], () => getMyFollow(token), {
+  const { data: authors } = useQuery(['userFollow'], () => getUserFollow(token), {
     initialData: () => {
       const queryClient = new QueryClient();
-      return queryClient.getQueryData('myFollow');
+      return queryClient.getQueryData('userFollow');
     },
     refetchOnWindowFocus: false,
     staleTime: 1000 * 60 * 60 * 24,

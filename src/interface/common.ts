@@ -19,3 +19,16 @@ export interface CommonUserImageProps {
   userInfo: UserInfoType | undefined;
   setUserInfo: React.Dispatch<React.SetStateAction<UserInfoType | undefined>>;
 }
+
+export enum ValidateNickNameType {
+  default = 'default',
+  error = 'error',
+  success = 'success',
+  duplicate = 'duplicate',
+}
+
+export enum ValidateEmailType {
+  default = 'default',
+  error = 'error',
+  success = 'success',
+}

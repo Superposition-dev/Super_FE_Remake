@@ -4,11 +4,11 @@ import CommonWrapper from '../@Common/Wrap';
 import CommonUserImage from '../@Common/Image';
 import UserInfo from './Info';
 import { UserInfoType } from '@/interface/user';
-import { ValidateNickNameType } from '@/interface/signup';
+import { ValidateNickNameType } from '@/interface/common';
 import { validateNickName } from '@/util/utils';
 import { useRouter } from 'next/router';
 import { useMutation } from 'react-query';
-import { postSignup } from '@/api/auth';
+import { postSignup } from '@/api/user';
 import { setCookie } from '@/util/cookie';
 
 function SignupPage() {
@@ -17,11 +17,11 @@ function SignupPage() {
   const kakaoData = typeof window !== 'undefined' ? sessionStorage.getItem('userInfo') : null;
   const { mutate, isLoading } = useMutation('userInfo', () => postSignup(userInfo as UserInfoType), {
     onSuccess: (data) => {
-      sessionStorage.removeItem('userInfo')
-      setCookie('accessToken', data.accessToken, {path: '/'})
-      router.push('/')
-    }
-  })
+      sessionStorage.removeItem('userInfo');
+      setCookie('accessToken', data.accessToken, { path: '/' });
+      router.push('/');
+    },
+  });
 
   const onSignup = () => {
     mutate();
@@ -33,8 +33,8 @@ function SignupPage() {
     if (kakaoData) {
       setUserInfo(JSON.parse(kakaoData));
     }
-  },[])
-  
+  }, []);
+
   return (
     <CommonWrapper>
       <S.SignupWrap>

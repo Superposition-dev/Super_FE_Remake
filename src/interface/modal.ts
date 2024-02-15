@@ -1,3 +1,5 @@
+import { UserType } from './user';
+
 export interface InduceLoginModalProps {
   desc: string;
   state: boolean;
@@ -10,5 +12,12 @@ export interface RequestModalProps {
   message: string;
   cancel: string;
   accept: string;
+  handler: (() => void) | void;
+}
+
+export interface ResignModalProps {
+  state: boolean;
+  setState: React.Dispatch<React.SetStateAction<boolean>>;
+  data: UserType | undefined;
   handler: (() => void) | void;
 }
