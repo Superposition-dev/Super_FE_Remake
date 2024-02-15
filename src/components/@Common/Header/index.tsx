@@ -3,11 +3,7 @@ import * as S from './styles';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import SideBar from './SideBar';
-import { useQuery } from 'react-query';
-import { getMe } from '@/api/auth';
 import { getCookie } from '@/util/cookie';
-import { useRecoilState } from 'recoil';
-import { userInfoAtom } from '@/atoms/user';
 
 function Header() {
   const [open, setOpen] = useState<boolean>(false);
