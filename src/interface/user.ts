@@ -20,3 +20,7 @@ export interface UserInfoProps {
   setUserInfo: React.Dispatch<React.SetStateAction<UserInfoType | undefined>>;
   data: UserInfoType | undefined;
 }
+
+export interface ProfileProps {
+  userInfo: UserType | undefined;
+}
