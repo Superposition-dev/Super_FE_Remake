@@ -44,8 +44,6 @@ function UserInfo(props: UserInfoProps) {
     }));
   };
 
-  console.log(data);
-
   return (
     <>
       <S.UserInfoCommonWrap>

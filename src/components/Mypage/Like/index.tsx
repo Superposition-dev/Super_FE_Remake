@@ -25,7 +25,6 @@ function MyLikePage() {
   const { data: products } = useQuery(['userLike'], () => getUserLike(token), {
     initialData: () => {
       const queryClient = new QueryClient();
-      console.log('dd');
       return queryClient.getQueryData('userLike');
     },
     refetchOnWindowFocus: false,
@@ -42,7 +41,7 @@ function MyLikePage() {
       <S.TitleWrap>
         <S.Title>좋아요 작품</S.Title>
       </S.TitleWrap>
-      {products?.products.length !== 0 && products?.products !== undefined ? (
+      {products !== '' && products?.products.length !== 0 && products?.products !== undefined ? (
         <S.ProductsWrap>
           <S.Products
             column={mobile ? 2 : 4}
