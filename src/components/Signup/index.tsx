@@ -13,8 +13,10 @@ import { setCookie } from '@/util/cookie';
 
 function SignupPage() {
   const [userInfo, setUserInfo] = useState<UserInfoType>();
-  const router = useRouter();
+  const [originInfo, setOriginInfo] = useState<UserInfoType>();
   const kakaoData = typeof window !== 'undefined' ? sessionStorage.getItem('userInfo') : null;
+  const router = useRouter();
+
   const { mutate, isLoading } = useMutation('userInfo', () => postSignup(userInfo as UserInfoType), {
     onSuccess: (data) => {
       sessionStorage.removeItem('userInfo');
@@ -27,10 +29,9 @@ function SignupPage() {
     mutate();
   };
 
-  // 세션 스토리지에 저장된 카카오에서 받아온 데이터를 userInfo에 넣어주시면 됩니다.
-  // 가입하기 클릭 시, 해당 데이터를 서버에 post 요청
   useEffect(() => {
     if (kakaoData) {
+      setOriginInfo(JSON.parse(kakaoData));
       setUserInfo(JSON.parse(kakaoData));
     }
   }, []);
@@ -39,7 +40,7 @@ function SignupPage() {
     <CommonWrapper>
       <S.SignupWrap>
         <S.SignupTopWrap>
-          <CommonUserImage userInfo={userInfo} setUserInfo={setUserInfo} />
+          <CommonUserImage userInfo={userInfo} setUserInfo={setUserInfo} data={originInfo} />
         </S.SignupTopWrap>
         <S.SignupBottomWrap>
           <UserInfo userInfo={userInfo} setUserInfo={setUserInfo} />

@@ -129,9 +129,13 @@ export const deleteFollow = async ({ instagramId, token }: { instagramId: string
   }
 };
 
-export const deleteUser = async () => {
+export const deleteUser = async (token: string) => {
   try {
-    const res = await instance.delete(`/users`);
+    const res = await instance.delete(`/users`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return res.data;
   } catch (e) {
     console.log(e);

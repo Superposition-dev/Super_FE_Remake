@@ -1,4 +1,4 @@
-import { UserInfoType, UserType } from './user';
+import { UserInfoType } from './user';
 
 export interface CommonTitleProps {
   TITLE: string;
@@ -18,7 +18,7 @@ export interface CommonFloatingProps {
 export interface CommonUserImageProps {
   userInfo: UserInfoType | undefined;
   setUserInfo: React.Dispatch<React.SetStateAction<UserInfoType | undefined>>;
-  data: UserType | undefined;
+  data: UserInfoType | undefined;
 }
 
 export enum ValidateNickNameType {

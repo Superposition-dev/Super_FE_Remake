@@ -79,7 +79,12 @@ function MyEditPage() {
       </S.MyEditWrap>
       <Portal>
         {open ? (
-          <ResignModal state={open} setState={setOpen} data={data} handler={deleteUserMutate}></ResignModal>
+          <ResignModal
+            state={open}
+            setState={setOpen}
+            data={data}
+            handler={() => deleteUserMutate(token)}
+          ></ResignModal>
         ) : (
           <></>
         )}
