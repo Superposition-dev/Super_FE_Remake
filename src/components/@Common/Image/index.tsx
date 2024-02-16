@@ -48,11 +48,11 @@ function CommonUserImage(props: CommonUserImageProps) {
         <S.UserImage>
           <S.Img
             src={
-              data?.profile === userInfo?.profile
+              data?.profile === userInfo?.profile && data?.profile !== undefined
                 ? customNullImg(`https://kr.object.ncloudstorage.com/superposition-bucket/${userInfo?.profile}`)
                 : userInfo?.profile !== undefined
                 ? customNullImg(userInfo.profile)
-                : ''
+                : customNullImg('')
             }
             alt="회원 이미지"
             fill

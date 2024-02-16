@@ -10,18 +10,23 @@ import { useRouter } from 'next/router';
 import { useMutation } from 'react-query';
 import { postSignup } from '@/api/user';
 import { setCookie } from '@/util/cookie';
+import Portal from '../@Common/Modal';
+import ResponseModal from '../@Common/Modal/Response';
 
 function SignupPage() {
   const [userInfo, setUserInfo] = useState<UserInfoType>();
   const [originInfo, setOriginInfo] = useState<UserInfoType>();
+  const [signupState, setSignupState] = useState<string>('가입하기');
+  const [open, setOpen] = useState<boolean>(false);
   const kakaoData = typeof window !== 'undefined' ? sessionStorage.getItem('userInfo') : null;
   const router = useRouter();
 
   const { mutate, isLoading } = useMutation('userInfo', () => postSignup(userInfo as UserInfoType), {
     onSuccess: (data) => {
       sessionStorage.removeItem('userInfo');
-      setCookie('accessToken', data.accessToken, { path: '/' });
-      router.push('/');
+      setCookie('accessToken', data.accessToken);
+      setSignupState('가입 완료');
+      setOpen(true);
     },
   });
 
@@ -53,9 +58,24 @@ function SignupPage() {
           }
           onClick={onSignup}
         >
-          {isLoading ? '가입중...' : '가입하기'}
+          {isLoading ? '가입 중...' : signupState}
         </S.SignupButton>
       </S.SignupWrap>
+      {
+        <Portal>
+          {open ? (
+            <ResponseModal
+              state={open}
+              setState={setOpen}
+              message="회원가입이 완료 되었습니다!"
+              cancel="이용하러 가기"
+              handler={() => router.push('/')}
+            />
+          ) : (
+            <></>
+          )}
+        </Portal>
+      }
     </CommonWrapper>
   );
 }
