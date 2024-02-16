@@ -33,7 +33,13 @@ function CommonUserImage(props: CommonUserImageProps) {
     <>
       <S.UserImageWrap onClick={onUploadImage}>
         <S.UserImage>
-          <S.Image src={customNullImg(userInfo?.profile ? userInfo.profile : '')} />
+          <S.Img
+            src={customNullImg(
+              userInfo ? `https://kr.object.ncloudstorage.com/superposition-bucket/${userInfo.profile}` : '',
+            )}
+            alt="회원 이미지"
+            fill
+          />
         </S.UserImage>
         <S.IconWrap>
           <S.Icon />

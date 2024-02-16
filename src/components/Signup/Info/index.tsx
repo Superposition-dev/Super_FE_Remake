@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import * as S from './styles';
-import { UserInfoProps, ValidateNickNameType } from '@/interface/signup';
+import { UserInfoProps } from '@/interface/signup';
+import { ValidateNickNameType } from '@/interface/common';
 import { validateNickName } from '@/util/utils';
 
 function UserInfo(props: UserInfoProps) {

@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import Image from 'next/image';
 import { MdCameraAlt } from 'react-icons/md';
 
 export const UserImageWrap = styled.div`
@@ -7,6 +8,7 @@ export const UserImageWrap = styled.div`
 `;
 
 export const UserImage = styled.div`
+  position: relative;
   ${({ theme }) => theme.flex.flexCenter};
   width: 11rem;
   height: 11rem;
@@ -16,12 +18,13 @@ export const UserImage = styled.div`
   overflow: hidden;
 `;
 
-export const Image = styled.img`
+export const Img = styled(Image)`
   width: 100%;
   height: 100%;
   border: 0;
   background-color: ${({ theme }) => theme.colors.dark_navy};
   object-fit: cover;
+  object-position: center;
 `;
 
 export const IconWrap = styled.div`
