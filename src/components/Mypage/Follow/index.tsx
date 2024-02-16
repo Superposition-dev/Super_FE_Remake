@@ -34,7 +34,7 @@ function MyFollowPage() {
       <S.TitleWrap>
         <S.Title>팔로우 작가</S.Title>
       </S.TitleWrap>
-      {authors?.authors.length !== 0 && authors?.authors !== undefined ? (
+      {authors !== '' && authors !== undefined && authors.length !== 0 ? (
         <S.AuthorsWrap>
           {authors.authors?.map((author: AuthorsProps, index: number) => (
             <Author key={index} data={author} />

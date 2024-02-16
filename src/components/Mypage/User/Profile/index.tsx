@@ -16,7 +16,11 @@ function Profile(props: ProfileProps) {
       <S.ProfileWrap>
         <S.Profile>
           <S.ImageWrap>
-            <S.Image src={customNullImg(userInfo.profile)} />
+            <S.Image
+              src={customNullImg(
+                userInfo ? `https://kr.object.ncloudstorage.com/superposition-bucket/${userInfo.profile}` : '',
+              )}
+            />
           </S.ImageWrap>
           <S.DescWrap>
             <S.NickName>{userInfo.nickname}</S.NickName>

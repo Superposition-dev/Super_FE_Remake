@@ -41,7 +41,7 @@ function MyLikePage() {
       <S.TitleWrap>
         <S.Title>좋아요 작품</S.Title>
       </S.TitleWrap>
-      {products !== '' && products?.products.length !== 0 && products?.products !== undefined ? (
+      {products !== '' && products !== undefined && products.length !== 0 ? (
         <S.ProductsWrap>
           <S.Products
             column={mobile ? 2 : 4}
