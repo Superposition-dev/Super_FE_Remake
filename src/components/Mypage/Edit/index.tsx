@@ -60,7 +60,7 @@ function MyEditPage() {
     <CommonWrapper>
       <S.MyEditWrap>
         <S.MyEditTopWrap>
-          <CommonUserImage userInfo={userInfo} setUserInfo={setUserInfo} />
+          <CommonUserImage userInfo={userInfo} setUserInfo={setUserInfo} data={data} />
         </S.MyEditTopWrap>
         <S.MyEditBottomWrap>
           <UserInfo userInfo={userInfo} setUserInfo={setUserInfo} data={data} />

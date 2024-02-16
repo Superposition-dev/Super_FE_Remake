@@ -21,3 +21,10 @@ export interface ResignModalProps {
   data: UserType | undefined;
   handler: (() => void) | void;
 }
+
+export interface ImageModalProps {
+  state: boolean;
+  setState: React.Dispatch<React.SetStateAction<boolean>>;
+  onChanger: () => void;
+  onOriginChanger: () => void;
+}
