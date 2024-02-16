@@ -1,6 +1,6 @@
 import React from 'react';
 import * as S from './styles';
-import { CommonTitleProps } from '@/interface/commonTitle';
+import { CommonTitleProps } from '@/interface/common';
 
 function CommonTitle({ data }: { data: CommonTitleProps }) {
   const { TITLE, SUBTITLE } = data;
