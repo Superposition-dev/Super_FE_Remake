@@ -17,9 +17,11 @@ function SignupPage() {
   const [userInfo, setUserInfo] = useState<UserInfoType>();
   const [originInfo, setOriginInfo] = useState<UserInfoType>();
   const [signupState, setSignupState] = useState<string>('가입하기');
+  const [message, setMessage] = useState<string>('');
   const [open, setOpen] = useState<boolean>(false);
-  const kakaoData = typeof window !== 'undefined' ? sessionStorage.getItem('userInfo') : null;
   const router = useRouter();
+
+  const kakaoData = typeof window !== 'undefined' ? sessionStorage.getItem('userInfo') : null;
 
   const { mutate, isLoading } = useMutation('userInfo', () => postSignup(userInfo as UserInfoType), {
     onSuccess: (data) => {
@@ -27,6 +29,7 @@ function SignupPage() {
       setCookie('accessToken', data.accessToken);
       setSignupState('가입 완료');
       setOpen(true);
+      setMessage('회원가입이 완료 되었습니다!');
     },
   });
 
@@ -67,7 +70,7 @@ function SignupPage() {
             <ResponseModal
               state={open}
               setState={setOpen}
-              message="회원가입이 완료 되었습니다!"
+              message={message}
               cancel="이용하러 가기"
               handler={() => router.push('/')}
             />
