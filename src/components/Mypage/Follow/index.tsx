@@ -36,7 +36,7 @@ function MyFollowPage() {
       </S.TitleWrap>
       {authors !== '' && authors !== undefined && authors.length !== 0 ? (
         <S.AuthorsWrap>
-          {authors.authors?.map((author: AuthorsProps, index: number) => (
+          {authors?.map((author: AuthorsProps, index: number) => (
             <Author key={index} data={author} />
           ))}
         </S.AuthorsWrap>

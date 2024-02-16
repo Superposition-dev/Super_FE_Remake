@@ -60,7 +60,7 @@ function MyEditPage() {
     <CommonWrapper>
       <S.MyEditWrap>
         <S.MyEditTopWrap>
-          <CommonUserImage userInfo={userInfo} setUserInfo={setUserInfo} />
+          <CommonUserImage userInfo={userInfo} setUserInfo={setUserInfo} data={data} />
         </S.MyEditTopWrap>
         <S.MyEditBottomWrap>
           <UserInfo userInfo={userInfo} setUserInfo={setUserInfo} data={data} />
@@ -79,7 +79,12 @@ function MyEditPage() {
       </S.MyEditWrap>
       <Portal>
         {open ? (
-          <ResignModal state={open} setState={setOpen} data={data} handler={deleteUserMutate}></ResignModal>
+          <ResignModal
+            state={open}
+            setState={setOpen}
+            data={data}
+            handler={() => deleteUserMutate(token)}
+          ></ResignModal>
         ) : (
           <></>
         )}

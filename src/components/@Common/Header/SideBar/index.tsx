@@ -8,10 +8,10 @@ import Portal from '../../Modal';
 import InduceLoginModal from '../../Modal/InduceLogin';
 
 const menuData = [
-  {
-    title: 'About Us',
-    url: '/introduction',
-  },
+  // {
+  //   title: 'About Us',
+  //   url: '/introduction',
+  // },
   {
     title: '전시',
     url: '/exhibition',
@@ -20,10 +20,10 @@ const menuData = [
     title: '작가',
     url: '/authors',
   },
-  {
-    title: '커뮤니티',
-    url: '/community',
-  },
+  // {
+  //   title: '커뮤니티',
+  //   url: '/community',
+  // },
   {
     title: '마이페이지',
     url: '/mypage',

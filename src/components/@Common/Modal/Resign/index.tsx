@@ -11,7 +11,6 @@ function ResignModal(props: ResignModalProps) {
   const [email, setEmail] = useState<string>('');
   const [validate, setValidate] = useState<ValidateEmailType>(ValidateEmailType.default);
   const [isEdit, setIsEdit] = useState<boolean>(false);
-  const router = useRouter();
 
   const DESC = [
     '회원 탈퇴 시, 기존 정보의 복구가 불가능합니다.',

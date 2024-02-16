@@ -18,6 +18,7 @@ export interface CommonFloatingProps {
 export interface CommonUserImageProps {
   userInfo: UserInfoType | undefined;
   setUserInfo: React.Dispatch<React.SetStateAction<UserInfoType | undefined>>;
+  data: UserInfoType | undefined;
 }
 
 export enum ValidateNickNameType {

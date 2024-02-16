@@ -2,16 +2,17 @@ import Portal from '@/components/@Common/Modal';
 import * as S from './styles';
 import { useRouter } from 'next/router';
 import RequestModal from '@/components/@Common/Modal/Request';
-import { removeCookie } from '@/util/cookie';
+import { getCookie, removeCookie } from '@/util/cookie';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { getLogout } from '@/api/user';
 
 function List() {
   const [open, setOpen] = useState<boolean>(false);
+  const token = getCookie('accessToken');
   const router = useRouter();
 
-  const { refetch } = useQuery('getLogout', () => getLogout(), {
+  const { refetch } = useQuery('getLogout', () => getLogout(token), {
     enabled: false,
     onSuccess: () => {
       onLink('/');

@@ -52,7 +52,7 @@ function MyLikePage() {
             useResizeObserver={true}
             maxScroll={maxScroll}
           >
-            {products?.products?.map((product: any, index: number) => (
+            {products?.map((product: any, index: number) => (
               <Product key={index} data={product} />
             ))}
           </S.Products>
