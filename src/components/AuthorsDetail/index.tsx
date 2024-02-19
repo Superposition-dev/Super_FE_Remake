@@ -35,7 +35,7 @@ function AuthorsDetail({ data, id }: { data: AuthorDetailProps; id: string }) {
   const router = useRouter();
   const length = description.length;
 
-  const { data: authors } = useQuery<AuthorsProps[]>(['userFollow'], () => getUserFollow(token), {
+  const { data: authors, refetch } = useQuery<AuthorsProps[]>(['userFollow'], () => getUserFollow(token), {
     initialData: () => {
       const queryClient = new QueryClient();
       return queryClient.getQueryData('userFollow');
@@ -47,6 +47,7 @@ function AuthorsDetail({ data, id }: { data: AuthorDetailProps; id: string }) {
   const { mutate: addFollowMutate } = useMutation(addFollow, {
     onSuccess: () => {
       setFollow((prevFollow) => !prevFollow);
+      refetch;
     },
     onError: () => {
       setFollow(!follow);
@@ -56,6 +57,7 @@ function AuthorsDetail({ data, id }: { data: AuthorDetailProps; id: string }) {
   const { mutate: deleteFollowMutate } = useMutation(deleteFollow, {
     onSuccess: () => {
       setFollow((prevFollow) => !prevFollow);
+      refetch;
     },
     onError: () => {
       setFollow(!follow);
@@ -76,16 +78,15 @@ function AuthorsDetail({ data, id }: { data: AuthorDetailProps; id: string }) {
 
   useEffect(() => {
     if (authors === undefined) return;
-    console.log('dd');
 
     authors.map((item) => {
-      console.log(item.instagramId);
-      console.log(id);
       if (String(item.instagramId) === id) {
         setFollow(true);
-      } else setFollow(false);
+      }
     });
   }, [authors, id]);
+
+  console.log(follow);
 
   return (
     <>
