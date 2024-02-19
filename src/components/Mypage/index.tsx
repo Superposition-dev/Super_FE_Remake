@@ -31,7 +31,6 @@ function Mypage() {
       return queryClient.getQueryData('userInfo');
     },
     refetchOnWindowFocus: false,
-    staleTime: 1000 * 60 * 60 * 24,
   });
 
   const handleDivision = () => {
