@@ -10,9 +10,8 @@ import { validateNickName } from '@/util/utils';
 import { ValidateNickNameType } from '@/interface/common';
 import { QueryClient, dehydrate, useMutation, useQuery } from 'react-query';
 import { getCookie, removeCookie } from '@/util/cookie';
-import { deleteUser, getUserInfo, patchUserProfile, putEditUserInfo } from '@/api/user';
+import { deleteUser, getUserInfo, putEditUserInfo } from '@/api/user';
 import { useRouter } from 'next/router';
-import { NickName } from '../User/Profile/styles';
 
 export async function getStaticProps() {
   const queryClient = new QueryClient();
@@ -47,16 +46,9 @@ function MyEditPage() {
     },
   });
 
-  const { mutate: patchUserProfileMutate } = useMutation(patchUserProfile, {
+  const { mutate: putEditUserInfoMutate } = useMutation(putEditUserInfo, {
     onSuccess: () => {
       onLink('/mypage');
-    },
-  });
-  const { mutate: putEditUserInfoMutate } = useMutation(putEditUserInfo, {
-    onSettled: () => {
-      if (data?.profile !== userInfo?.profile) {
-        patchUserProfileMutate({ profile: JSON.stringify(userInfo?.file), token: token });
-      } else onLink('/mypage');
     },
   });
 
@@ -91,7 +83,6 @@ function MyEditPage() {
         <S.ButtonWrap>
           <S.EditButton
             disabled={
-              data?.profile !== userInfo?.profile ||
               data?.birthYear !== userInfo?.birthYear ||
               data?.gender !== userInfo?.gender ||
               (data?.nickname !== userInfo?.nickname &&

@@ -17,7 +17,6 @@ export interface UserInfoType {
   birthYear?: string | null;
   gender?: 'M' | 'F' | null;
   profile?: string;
-  file?: ImageFileType | null;
 }
 
 export interface UserInfoProps {

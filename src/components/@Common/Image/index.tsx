@@ -4,27 +4,29 @@ import { CommonUserImageProps } from '@/interface/common';
 import { customNullImg } from '@/util/utils';
 import Portal from '../Modal';
 import ImageModal from '../Modal/Image';
+import { useMutation } from 'react-query';
+import { patchUserProfile } from '@/api/user';
+import { getCookie } from '@/util/cookie';
+import ResponseModal from '../Modal/Response';
 
 function CommonUserImage(props: CommonUserImageProps) {
   const { userInfo, setUserInfo, data } = props;
-  const [imageFile, setImageFile] = useState<File>();
   const [open, setOpen] = useState<boolean>(false);
+  const [complete, setComplete] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const token = getCookie('accessToken');
+
+  const { mutate: patchUserProfileMutate } = useMutation(patchUserProfile, {
+    onSuccess: () => {
+      setComplete(true);
+    },
+  });
 
   const onUpload = () => {
     if (!inputRef.current) return;
 
     inputRef.current.click();
     setOpen(false);
-  };
-
-  const onPreviewOrigin = () => {
-    setOpen(false);
-    setUserInfo((userInfo) => ({
-      ...userInfo,
-      profile: '',
-      file: null,
-    }));
   };
 
   const onPreview = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,11 +46,21 @@ function CommonUserImage(props: CommonUserImageProps) {
       setUserInfo((userInfo) => ({
         ...userInfo,
         profile: fileReader.result as string,
-        file: fileInfo,
       }));
+
+      patchUserProfileMutate({ profile: JSON.stringify(fileInfo), token: token });
     };
 
     e.target.value = '';
+  };
+
+  const onPreviewOrigin = () => {
+    setOpen(false);
+    setUserInfo((userInfo) => ({
+      ...userInfo,
+      profile: '',
+    }));
+    patchUserProfileMutate({ profile: JSON.stringify(null), token: token });
   };
 
   return (
@@ -73,11 +85,24 @@ function CommonUserImage(props: CommonUserImageProps) {
       </S.UserImageWrap>
       <S.ImageInput type="file" accept="image/*" ref={inputRef} onChange={onPreview} multiple={false} />
       <Portal>
-        {open ? (
-          <ImageModal state={open} setState={setOpen} onChanger={onUpload} onOriginChanger={onPreviewOrigin} />
-        ) : (
-          <></>
-        )}
+        <>
+          {open ? (
+            <ImageModal state={open} setState={setOpen} onChanger={onUpload} onOriginChanger={onPreviewOrigin} />
+          ) : (
+            <></>
+          )}
+          {complete ? (
+            <ResponseModal
+              state={complete}
+              setState={setComplete}
+              message="프로필이 수정되었습니다."
+              cancel="닫기"
+              handler={undefined}
+            />
+          ) : (
+            <></>
+          )}
+        </>
       </Portal>
     </>
   );
