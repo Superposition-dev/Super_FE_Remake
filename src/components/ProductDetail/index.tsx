@@ -75,7 +75,7 @@ function ProductDetail({ data, id }: { data: ProductDetailProps; id: string }) {
     products.map((item) => {
       if (String(item.productId) === id) {
         setLike(true);
-      } else setLike(false);
+      }
     });
   }, [products, id]);
 
