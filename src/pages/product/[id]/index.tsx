@@ -39,7 +39,8 @@ function ProductDetailPage({ data }: any) {
       console.log('error');
     },
   });
-  return <ProductDetail data={data} />;
+
+  return <ProductDetail data={data} id={query.id as string} />;
 }
 
 export default ProductDetailPage;

@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
+import Link from 'next/link';
 import { VscSparkle } from 'react-icons/vsc';
 
-export const FloatingWrap = styled.button`
+export const FloatingWrap = styled(Link)`
   position: fixed;
   right: 2rem;
   bottom: 2.5rem;
@@ -17,6 +18,7 @@ export const FloatingWrap = styled.button`
   text-decoration: none;
   z-index: 100;
   cursor: pointer;
+  text-decoration: none;
 `;
 
 export const FloatingImageWrap = styled.div`

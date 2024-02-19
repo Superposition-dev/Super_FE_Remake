@@ -12,7 +12,6 @@ export interface CommonWrapperProps {
 export interface CommonFloatingProps {
   title: string;
   src: string;
-  handler?: () => void;
 }
 
 export interface CommonUserImageProps {
