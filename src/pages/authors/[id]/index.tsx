@@ -1,6 +1,7 @@
 import { getAuthor, getAuthors } from '@/api/author';
 import AuthorsDetail from '@/components/AuthorsDetail';
 import { AuthorDetailProps, AuthorsProps } from '@/interface/authors';
+import { useRouter } from 'next/router';
 import React from 'react';
 
 export async function getStaticPaths() {
@@ -26,7 +27,9 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
 }
 
 function AuthorsDetailPage({ data }: { data: AuthorDetailProps }) {
-  return <AuthorsDetail data={data} />;
+  const { query } = useRouter();
+
+  return <AuthorsDetail data={data} id={query.id as string} />;
 }
 
 export default AuthorsDetailPage;

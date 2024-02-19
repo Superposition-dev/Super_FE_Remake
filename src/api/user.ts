@@ -118,7 +118,7 @@ export const deleteLike = async ({ id, token }: { id: number; token: string }) =
 
 export const deleteFollow = async ({ instagramId, token }: { instagramId: string; token: string }) => {
   try {
-    const res = await instance.delete(`/products/${instagramId}/dislike`, {
+    const res = await instance.delete(`/artist/${instagramId}/follow`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
