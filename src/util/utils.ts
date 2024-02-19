@@ -1,7 +1,7 @@
 import { ValidateEmailType, ValidateNickNameType } from '@/interface/common';
 
 export const customNullImg = (src: string) => {
-  return src ? src : '/images/nullImage.png';
+  return src ? src : '/images/default.png';
 };
 
 export const validateNickName = (nickName: string, origin?: string) => {
