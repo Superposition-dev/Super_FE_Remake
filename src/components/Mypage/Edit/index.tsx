@@ -10,8 +10,9 @@ import { validateNickName } from '@/util/utils';
 import { ValidateNickNameType } from '@/interface/common';
 import { QueryClient, dehydrate, useMutation, useQuery } from 'react-query';
 import { getCookie, removeCookie } from '@/util/cookie';
-import { deleteUser, getUserInfo } from '@/api/user';
+import { deleteUser, getUserInfo, patchUserProfile, putEditUserInfo } from '@/api/user';
 import { useRouter } from 'next/router';
+import { NickName } from '../User/Profile/styles';
 
 export async function getStaticProps() {
   const queryClient = new QueryClient();
@@ -46,7 +47,29 @@ function MyEditPage() {
     },
   });
 
-  const onEditUserInfo = () => {};
+  const { mutate: patchUserProfileMutate } = useMutation(patchUserProfile, {
+    onSuccess: () => {
+      onLink('/mypage');
+    },
+  });
+  const { mutate: putEditUserInfoMutate } = useMutation(putEditUserInfo, {
+    onSettled: () => {
+      if (data?.profile !== userInfo?.profile) {
+        patchUserProfileMutate({ profile: JSON.stringify(userInfo?.file), token: token });
+      } else onLink('/mypage');
+    },
+  });
+
+  const onEditUserInfo = () => {
+    const body = {
+      email: userInfo?.email,
+      nickname: userInfo?.nickname,
+      gender: userInfo?.gender ? userInfo.gender : null,
+      birthYear: userInfo?.birthYear ? userInfo.birthYear : null,
+    };
+
+    putEditUserInfoMutate({ body: body, token: token });
+  };
 
   const onLink = (url: string) => {
     router.push(url);
@@ -68,7 +91,14 @@ function MyEditPage() {
         <S.ButtonWrap>
           <S.EditButton
             disabled={
-              userInfo?.nickname && validateNickName(userInfo.nickname) === ValidateNickNameType.success ? false : true
+              data?.profile !== userInfo?.profile ||
+              data?.birthYear !== userInfo?.birthYear ||
+              data?.gender !== userInfo?.gender ||
+              (data?.nickname !== userInfo?.nickname &&
+                userInfo?.nickname &&
+                validateNickName(userInfo.nickname) === ValidateNickNameType.success)
+                ? false
+                : true
             }
             onClick={onEditUserInfo}
           >

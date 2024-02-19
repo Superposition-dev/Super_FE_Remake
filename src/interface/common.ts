@@ -20,6 +20,13 @@ export interface CommonUserImageProps {
   data: UserInfoType | undefined;
 }
 
+export interface ImageFileType {
+  name: string;
+  type: string;
+  size: number;
+  data: string;
+}
+
 export enum ValidateNickNameType {
   default = 'default',
   error = 'error',

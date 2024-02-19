@@ -23,19 +23,28 @@ function CommonUserImage(props: CommonUserImageProps) {
     setUserInfo((userInfo) => ({
       ...userInfo,
       profile: '',
+      file: null,
     }));
   };
 
   const onPreview = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
-    setImageFile(e.target.files[0]);
-
+    const file = e.target.files[0];
     const fileReader = new FileReader();
+
     fileReader.readAsDataURL(e.target.files[0]);
     fileReader.onload = () => {
+      const fileInfo = {
+        name: file.name,
+        type: file.type,
+        size: file.size,
+        data: fileReader.result as string,
+      };
+
       setUserInfo((userInfo) => ({
         ...userInfo,
         profile: fileReader.result as string,
+        file: fileInfo,
       }));
     };
 

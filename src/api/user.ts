@@ -141,3 +141,35 @@ export const deleteUser = async (token: string) => {
     console.log(e);
   }
 };
+
+export const patchUserProfile = async ({ profile, token }: { profile: string; token: string }) => {
+  try {
+    const res = await instance.patch(
+      `/users/me/edit/profile`,
+      { file: profile },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    );
+    console.log(res.data);
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const putEditUserInfo = async ({ body, token }: { body: UserInfoType; token: string }) => {
+  try {
+    const res = await instance.put(`/users/me/edit`, body, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(res.data);
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
