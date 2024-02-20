@@ -29,7 +29,7 @@ export const getUserLike = async (token: string) => {
 
 export const getUserFollow = async (token: string) => {
   try {
-    const res = await instance.get('/users/artist/follow', {
+    const res = await instance.get('/users/me/follow', {
       headers: {
         Authorization: `Bearer ${token}`,
       },

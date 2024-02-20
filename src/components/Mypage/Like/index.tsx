@@ -28,7 +28,6 @@ function MyLikePage() {
       return queryClient.getQueryData('userLike');
     },
     refetchOnWindowFocus: false,
-    staleTime: 1000 * 60 * 60 * 24,
   });
 
   useEffect(() => {
