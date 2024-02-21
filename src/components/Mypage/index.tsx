@@ -31,7 +31,6 @@ function Mypage() {
       return queryClient.getQueryData('userInfo');
     },
     refetchOnWindowFocus: false,
-    staleTime: 1000 * 60 * 60 * 24,
   });
 
   const handleDivision = () => {
@@ -47,9 +46,9 @@ function Mypage() {
             <S.Division active={user} onClick={handleDivision}>
               일반
             </S.Division>
-            <S.Division active={author} onClick={handleDivision}>
+            {/* <S.Division active={author} onClick={handleDivision}>
               작가
-            </S.Division>
+            </S.Division> */}
           </S.DivisionWrap>
         </S.MypageTopWrap>
         {user && (

@@ -5,7 +5,6 @@ import 'swiper/css';
 import { AuthorDetailProps, AuthorProductsProps, AuthorsProps } from '@/interface/authors';
 import { Pagination, FreeMode } from 'swiper/modules';
 import { SwiperSlide } from 'swiper/react';
-import { FaInstagram } from 'react-icons/fa6';
 import { useRouter } from 'next/router';
 import { QueryClient, dehydrate, useMutation, useQuery } from 'react-query';
 import { getCookie } from '@/util/cookie';
@@ -86,8 +85,6 @@ function AuthorsDetail({ data, id }: { data: AuthorDetailProps; id: string }) {
     });
   }, [authors, id]);
 
-  console.log(follow);
-
   return (
     <>
       <CommonWrapper>
@@ -140,15 +137,14 @@ function AuthorsDetail({ data, id }: { data: AuthorDetailProps; id: string }) {
           </S.AuthorWrap>
           <S.AuthorWrap>
             <S.Title>SNS</S.Title>
-            <S.IconsWrap>
-              <S.Icon>
-                <FaInstagram
-                  onClick={() => {
-                    router.push(`https://www.instagram.com/${instagramId}`);
-                  }}
-                />
-              </S.Icon>
-            </S.IconsWrap>
+            <S.Icon
+              onClick={() => {
+                router.push(`https://www.instagram.com/${instagramId}`);
+              }}
+            >
+              <S.Insta />
+              <S.Id>{data.instagramId}</S.Id>
+            </S.Icon>
           </S.AuthorWrap>
         </S.AuthorDetailWrap>
       </CommonWrapper>

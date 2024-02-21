@@ -26,7 +26,6 @@ function MyFollowPage() {
       return queryClient.getQueryData('userFollow');
     },
     refetchOnWindowFocus: false,
-    staleTime: 1000 * 60 * 60 * 24,
   });
 
   return (

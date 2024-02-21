@@ -1,8 +1,12 @@
+import { ImageFileType } from './common';
+
 export interface UserType {
   email: string;
   nickname: string;
   profile: string;
   artist: boolean;
+  birthYear?: string | null;
+  gender?: 'M' | 'F' | null;
 }
 
 export interface UserInfoType {
@@ -10,8 +14,8 @@ export interface UserInfoType {
   name?: string;
   nickname?: string;
   email?: string;
-  birthYear?: string;
-  gender?: 'M' | 'F';
+  birthYear?: string | null;
+  gender?: 'M' | 'F' | null;
   profile?: string;
 }
 
