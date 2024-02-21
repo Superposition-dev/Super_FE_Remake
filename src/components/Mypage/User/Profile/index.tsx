@@ -2,14 +2,27 @@ import { customNullImg } from '@/util/utils';
 import * as S from './styles';
 import { ProfileProps } from '@/interface/user';
 import { useRouter } from 'next/router';
+import { useQuery } from 'react-query';
+import { isValiableNickname } from '@/api/user';
+import { useState } from 'react';
+import { nicknameAtom } from '@/atoms/user';
+import { useSetRecoilState } from 'recoil';
+import { getCookie } from '@/util/cookie';
 
 function Profile(props: ProfileProps) {
   const { userInfo } = props;
+  const [onEdit, setOnEdit] = useState<boolean>(false);
+  const setIsVaild = useSetRecoilState(nicknameAtom);
   const router = useRouter();
-
-  const onLink = () => {
-    router.push('/mypage/edit');
-  };
+  const token = getCookie('accessToken');
+  useQuery('nickNameIsValid',()=>isValiableNickname(token), {
+    enabled: onEdit,
+    onSuccess: (data) => {
+      setIsVaild(data);
+      setOnEdit(false);
+      router.push('/mypage/edit');
+    },
+  });
 
   return (
     userInfo && (
@@ -18,7 +31,7 @@ function Profile(props: ProfileProps) {
           <S.ImageWrap>
             <S.Image
               src={customNullImg(
-                userInfo ? `https://kr.object.ncloudstorage.com/superposition-bucket/${userInfo.profile}` : '',
+                userInfo ? userInfo.profile : '',
               )}
             />
           </S.ImageWrap>
@@ -32,7 +45,7 @@ function Profile(props: ProfileProps) {
             </S.EmailWrap>
           </S.DescWrap>
         </S.Profile>
-        <S.EditButton onClick={onLink}>수정</S.EditButton>
+        <S.EditButton onClick={()=>setOnEdit(true)}>수정</S.EditButton>
       </S.ProfileWrap>
     )
   );

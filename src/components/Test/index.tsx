@@ -10,22 +10,18 @@ const TestComponents = () => {
     enabled: makeToken,
     onSuccess: (data) => {
       setMakeToken(false)
-      console.log('토큰생성완료',data)
     },
     onError: (e) => {
       setMakeToken(false)
-      console.log('토큰생성실패',e)
     }
   })
   const {data:reToken} = useQuery('reToken', getReToken, {
     enabled: reissueToken,
     onSuccess: (data) => {
       setReissueToken(false)
-      console.log('토큰재발급완료',data)
     },
     onError: (e) => {
       setReissueToken(false)
-      console.log('토큰재발급실패',e)
     }
   })
   return (

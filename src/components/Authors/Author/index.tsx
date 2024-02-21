@@ -2,6 +2,7 @@ import React from 'react';
 import * as S from './styles';
 import { AuthorsProps } from '@/interface/authors';
 import { useRouter } from 'next/router';
+import { customNullImg } from '@/util/utils';
 
 function Author({ data }: { data: AuthorsProps }) {
   const { name, profile, introduce, display, instagramId } = data;
@@ -14,7 +15,7 @@ function Author({ data }: { data: AuthorsProps }) {
     <S.AuthorWrap onClick={onLinked}>
       <S.AuthorImageWrap>
         <S.AuthorImage
-          src={`https://kr.object.ncloudstorage.com/superposition-bucket/${profile}`}
+          src={customNullImg(profile)}
           alt="작가"
           fill
           loading="lazy"

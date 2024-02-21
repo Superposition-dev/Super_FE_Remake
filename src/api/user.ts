@@ -162,10 +162,21 @@ export const putEditUserInfo = async ({ body, token }: { body: UserInfoType; tok
         Authorization: `Bearer ${token}`,
       },
     });
-
-    console.log(res.data);
     return res.data;
   } catch (e) {
     console.log(e);
   }
 };
+
+export const isValiableNickname = async (token:string) => {
+  try {
+    const res = await instance.get('/users/isAvailable',{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+}
