@@ -15,7 +15,7 @@ function UserInfo(props: UserInfoProps) {
   const [change, setChange] = useState<boolean>(true);
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [validate, setValidate] = useState<ValidateNickNameType>(ValidateNickNameType.default);
-
+  const nicknameIsVaild = useRecoilValue(nicknameAtom);
   const isChange = useQuery('changeNickname', () => getIsChange(token), {
     enabled: !!token,
     onSuccess: (isChange) => {
