@@ -6,6 +6,8 @@ import { UserInfoProps } from '@/interface/user';
 import { getIsChange } from '@/api/user';
 import { getCookie } from '@/util/cookie';
 import { useQuery } from 'react-query';
+import { useRecoilValue } from 'recoil';
+import { nicknameAtom } from '@/atoms/user';
 
 function UserInfo(props: UserInfoProps) {
   const { userInfo, setUserInfo, data } = props;
@@ -13,7 +15,7 @@ function UserInfo(props: UserInfoProps) {
   const [change, setChange] = useState<boolean>(true);
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [validate, setValidate] = useState<ValidateNickNameType>(ValidateNickNameType.default);
-
+  const nicknameIsVaild = useRecoilValue(nicknameAtom);
   const { data: isChange, refetch } = useQuery('user', () => getIsChange(token), {
     enabled: false,
     onSuccess: (isChange) => {
@@ -70,7 +72,7 @@ function UserInfo(props: UserInfoProps) {
           onChange={(e) => onChangeText(e)}
           maxLength={30}
           bright={isEdit ? true : false}
-          disabled={!change ? true : false}
+          disabled={!nicknameIsVaild}
           validate={validate}
         />
         <S.Desc validate={validate}>
