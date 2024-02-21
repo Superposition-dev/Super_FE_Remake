@@ -126,6 +126,11 @@ export const GenderWrap = styled.label`
   gap: 1rem;
 `;
 
+export const DisabledGender = styled.span`
+  color: ${({ theme }) => theme.colors.dark_gray};
+  ${({ theme }) => theme.font.medium_14};
+`;
+
 export const RadioButton = styled.input`
   position: relative;
   width: 20px;
