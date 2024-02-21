@@ -14,8 +14,8 @@ function UserInfo(props: UserInfoProps) {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [validate, setValidate] = useState<ValidateNickNameType>(ValidateNickNameType.default);
 
-  const { data: isChange, refetch } = useQuery('user', () => getIsChange(token), {
-    enabled: false,
+  const isChange = useQuery('changeNickname', () => getIsChange(token), {
+    enabled: !!token,
     onSuccess: (isChange) => {
       setChange(isChange);
     },
@@ -43,10 +43,6 @@ function UserInfo(props: UserInfoProps) {
       gender: e.target.value as 'M' | 'F',
     }));
   };
-
-  useEffect(() => {
-    token && refetch;
-  }, [token, refetch]);
 
   return (
     <>
@@ -91,7 +87,7 @@ function UserInfo(props: UserInfoProps) {
           <S.BirthYearWrap>
             <S.BirthYear
               type="text"
-              value={userInfo?.birthYear}
+              value={userInfo?.birthYear !== null ? userInfo?.birthYear : ''}
               placeholder="YYYY"
               onChange={(e) => onChangeBirthYear(e)}
               maxLength={4}
@@ -104,34 +100,40 @@ function UserInfo(props: UserInfoProps) {
         <S.UserInfoGenderWrap>
           <S.Title>성별</S.Title>
           <S.GendersWrap>
-            <S.GenderWrap htmlFor="woman">
-              <S.RadioButton
-                type="radio"
-                name="sex"
-                id="woman"
-                value="F"
-                checked={userInfo?.gender === 'F' ? true : false}
-                disabled={data?.birthYear ? true : false}
-                onChange={(e) => {
-                  onChangeGender(e);
-                }}
-              />
-              여성
-            </S.GenderWrap>
-            <S.GenderWrap htmlFor="man">
-              <S.RadioButton
-                type="radio"
-                name="sex"
-                id="man"
-                value="M"
-                checked={userInfo?.gender === 'M' ? true : false}
-                disabled={data?.birthYear ? true : false}
-                onChange={(e) => {
-                  onChangeGender(e);
-                }}
-              />
-              남성
-            </S.GenderWrap>
+            {data?.gender ? (
+              <S.DisabledGender>{data?.gender === 'F' ? '여성' : '남성'}</S.DisabledGender>
+            ) : (
+              <>
+                <S.GenderWrap htmlFor="woman">
+                  <S.RadioButton
+                    type="radio"
+                    name="sex"
+                    id="woman"
+                    value="F"
+                    checked={userInfo?.gender === 'F' ? true : false}
+                    disabled={data?.gender ? true : false}
+                    onChange={(e) => {
+                      onChangeGender(e);
+                    }}
+                  />
+                  여성
+                </S.GenderWrap>
+                <S.GenderWrap htmlFor="man">
+                  <S.RadioButton
+                    type="radio"
+                    name="sex"
+                    id="man"
+                    value="M"
+                    checked={userInfo?.gender === 'M' ? true : false}
+                    disabled={data?.gender ? true : false}
+                    onChange={(e) => {
+                      onChangeGender(e);
+                    }}
+                  />
+                  남성
+                </S.GenderWrap>
+              </>
+            )}
           </S.GendersWrap>
         </S.UserInfoGenderWrap>
       </S.UserInfoBottomWrap>
