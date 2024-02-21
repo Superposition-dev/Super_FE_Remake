@@ -26,7 +26,7 @@ function SignupPage() {
   const { mutate, isLoading } = useMutation('userInfo', () => postSignup(userInfo as UserInfoType), {
     onSuccess: (data) => {
       sessionStorage.removeItem('userInfo');
-      setCookie('accessToken', data.accessToken);
+      setCookie('accessToken', data.accessToken,{path: '/'});
       setSignupState('가입 완료');
       setOpen(true);
       setMessage('회원가입이 완료 되었습니다!');

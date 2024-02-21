@@ -8,13 +8,15 @@ import { getCookie } from '@/util/cookie';
 function Header() {
   const [open, setOpen] = useState<boolean>(false);
   const [isLogin, setIsLogin] = useState<boolean>(false);
-  const token = getCookie('accessToken');
-
   const router = useRouter();
   const pathname = router.pathname;
-
+  const token = getCookie('accessToken');
   const onLinkedLogin = () => {
-    router.push('/login');
+    if(!token){
+      router.push('/login');
+      return 
+    }
+    router.push('/mypage');
   };
 
   const onOpenMenu = () => {
@@ -32,7 +34,7 @@ function Header() {
           <Image src="/images/main_logo.webp" alt="로고" fill />
         </S.LogoWrap>
         <S.NavWrap>
-          {isLogin ? <p>로그인완료</p> : <S.NavLogin onClick={onLinkedLogin} />}
+          <S.NavLogin onClick={onLinkedLogin} />
           <S.NavMenu onClick={onOpenMenu} />
         </S.NavWrap>
       </S.HeaderWrap>

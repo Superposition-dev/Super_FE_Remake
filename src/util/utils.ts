@@ -1,7 +1,8 @@
 import { ValidateEmailType, ValidateNickNameType } from '@/interface/common';
 
 export const customNullImg = (src: string) => {
-  return src ? src : '/images/default.png';
+  if(src?.includes('base64')) return src; 
+  return src ? `https://kr.object.ncloudstorage.com/superposition-bucket/${src}` : '/images/default.png';
 };
 
 export const validateNickName = (nickName: string, origin?: string) => {

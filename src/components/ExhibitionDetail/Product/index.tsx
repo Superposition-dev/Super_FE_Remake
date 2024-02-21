@@ -17,7 +17,7 @@ function Product({ data }: { data: ProductType }) {
         <S.ProductImage
           src={
             picture
-              ? customNullImg(`https://kr.object.ncloudstorage.com/superposition-bucket/${picture}`)
+              ? customNullImg(picture)
               : customNullImg('')
           }
           alt="이미지"

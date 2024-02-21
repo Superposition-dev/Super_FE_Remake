@@ -8,5 +8,12 @@ export const userInfoAtom = atom<UserType>({
     nickname: '',
     profile: '',
     artist: false,
+    birthYear: '',
+    gender: 'M'
   },
 });
+
+export const nicknameAtom = atom<boolean>({
+  key: 'isValiableNickname',
+  default: false,
+})
