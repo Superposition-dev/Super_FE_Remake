@@ -43,6 +43,7 @@ export const AuthorName = styled.div`
 `;
 
 export const AuthorInfo = styled.div`
+  min-height: 1.6rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
