@@ -7,7 +7,6 @@ import { useRouter } from 'next/router';
 function Exhibition(props: ExhibitionProps) {
   const { exhibition } = props;
   const router = useRouter();
-
   const onLinked = () => {
     router.push(`/exhibition/${exhibition.exhibitionId}`);
   };
@@ -17,8 +16,7 @@ function Exhibition(props: ExhibitionProps) {
       <S.ImageWrap>
         <S.CustomImage
           src={
-            // customNullImg(exhibition.poster)
-            customNullImg('')
+            customNullImg(exhibition.poster)
           }
           alt="전시 이미지"
           fill

@@ -1,22 +1,42 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import * as S from './styles';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useMutation } from 'react-query';
-import { ProductDetailProps } from '@/interface/product';
+import { QueryClient, dehydrate, useMutation, useQuery } from 'react-query';
+import { ProductDetailProps, ProductType } from '@/interface/product';
 import { patchFormClick } from '@/api/patchData';
-import { addLike, deleteLike } from '@/api/user';
+import { addLike, deleteLike, getUserLike } from '@/api/user';
 import { priceFormatter, seqFormatter } from '@/util/utils';
 import { getCookie } from '@/util/cookie';
 import Portal from '../@Common/Modal';
 import InduceLoginModal from '../@Common/Modal/InduceLogin';
 
-function ProductDetail({ data }: { data: ProductDetailProps }) {
+export async function getStaticProps() {
+  const queryClient = new QueryClient();
+  const token = getCookie('accessToken');
+  await queryClient.prefetchQuery('userLike', () => getUserLike(token));
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+}
+
+function ProductDetail({ data, id }: { data: ProductDetailProps; id: string }) {
   const { picture, title, tags, artistInfo, pictureInfo, description, price, productId } = data;
   const [like, setLike] = useState(false);
   const [open, setOpen] = useState<boolean>(false);
   const token = getCookie('accessToken');
   const router = useRouter();
+
+  const { data: products } = useQuery<ProductType[]>(['userLike'], () => getUserLike(token), {
+    initialData: () => {
+      const queryClient = new QueryClient();
+      return queryClient.getQueryData('userLike');
+    },
+    refetchOnWindowFocus: false,
+    staleTime: 1000 * 60 * 60 * 24,
+  });
 
   const { mutate: formMutate } = useMutation(patchFormClick);
   const { mutate: addLikeMutate } = useMutation(addLike, {
@@ -48,6 +68,16 @@ function ProductDetail({ data }: { data: ProductDetailProps }) {
   const onLinked = () => {
     router.push(`/authors/${artistInfo.instagramId}`);
   };
+
+  useEffect(() => {
+    if (products === undefined) return;
+
+    products.map((item) => {
+      if (String(item.productId) === id) {
+        setLike(true);
+      }
+    });
+  }, [products, id]);
 
   return (
     <>

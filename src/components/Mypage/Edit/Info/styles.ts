@@ -1,4 +1,4 @@
-import { ValidateNickNameType } from '@/interface/signup';
+import { ValidateNickNameType } from '@/interface/common';
 import styled from '@emotion/styled';
 
 export const UserInfoCommonWrap = styled.div`
@@ -124,6 +124,11 @@ export const GenderWrap = styled.label`
   ${({ theme }) => theme.flex.flexRow};
   align-items: center;
   gap: 1rem;
+`;
+
+export const DisabledGender = styled.span`
+  color: ${({ theme }) => theme.colors.dark_gray};
+  ${({ theme }) => theme.font.medium_14};
 `;
 
 export const RadioButton = styled.input`

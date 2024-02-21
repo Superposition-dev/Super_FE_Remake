@@ -1,20 +1,32 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import * as S from './styles';
 import Image from 'next/image';
 import 'swiper/css';
-import { AuthorDetailProps, AuthorProductsProps } from '@/interface/authors';
+import { AuthorDetailProps, AuthorProductsProps, AuthorsProps } from '@/interface/authors';
 import { Pagination, FreeMode } from 'swiper/modules';
 import { SwiperSlide } from 'swiper/react';
-import { FaInstagram } from 'react-icons/fa6';
 import { useRouter } from 'next/router';
-import { useMutation } from 'react-query';
+import { QueryClient, dehydrate, useMutation, useQuery } from 'react-query';
 import { getCookie } from '@/util/cookie';
-import { addFollow, deleteFollow } from '@/api/user';
+import { addFollow, deleteFollow, getUserFollow } from '@/api/user';
 import CommonWrapper from '../@Common/Wrap';
 import Portal from '../@Common/Modal';
 import InduceLoginModal from '../@Common/Modal/InduceLogin';
+import { customNullImg } from '@/util/utils';
 
-function AuthorsDetail({ data }: { data: AuthorDetailProps }) {
+export async function getStaticProps() {
+  const queryClient = new QueryClient();
+  const token = getCookie('accessToken');
+
+  await queryClient.prefetchQuery('userFollow', () => getUserFollow(token));
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+}
+
+function AuthorsDetail({ data, id }: { data: AuthorDetailProps; id: string }) {
   const { name, profile, introduce, display, products, instagramId, description } = data;
   const [plus, setPlus] = React.useState<boolean>(false);
   const [follow, setFollow] = useState<boolean>(false);
@@ -23,9 +35,19 @@ function AuthorsDetail({ data }: { data: AuthorDetailProps }) {
   const router = useRouter();
   const length = description.length;
 
+  const { data: authors, refetch } = useQuery<AuthorsProps[]>(['userFollow'], () => getUserFollow(token), {
+    initialData: () => {
+      const queryClient = new QueryClient();
+      return queryClient.getQueryData('userFollow');
+    },
+    refetchOnWindowFocus: false,
+    staleTime: 1000 * 60 * 60 * 24,
+  });
+
   const { mutate: addFollowMutate } = useMutation(addFollow, {
     onSuccess: () => {
       setFollow((prevFollow) => !prevFollow);
+      refetch;
     },
     onError: () => {
       setFollow(!follow);
@@ -35,6 +57,7 @@ function AuthorsDetail({ data }: { data: AuthorDetailProps }) {
   const { mutate: deleteFollowMutate } = useMutation(deleteFollow, {
     onSuccess: () => {
       setFollow((prevFollow) => !prevFollow);
+      refetch;
     },
     onError: () => {
       setFollow(!follow);
@@ -53,6 +76,16 @@ function AuthorsDetail({ data }: { data: AuthorDetailProps }) {
     }
   }, [instagramId, token, follow, addFollowMutate, deleteFollowMutate]);
 
+  useEffect(() => {
+    if (authors === undefined) return;
+
+    authors.map((item) => {
+      if (String(item.instagramId) === id) {
+        setFollow(true);
+      }
+    });
+  }, [authors, id]);
+
   return (
     <>
       <CommonWrapper>
@@ -60,7 +93,7 @@ function AuthorsDetail({ data }: { data: AuthorDetailProps }) {
           <S.AuthorInfoWrap>
             <S.AuthorImage>
               <Image
-                src={`https://kr.object.ncloudstorage.com/superposition-bucket/${profile}`}
+                src={customNullImg(profile)}
                 alt="작가 사진"
                 loading="lazy"
                 placeholder="blur"
@@ -93,7 +126,7 @@ function AuthorsDetail({ data }: { data: AuthorDetailProps }) {
                     }}
                   >
                     <Image
-                      src={`https://kr.object.ncloudstorage.com/superposition-bucket/${item.picture}`}
+                      src={customNullImg(item.picture)}
                       alt="작품"
                       loading="eager"
                       fill
@@ -105,15 +138,14 @@ function AuthorsDetail({ data }: { data: AuthorDetailProps }) {
           </S.AuthorWrap>
           <S.AuthorWrap>
             <S.Title>SNS</S.Title>
-            <S.IconsWrap>
-              <S.Icon>
-                <FaInstagram
-                  onClick={() => {
-                    router.push(`https://www.instagram.com/${instagramId}`);
-                  }}
-                />
-              </S.Icon>
-            </S.IconsWrap>
+            <S.Icon
+              onClick={() => {
+                router.push(`https://www.instagram.com/${instagramId}`);
+              }}
+            >
+              <S.Insta />
+              <S.Id>{data.instagramId}</S.Id>
+            </S.Icon>
           </S.AuthorWrap>
         </S.AuthorDetailWrap>
       </CommonWrapper>

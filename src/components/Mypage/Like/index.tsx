@@ -1,34 +1,22 @@
 import * as S from './styles';
 import { useEffect, useState } from 'react';
-import { getMyLike } from '@/api/user';
+import { getUserLike } from '@/api/user';
 import { useIsMobile } from '@/hook/useView';
 import { QueryClient, dehydrate, useQuery } from 'react-query';
 import { getCookie } from '@/util/cookie';
 import Product from '../../ExhibitionDetail/Product';
-
-export async function getStaticProps() {
-  const queryClient = new QueryClient();
-  const token = getCookie('accessToken');
-  await queryClient.prefetchQuery('myLike', () => getMyLike(token));
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
-}
 
 function MyLikePage() {
   const [maxScroll, setMaxScroll] = useState(0);
   const mobile = useIsMobile();
   const token = getCookie('accessToken');
 
-  const { data: products } = useQuery(['myLike'], () => getMyLike(token), {
+  const { data: products } = useQuery(['userLike'], () => getUserLike(token), {
     initialData: () => {
       const queryClient = new QueryClient();
-      return queryClient.getQueryData('myLike');
+      return queryClient.getQueryData('userLike');
     },
     refetchOnWindowFocus: false,
-    staleTime: 1000 * 60 * 60 * 24,
   });
 
   useEffect(() => {
@@ -41,7 +29,7 @@ function MyLikePage() {
       <S.TitleWrap>
         <S.Title>좋아요 작품</S.Title>
       </S.TitleWrap>
-      {products?.products.length !== 0 && products?.products !== undefined ? (
+      {products !== '' && products !== undefined && products.length !== 0 ? (
         <S.ProductsWrap>
           <S.Products
             column={mobile ? 2 : 4}
@@ -52,7 +40,7 @@ function MyLikePage() {
             useResizeObserver={true}
             maxScroll={maxScroll}
           >
-            {products?.products?.map((product: any, index: number) => (
+            {products?.map((product: any, index: number) => (
               <Product key={index} data={product} />
             ))}
           </S.Products>

@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './styles';
-import { ValidateNickNameType } from '@/interface/signup';
+import { ValidateNickNameType } from '@/interface/common';
 import { validateNickName } from '@/util/utils';
 import { UserInfoProps } from '@/interface/user';
 import { getIsChange } from '@/api/user';
 import { getCookie } from '@/util/cookie';
 import { useQuery } from 'react-query';
+import { useRecoilValue } from 'recoil';
+import { nicknameAtom } from '@/atoms/user';
 
 function UserInfo(props: UserInfoProps) {
   const { userInfo, setUserInfo, data } = props;
@@ -13,8 +15,8 @@ function UserInfo(props: UserInfoProps) {
   const [change, setChange] = useState<boolean>(true);
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [validate, setValidate] = useState<ValidateNickNameType>(ValidateNickNameType.default);
-
-  const { data: isChange } = useQuery('user', () => getIsChange(token), {
+  const nicknameIsVaild = useRecoilValue(nicknameAtom);
+  const isChange = useQuery('changeNickname', () => getIsChange(token), {
     enabled: !!token,
     onSuccess: (isChange) => {
       setChange(isChange);
@@ -44,8 +46,6 @@ function UserInfo(props: UserInfoProps) {
     }));
   };
 
-  console.log(change);
-
   return (
     <>
       <S.UserInfoCommonWrap>
@@ -68,7 +68,7 @@ function UserInfo(props: UserInfoProps) {
           onChange={(e) => onChangeText(e)}
           maxLength={30}
           bright={isEdit ? true : false}
-          disabled={!change ? true : false}
+          disabled={!nicknameIsVaild}
           validate={validate}
         />
         <S.Desc validate={validate}>
@@ -89,7 +89,7 @@ function UserInfo(props: UserInfoProps) {
           <S.BirthYearWrap>
             <S.BirthYear
               type="text"
-              value={userInfo?.birthYear}
+              value={userInfo?.birthYear !== null ? userInfo?.birthYear : ''}
               placeholder="YYYY"
               onChange={(e) => onChangeBirthYear(e)}
               maxLength={4}
@@ -102,34 +102,40 @@ function UserInfo(props: UserInfoProps) {
         <S.UserInfoGenderWrap>
           <S.Title>성별</S.Title>
           <S.GendersWrap>
-            <S.GenderWrap htmlFor="woman">
-              <S.RadioButton
-                type="radio"
-                name="sex"
-                id="woman"
-                value="F"
-                checked={userInfo?.gender === 'F' ? true : false}
-                disabled={data?.birthYear ? true : false}
-                onChange={(e) => {
-                  onChangeGender(e);
-                }}
-              />
-              여성
-            </S.GenderWrap>
-            <S.GenderWrap htmlFor="man">
-              <S.RadioButton
-                type="radio"
-                name="sex"
-                id="man"
-                value="M"
-                checked={userInfo?.gender === 'M' ? true : false}
-                disabled={data?.birthYear ? true : false}
-                onChange={(e) => {
-                  onChangeGender(e);
-                }}
-              />
-              남성
-            </S.GenderWrap>
+            {data?.gender ? (
+              <S.DisabledGender>{data?.gender === 'F' ? '여성' : '남성'}</S.DisabledGender>
+            ) : (
+              <>
+                <S.GenderWrap htmlFor="woman">
+                  <S.RadioButton
+                    type="radio"
+                    name="sex"
+                    id="woman"
+                    value="F"
+                    checked={userInfo?.gender === 'F' ? true : false}
+                    disabled={data?.gender ? true : false}
+                    onChange={(e) => {
+                      onChangeGender(e);
+                    }}
+                  />
+                  여성
+                </S.GenderWrap>
+                <S.GenderWrap htmlFor="man">
+                  <S.RadioButton
+                    type="radio"
+                    name="sex"
+                    id="man"
+                    value="M"
+                    checked={userInfo?.gender === 'M' ? true : false}
+                    disabled={data?.gender ? true : false}
+                    onChange={(e) => {
+                      onChangeGender(e);
+                    }}
+                  />
+                  남성
+                </S.GenderWrap>
+              </>
+            )}
           </S.GendersWrap>
         </S.UserInfoGenderWrap>
       </S.UserInfoBottomWrap>

@@ -1,32 +1,19 @@
 import * as S from './styles';
-import { getMyFollow } from '@/api/user';
+import { getUserFollow } from '@/api/user';
 import { QueryClient, dehydrate, useQuery } from 'react-query';
 import { getCookie } from '@/util/cookie';
 import { AuthorsProps } from '@/interface/authors';
 import Author from '../../Authors/Author';
 
-export async function getStaticProps() {
-  const queryClient = new QueryClient();
-  const token = getCookie('accessToken');
-
-  await queryClient.prefetchQuery('myFollow', () => getMyFollow(token));
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
-}
-
 function MyFollowPage() {
   const token = getCookie('accessToken');
 
-  const { data: authors } = useQuery(['myFollow'], () => getMyFollow(token), {
+  const { data: authors } = useQuery(['userFollow'], () => getUserFollow(token), {
     initialData: () => {
       const queryClient = new QueryClient();
-      return queryClient.getQueryData('myFollow');
+      return queryClient.getQueryData('userFollow');
     },
     refetchOnWindowFocus: false,
-    staleTime: 1000 * 60 * 60 * 24,
   });
 
   return (
@@ -34,9 +21,9 @@ function MyFollowPage() {
       <S.TitleWrap>
         <S.Title>팔로우 작가</S.Title>
       </S.TitleWrap>
-      {authors?.authors.length !== 0 && authors?.authors !== undefined ? (
+      {authors !== '' && authors !== undefined && authors.length !== 0 ? (
         <S.AuthorsWrap>
-          {authors.authors?.map((author: AuthorsProps, index: number) => (
+          {authors?.map((author: AuthorsProps, index: number) => (
             <Author key={index} data={author} />
           ))}
         </S.AuthorsWrap>

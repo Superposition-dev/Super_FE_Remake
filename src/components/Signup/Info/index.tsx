@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import * as S from './styles';
-import { UserInfoProps, ValidateNickNameType } from '@/interface/signup';
+import { UserInfoProps } from '@/interface/signup';
+import { ValidateNickNameType } from '@/interface/common';
 import { validateNickName } from '@/util/utils';
 
 function UserInfo(props: UserInfoProps) {
@@ -48,9 +49,9 @@ function UserInfo(props: UserInfoProps) {
         />
         <S.Desc validate={validate}>
           {validate === ValidateNickNameType.default
-            ? '(8~16자)'
+            ? '(1~104자)'
             : validate === ValidateNickNameType.error
-            ? '8~16자 조합으로 입력해 주세요.'
+            ? '1~104자 조합으로 입력해 주세요.'
             : validate === ValidateNickNameType.success
             ? '사용 가능한 닉네임입니다!'
             : ''}

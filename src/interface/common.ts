@@ -12,10 +12,30 @@ export interface CommonWrapperProps {
 export interface CommonFloatingProps {
   title: string;
   src: string;
-  handler?: () => void;
 }
 
 export interface CommonUserImageProps {
   userInfo: UserInfoType | undefined;
   setUserInfo: React.Dispatch<React.SetStateAction<UserInfoType | undefined>>;
+  data: UserInfoType | undefined;
+}
+
+export interface ImageFileType {
+  name: string;
+  type: string;
+  size: number;
+  data: string;
+}
+
+export enum ValidateNickNameType {
+  default = 'default',
+  error = 'error',
+  success = 'success',
+  duplicate = 'duplicate',
+}
+
+export enum ValidateEmailType {
+  default = 'default',
+  error = 'error',
+  success = 'success',
 }

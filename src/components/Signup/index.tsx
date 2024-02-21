@@ -4,42 +4,51 @@ import CommonWrapper from '../@Common/Wrap';
 import CommonUserImage from '../@Common/Image';
 import UserInfo from './Info';
 import { UserInfoType } from '@/interface/user';
-import { ValidateNickNameType } from '@/interface/signup';
+import { ValidateNickNameType } from '@/interface/common';
 import { validateNickName } from '@/util/utils';
 import { useRouter } from 'next/router';
 import { useMutation } from 'react-query';
-import { postSignup } from '@/api/auth';
+import { postSignup } from '@/api/user';
 import { setCookie } from '@/util/cookie';
+import Portal from '../@Common/Modal';
+import ResponseModal from '../@Common/Modal/Response';
 
 function SignupPage() {
   const [userInfo, setUserInfo] = useState<UserInfoType>();
+  const [originInfo, setOriginInfo] = useState<UserInfoType>();
+  const [signupState, setSignupState] = useState<string>('가입하기');
+  const [message, setMessage] = useState<string>('');
+  const [open, setOpen] = useState<boolean>(false);
   const router = useRouter();
+
   const kakaoData = typeof window !== 'undefined' ? sessionStorage.getItem('userInfo') : null;
+
   const { mutate, isLoading } = useMutation('userInfo', () => postSignup(userInfo as UserInfoType), {
     onSuccess: (data) => {
-      sessionStorage.removeItem('userInfo')
-      setCookie('accessToken', data.accessToken, {path: '/'})
-      router.push('/')
-    }
-  })
+      sessionStorage.removeItem('userInfo');
+      setCookie('accessToken', data.accessToken,{path: '/'});
+      setSignupState('가입 완료');
+      setOpen(true);
+      setMessage('회원가입이 완료 되었습니다!');
+    },
+  });
 
   const onSignup = () => {
     mutate();
   };
 
-  // 세션 스토리지에 저장된 카카오에서 받아온 데이터를 userInfo에 넣어주시면 됩니다.
-  // 가입하기 클릭 시, 해당 데이터를 서버에 post 요청
   useEffect(() => {
     if (kakaoData) {
+      setOriginInfo(JSON.parse(kakaoData));
       setUserInfo(JSON.parse(kakaoData));
     }
-  },[])
-  
+  }, []);
+
   return (
     <CommonWrapper>
       <S.SignupWrap>
         <S.SignupTopWrap>
-          <CommonUserImage userInfo={userInfo} setUserInfo={setUserInfo} />
+          <CommonUserImage userInfo={userInfo} setUserInfo={setUserInfo} data={originInfo} />
         </S.SignupTopWrap>
         <S.SignupBottomWrap>
           <UserInfo userInfo={userInfo} setUserInfo={setUserInfo} />
@@ -52,9 +61,24 @@ function SignupPage() {
           }
           onClick={onSignup}
         >
-          {isLoading ? '가입중...' : '가입하기'}
+          {isLoading ? '가입 중...' : signupState}
         </S.SignupButton>
       </S.SignupWrap>
+      {
+        <Portal>
+          {open ? (
+            <ResponseModal
+              state={open}
+              setState={setOpen}
+              message={message}
+              cancel="이용하러 가기"
+              handler={() => router.push('/')}
+            />
+          ) : (
+            <></>
+          )}
+        </Portal>
+      }
     </CommonWrapper>
   );
 }

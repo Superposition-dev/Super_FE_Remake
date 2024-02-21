@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { Swiper } from 'swiper/react';
 import { FaCheck } from 'react-icons/fa6';
+import { FaInstagram } from 'react-icons/fa6';
 
 export const AuthorDetailWrap = styled.div`
   ${({ theme }) => theme.flex.flexColumn};
@@ -22,7 +23,6 @@ export const AuthorImage = styled.div`
   position: relative;
   border-radius: 50%;
   overflow: hidden;
-
   &::after {
     content: '';
     box-sizing: border-box;
@@ -34,6 +34,12 @@ export const AuthorImage = styled.div`
     border-radius: 50%;
     border: 4px solid rgba(255, 255, 255, 0.2);
     z-index: 1;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 `;
 export const AuthorInfo = styled.div`
@@ -135,17 +141,26 @@ export const ImageWrap = styled.div`
   }
 `;
 
-export const IconsWrap = styled.div`
-  display: flex;
-`;
 export const Icon = styled.div`
   background-color: #000;
-  width: 5rem;
-  height: 5rem;
+  width: fit-content;
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
   font-size: 2.4rem;
-  border-radius: 5px;
+  border-radius: 0.5rem;
   filter: drop-shadow(0px 4px 8px rgba(255, 255, 255, 0.2));
+  cursor: pointer;
+`;
+
+export const Insta = styled(FaInstagram)`
+  width: 2rem;
+  height: 2rem;
+`;
+
+export const Id = styled.span`
+  ${({ theme }) => theme.font.bold_12};
+  color: ${({ theme }) => theme.colors.white};
 `;
