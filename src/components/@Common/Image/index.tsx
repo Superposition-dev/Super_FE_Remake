@@ -33,22 +33,17 @@ function CommonUserImage(props: CommonUserImageProps) {
     if (!e.target.files) return;
     const file = e.target.files[0];
     const fileReader = new FileReader();
+    const formData = new FormData();
 
     fileReader.readAsDataURL(e.target.files[0]);
     fileReader.onload = () => {
-      const fileInfo = {
-        name: file.name,
-        type: file.type,
-        size: file.size,
-        data: fileReader.result as string,
-      };
-
       setUserInfo((userInfo) => ({
         ...userInfo,
         profile: fileReader.result as string,
       }));
 
-      patchUserProfileMutate({ profile: JSON.stringify(fileInfo), token: token });
+      formData.append('file', file as Blob);
+      patchUserProfileMutate({ file: formData, token: token });
     };
 
     e.target.value = '';
@@ -60,7 +55,8 @@ function CommonUserImage(props: CommonUserImageProps) {
       ...userInfo,
       profile: '',
     }));
-    patchUserProfileMutate({ profile: JSON.stringify(null), token: token });
+
+    patchUserProfileMutate({ file: null, token: token });
   };
 
   return (

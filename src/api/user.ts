@@ -1,5 +1,5 @@
 import { UserInfoType } from '@/interface/user';
-import { instance } from './instance';
+import { instance, instanceForm } from './instance';
 
 export const getUserInfo = async (cookie: string) => {
   try {
@@ -142,18 +142,13 @@ export const deleteUser = async (token: string) => {
   }
 };
 
-export const patchUserProfile = async ({ profile, token }: { profile: string; token: string }) => {
+export const patchUserProfile = async ({ file, token }: { file: FormData | null; token: string }) => {
   try {
-    const res = await instance.patch(
-      `/users/me/edit/profile`,
-      { file: profile },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+    const res = await instanceForm.patch(`/users/edit/profile`, file, {
+      headers: {
+        Authorization: `Bearer ${token}`,
       },
-    );
-    console.log(res.data);
+    });
     return res.data;
   } catch (e) {
     console.log(e);
@@ -162,11 +157,12 @@ export const patchUserProfile = async ({ profile, token }: { profile: string; to
 
 export const putEditUserInfo = async ({ body, token }: { body: UserInfoType; token: string }) => {
   try {
-    const res = await instance.put(`/users/me/edit`, body, {
+    const res = await instance.put(`/users/edit`, body, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
+
     console.log(res.data);
     return res.data;
   } catch (e) {
