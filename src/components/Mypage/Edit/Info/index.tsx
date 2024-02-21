@@ -91,7 +91,7 @@ function UserInfo(props: UserInfoProps) {
           <S.BirthYearWrap>
             <S.BirthYear
               type="text"
-              value={userInfo?.birthYear}
+              value={userInfo?.birthYear !== null ? userInfo?.birthYear : ''}
               placeholder="YYYY"
               onChange={(e) => onChangeBirthYear(e)}
               maxLength={4}
@@ -111,7 +111,7 @@ function UserInfo(props: UserInfoProps) {
                 id="woman"
                 value="F"
                 checked={userInfo?.gender === 'F' ? true : false}
-                disabled={data?.birthYear ? true : false}
+                disabled={data?.gender ? true : false}
                 onChange={(e) => {
                   onChangeGender(e);
                 }}
@@ -125,7 +125,7 @@ function UserInfo(props: UserInfoProps) {
                 id="man"
                 value="M"
                 checked={userInfo?.gender === 'M' ? true : false}
-                disabled={data?.birthYear ? true : false}
+                disabled={data?.gender ? true : false}
                 onChange={(e) => {
                   onChangeGender(e);
                 }}
