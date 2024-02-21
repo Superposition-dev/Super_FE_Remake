@@ -23,7 +23,6 @@ export const AuthorImage = styled.div`
   position: relative;
   border-radius: 50%;
   overflow: hidden;
-
   &::after {
     content: '';
     box-sizing: border-box;
@@ -35,6 +34,12 @@ export const AuthorImage = styled.div`
     border-radius: 50%;
     border: 4px solid rgba(255, 255, 255, 0.2);
     z-index: 1;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 `;
 export const AuthorInfo = styled.div`
