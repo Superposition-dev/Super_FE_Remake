@@ -10,7 +10,7 @@ import { validateNickName } from '@/util/utils';
 import { ValidateNickNameType } from '@/interface/common';
 import { QueryClient, dehydrate, useMutation, useQuery } from 'react-query';
 import { getCookie, removeCookie } from '@/util/cookie';
-import { deleteUser, getUserInfo } from '@/api/user';
+import { deleteUser, getUserInfo, putEditUserInfo } from '@/api/user';
 import { useRouter } from 'next/router';
 
 export async function getStaticProps() {
@@ -46,7 +46,22 @@ function MyEditPage() {
     },
   });
 
-  const onEditUserInfo = () => {};
+  const { mutate: putEditUserInfoMutate } = useMutation(putEditUserInfo, {
+    onSuccess: () => {
+      onLink('/mypage');
+    },
+  });
+
+  const onEditUserInfo = () => {
+    const body = {
+      email: userInfo?.email,
+      nickname: userInfo?.nickname,
+      gender: userInfo?.gender ? userInfo.gender : null,
+      birthYear: userInfo?.birthYear ? userInfo.birthYear : null,
+    };
+
+    putEditUserInfoMutate({ body: body, token: token });
+  };
 
   const onLink = (url: string) => {
     router.push(url);
@@ -68,7 +83,13 @@ function MyEditPage() {
         <S.ButtonWrap>
           <S.EditButton
             disabled={
-              userInfo?.nickname && validateNickName(userInfo.nickname) === ValidateNickNameType.success ? false : true
+              data?.birthYear !== userInfo?.birthYear ||
+              data?.gender !== userInfo?.gender ||
+              (data?.nickname !== userInfo?.nickname &&
+                userInfo?.nickname &&
+                validateNickName(userInfo.nickname) === ValidateNickNameType.success)
+                ? false
+                : true
             }
             onClick={onEditUserInfo}
           >

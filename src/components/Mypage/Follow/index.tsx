@@ -8,7 +8,13 @@ import Author from '../../Authors/Author';
 function MyFollowPage() {
   const token = getCookie('accessToken');
 
-  const { data: authors } = useQuery(['userFollow'], () => getUserFollow(token));
+  const { data: authors } = useQuery(['userFollow'], () => getUserFollow(token), {
+    initialData: () => {
+      const queryClient = new QueryClient();
+      return queryClient.getQueryData('userFollow');
+    },
+    refetchOnWindowFocus: false,
+  });
 
   return (
     <S.MyFollowWrap>

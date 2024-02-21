@@ -11,7 +11,13 @@ function MyLikePage() {
   const mobile = useIsMobile();
   const token = getCookie('accessToken');
 
-  const { data: products } = useQuery(['userLike'], () => getUserLike(token));
+  const { data: products } = useQuery(['userLike'], () => getUserLike(token), {
+    initialData: () => {
+      const queryClient = new QueryClient();
+      return queryClient.getQueryData('userLike');
+    },
+    refetchOnWindowFocus: false,
+  });
 
   useEffect(() => {
     const scrollHeight = document.body.scrollHeight;
