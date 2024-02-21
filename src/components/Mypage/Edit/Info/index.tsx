@@ -14,8 +14,8 @@ function UserInfo(props: UserInfoProps) {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [validate, setValidate] = useState<ValidateNickNameType>(ValidateNickNameType.default);
 
-  const { data: isChange, refetch } = useQuery('user', () => getIsChange(token), {
-    enabled: false,
+  const isChange = useQuery('changeNickname', () => getIsChange(token), {
+    enabled: !!token,
     onSuccess: (isChange) => {
       setChange(isChange);
     },
@@ -43,10 +43,6 @@ function UserInfo(props: UserInfoProps) {
       gender: e.target.value as 'M' | 'F',
     }));
   };
-
-  useEffect(() => {
-    token && refetch;
-  }, [token, refetch]);
 
   return (
     <>
