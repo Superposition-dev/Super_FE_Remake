@@ -104,34 +104,40 @@ function UserInfo(props: UserInfoProps) {
         <S.UserInfoGenderWrap>
           <S.Title>성별</S.Title>
           <S.GendersWrap>
-            <S.GenderWrap htmlFor="woman">
-              <S.RadioButton
-                type="radio"
-                name="sex"
-                id="woman"
-                value="F"
-                checked={userInfo?.gender === 'F' ? true : false}
-                disabled={data?.gender ? true : false}
-                onChange={(e) => {
-                  onChangeGender(e);
-                }}
-              />
-              여성
-            </S.GenderWrap>
-            <S.GenderWrap htmlFor="man">
-              <S.RadioButton
-                type="radio"
-                name="sex"
-                id="man"
-                value="M"
-                checked={userInfo?.gender === 'M' ? true : false}
-                disabled={data?.gender ? true : false}
-                onChange={(e) => {
-                  onChangeGender(e);
-                }}
-              />
-              남성
-            </S.GenderWrap>
+            {data?.gender ? (
+              <S.DisabledGender>{data?.gender === 'F' ? '여성' : '남성'}</S.DisabledGender>
+            ) : (
+              <>
+                <S.GenderWrap htmlFor="woman">
+                  <S.RadioButton
+                    type="radio"
+                    name="sex"
+                    id="woman"
+                    value="F"
+                    checked={userInfo?.gender === 'F' ? true : false}
+                    disabled={data?.gender ? true : false}
+                    onChange={(e) => {
+                      onChangeGender(e);
+                    }}
+                  />
+                  여성
+                </S.GenderWrap>
+                <S.GenderWrap htmlFor="man">
+                  <S.RadioButton
+                    type="radio"
+                    name="sex"
+                    id="man"
+                    value="M"
+                    checked={userInfo?.gender === 'M' ? true : false}
+                    disabled={data?.gender ? true : false}
+                    onChange={(e) => {
+                      onChangeGender(e);
+                    }}
+                  />
+                  남성
+                </S.GenderWrap>
+              </>
+            )}
           </S.GendersWrap>
         </S.UserInfoGenderWrap>
       </S.UserInfoBottomWrap>
