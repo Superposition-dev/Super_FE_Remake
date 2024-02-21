@@ -66,7 +66,7 @@ function CommonUserImage(props: CommonUserImageProps) {
           <S.Img
             src={
               data?.profile === userInfo?.profile && data?.profile !== undefined
-                ? customNullImg(`https://kr.object.ncloudstorage.com/superposition-bucket/${userInfo?.profile}`)
+                ? customNullImg(userInfo?.profile as string)
                 : userInfo?.profile !== undefined
                 ? customNullImg(userInfo.profile)
                 : customNullImg('')

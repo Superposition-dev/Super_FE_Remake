@@ -12,6 +12,7 @@ import { addFollow, deleteFollow, getUserFollow } from '@/api/user';
 import CommonWrapper from '../@Common/Wrap';
 import Portal from '../@Common/Modal';
 import InduceLoginModal from '../@Common/Modal/InduceLogin';
+import { customNullImg } from '@/util/utils';
 
 export async function getStaticProps() {
   const queryClient = new QueryClient();
@@ -92,7 +93,7 @@ function AuthorsDetail({ data, id }: { data: AuthorDetailProps; id: string }) {
           <S.AuthorInfoWrap>
             <S.AuthorImage>
               <Image
-                src={`https://kr.object.ncloudstorage.com/superposition-bucket/${profile}`}
+                src={customNullImg(profile)}
                 alt="작가 사진"
                 loading="lazy"
                 placeholder="blur"
@@ -125,7 +126,7 @@ function AuthorsDetail({ data, id }: { data: AuthorDetailProps; id: string }) {
                     }}
                   >
                     <Image
-                      src={`https://kr.object.ncloudstorage.com/superposition-bucket/${item.picture}`}
+                      src={customNullImg(item.picture)}
                       alt="작품"
                       loading="eager"
                       fill
