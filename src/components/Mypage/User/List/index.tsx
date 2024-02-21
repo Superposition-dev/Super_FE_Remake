@@ -15,8 +15,8 @@ function List() {
   const { refetch } = useQuery('getLogout', () => getLogout(token), {
     enabled: false,
     onSuccess: () => {
-      onLink('/');
       removeCookie('accessToken', { path: '/' });
+      onLink('/');
     },
     onError: () => {
       console.log('error');

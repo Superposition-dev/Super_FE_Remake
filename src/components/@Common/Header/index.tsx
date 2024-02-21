@@ -8,11 +8,9 @@ import { getCookie } from '@/util/cookie';
 function Header() {
   const [open, setOpen] = useState<boolean>(false);
   const [isLogin, setIsLogin] = useState<boolean>(false);
-  const token = getCookie('accessToken');
-
   const router = useRouter();
   const pathname = router.pathname;
-
+  const token = getCookie('accessToken');
   const onLinkedLogin = () => {
     router.push('/login');
   };
