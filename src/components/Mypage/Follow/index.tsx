@@ -5,29 +5,10 @@ import { getCookie } from '@/util/cookie';
 import { AuthorsProps } from '@/interface/authors';
 import Author from '../../Authors/Author';
 
-export async function getStaticProps() {
-  const queryClient = new QueryClient();
-  const token = getCookie('accessToken');
-
-  await queryClient.prefetchQuery('userFollow', () => getUserFollow(token));
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
-}
-
 function MyFollowPage() {
   const token = getCookie('accessToken');
 
-  const { data: authors } = useQuery(['userFollow'], () => getUserFollow(token), {
-    initialData: () => {
-      const queryClient = new QueryClient();
-      return queryClient.getQueryData('userFollow');
-    },
-    refetchOnWindowFocus: false,
-    staleTime: 1000 * 60 * 60 * 24,
-  });
+  const { data: authors } = useQuery(['userFollow'], () => getUserFollow(token));
 
   return (
     <S.MyFollowWrap>

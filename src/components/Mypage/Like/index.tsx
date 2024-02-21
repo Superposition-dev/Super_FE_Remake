@@ -6,30 +6,12 @@ import { QueryClient, dehydrate, useQuery } from 'react-query';
 import { getCookie } from '@/util/cookie';
 import Product from '../../ExhibitionDetail/Product';
 
-export async function getStaticProps() {
-  const queryClient = new QueryClient();
-  const token = getCookie('accessToken');
-  await queryClient.prefetchQuery('userLike', () => getUserLike(token));
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
-}
-
 function MyLikePage() {
   const [maxScroll, setMaxScroll] = useState(0);
   const mobile = useIsMobile();
   const token = getCookie('accessToken');
 
-  const { data: products } = useQuery(['userLike'], () => getUserLike(token), {
-    initialData: () => {
-      const queryClient = new QueryClient();
-      return queryClient.getQueryData('userLike');
-    },
-    refetchOnWindowFocus: false,
-    staleTime: 1000 * 60 * 60 * 24,
-  });
+  const { data: products } = useQuery(['userLike'], () => getUserLike(token));
 
   useEffect(() => {
     const scrollHeight = document.body.scrollHeight;
