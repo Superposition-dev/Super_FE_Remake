@@ -63,7 +63,7 @@ function UserInfo(props: UserInfoProps) {
           <S.BirthYearWrap>
             <S.BirthYear
               type="text"
-              value={userInfo?.birthYear}
+              value={userInfo?.birthYear as string}
               placeholder="YYYY"
               onChange={(e) => onChangeBirthYear(e)}
               maxLength={4}
