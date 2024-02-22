@@ -25,7 +25,6 @@ function AuthorsPage() {
       const queryClient = new QueryClient();
       return queryClient.getQueryData('authors');
     },
-    refetchOnMount: true,
     refetchOnWindowFocus: false,
     staleTime: 1000 * 60 * 60 * 24,
   });
