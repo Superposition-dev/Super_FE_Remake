@@ -34,12 +34,7 @@ const getAxiosInstans = (type: string) => {
         }
         isRefreshing = true;
         try {
-          const token = getCookie('accessToken');
-          const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/users/regenerateToken`,{
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
+          const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/users/regenerateToken`);
           const { accessToken } = res.data;
           await removeCookie('accessToken');
           setCookie('accessToken', accessToken, { path: '/' });
