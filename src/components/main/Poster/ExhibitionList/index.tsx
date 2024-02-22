@@ -6,17 +6,17 @@ import 'swiper/css';
 const data = [
   {
     id: 1,
+    img: '/images/poster4.webp',
+    state: false,
+    title: '여기는 따듯해',
+    date: '12.16 ~ 12.25',
+  },
+  {
+    id: 2,
     img: '/images/poster1.webp',
     state: false,
     title: '성수 POSITION 2차',
     date: '11.20 ~ 12.12',
-  },
-  {
-    id: 2,
-    img: '/images/poster2.webp',
-    state: false,
-    title: '슈퍼포지션 1차 기획 전시',
-    date: '11.10 ~ 11.12',
   },
 ];
 
