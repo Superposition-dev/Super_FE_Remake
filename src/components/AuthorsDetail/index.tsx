@@ -41,7 +41,6 @@ function AuthorsDetail({ data, id }: { data: AuthorDetailProps; id: string }) {
       return queryClient.getQueryData('userFollow');
     },
     refetchOnWindowFocus: false,
-    staleTime: 1000 * 60 * 60 * 24,
   });
 
   const { mutate: addFollowMutate } = useMutation(addFollow, {
