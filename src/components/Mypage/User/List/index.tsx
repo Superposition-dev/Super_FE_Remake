@@ -30,8 +30,8 @@ function List() {
   ];
 
   const HELP = [
-    { title: '문의하기', url: '/' },
-    { title: '이용약관', url: '/' },
+    { title: '문의하기', url: 'https://www.instagram.com/superposition.official/' },
+    { title: '이용약관', url: 'https://cultured-perigee-cb1.notion.site/6e9f885733c741179356d365d1534116?pvs=4' },
     { title: '개인정보 처리 방침', url: 'https://cultured-perigee-cb1.notion.site/b4dfe70107b4458fb147febb4cbc88d7' },
     { title: '로그아웃', url: '' },
   ];

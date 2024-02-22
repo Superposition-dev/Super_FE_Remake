@@ -40,7 +40,7 @@ export const ModalInnerWrap = styled.div`
   gap: 2rem;
   width: 100%;
   height: 100%;
-  padding: 1.5rem 2rem;
+  padding: 1.5rem 2rem 2rem;
 `;
 
 export const TitleWrap = styled.div`
