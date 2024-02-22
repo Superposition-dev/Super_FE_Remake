@@ -8,12 +8,15 @@ import { useMutation } from 'react-query';
 import { patchUserProfile } from '@/api/user';
 import { getCookie } from '@/util/cookie';
 import ResponseModal from '../Modal/Response';
+import { useRouter } from 'next/router';
 
 function CommonUserImage(props: CommonUserImageProps) {
   const { userInfo, setUserInfo, data } = props;
   const [open, setOpen] = useState<boolean>(false);
   const [complete, setComplete] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
+  const pathname = router.pathname;
   const token = getCookie('accessToken');
 
   const { mutate: patchUserProfileMutate } = useMutation(patchUserProfile, {
@@ -66,7 +69,7 @@ function CommonUserImage(props: CommonUserImageProps) {
           <S.Img
             src={
               data?.profile === userInfo?.profile && data?.profile !== undefined
-                ? customNullImg(userInfo?.profile as string)
+                ? customNullImg(`https://kr.object.ncloudstorage.com/superposition-bucket/${userInfo?.profile}`)
                 : userInfo?.profile !== undefined
                 ? customNullImg(userInfo.profile)
                 : customNullImg('')
@@ -93,7 +96,7 @@ function CommonUserImage(props: CommonUserImageProps) {
               setState={setComplete}
               message="프로필이 수정되었습니다."
               cancel="닫기"
-              handler={undefined}
+              handler={() => (pathname.includes('edit') ? router.push('/mypage') : undefined)}
             />
           ) : (
             <></>

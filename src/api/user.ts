@@ -41,20 +41,6 @@ export const getUserFollow = async (token: string) => {
   }
 };
 
-export const getIsChange = async (token: string) => {
-  try {
-    const res = await instance.get(`/users/isAvailable`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    return res.data;
-  } catch (e) {
-    console.log(e);
-  }
-};
-
 export const getLogout = async (token: string) => {
   try {
     const res = await instance.get('/users/logout', {
@@ -168,9 +154,9 @@ export const putEditUserInfo = async ({ body, token }: { body: UserInfoType; tok
   }
 };
 
-export const isValiableNickname = async (token:string) => {
+export const isValiableNickname = async (token: string) => {
   try {
-    const res = await instance.get('/users/isAvailable',{
+    const res = await instance.get('/users/isAvailable', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -179,4 +165,4 @@ export const isValiableNickname = async (token:string) => {
   } catch (e) {
     console.log(e);
   }
-}
+};

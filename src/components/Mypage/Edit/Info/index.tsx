@@ -1,35 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './styles';
 import { ValidateNickNameType } from '@/interface/common';
-import { validateNickName } from '@/util/utils';
+import { regexNickname, validateNickName } from '@/util/utils';
 import { UserInfoProps } from '@/interface/user';
-import { getIsChange } from '@/api/user';
 import { getCookie } from '@/util/cookie';
-import { useQuery } from 'react-query';
 import { useRecoilValue } from 'recoil';
 import { nicknameAtom } from '@/atoms/user';
+import Portal from '@/components/@Common/Modal';
+import ResponseModal from '@/components/@Common/Modal/Response';
 
 function UserInfo(props: UserInfoProps) {
   const { userInfo, setUserInfo, data } = props;
-  const token = getCookie('accessToken');
-  const [change, setChange] = useState<boolean>(true);
   const [isEdit, setIsEdit] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>('');
   const [validate, setValidate] = useState<ValidateNickNameType>(ValidateNickNameType.default);
   const nicknameIsVaild = useRecoilValue(nicknameAtom);
-  const isChange = useQuery('changeNickname', () => getIsChange(token), {
-    enabled: !!token,
-    onSuccess: (isChange) => {
-      setChange(isChange);
-    },
-  });
 
   const onChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserInfo((userInfo) => ({
-      ...userInfo,
-      nickname: e.target.value,
-    }));
-
-    setValidate(validateNickName(e.target.value, data?.nickname));
+    if (regexNickname(e.target.value)) {
+      setError(true);
+      setMessage('이모지는 닉네임에 포함될 수 없어요.');
+      return;
+    } else {
+      setValidate(validateNickName(e.target.value, data?.nickname));
+      setUserInfo((userInfo) => ({
+        ...userInfo,
+        nickname: e.target.value,
+      }));
+    }
   };
 
   const onChangeBirthYear = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -139,6 +138,13 @@ function UserInfo(props: UserInfoProps) {
           </S.GendersWrap>
         </S.UserInfoGenderWrap>
       </S.UserInfoBottomWrap>
+      <Portal>
+        {error ? (
+          <ResponseModal state={error} setState={setError} message={message} cancel="확인" handler={undefined} />
+        ) : (
+          <> </>
+        )}
+      </Portal>
     </>
   );
 }
