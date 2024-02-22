@@ -40,7 +40,7 @@ function Footer() {
               <S.LinkIcon />
               <S.LinkText
                 href={
-                  "https://instagram.com/superposition.official?igshid=MzMyNGUyNmU2YQ=="
+                  "https://forms.gle/Qyy73tLLbFcqTtEfA"
                 }
               >
                 파트너 작가 신청

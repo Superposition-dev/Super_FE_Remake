@@ -30,7 +30,7 @@ function Poster() {
           </S.PosterSubWrap>
         </S.PosterTitleWrap>
         <S.PosterInfo>
-          {'연남에서의 첫 번째 만남. 이번엔 성수를 찾아갑니다! 두 가지 버전으로 펼쳐질 성수전을 기대해주세요!'}
+          {'성수동 어느 지하에는 빛나는 행성들이 살고 있습니다. 문을 열면 펼쳐지는 새로운 차원으로 여러분을 초대합니다.'}
         </S.PosterInfo>
         </S.TextWrap>
       </S.PosterInfoWrap>
