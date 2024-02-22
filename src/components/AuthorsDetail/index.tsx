@@ -13,6 +13,7 @@ import CommonWrapper from '../@Common/Wrap';
 import Portal from '../@Common/Modal';
 import InduceLoginModal from '../@Common/Modal/InduceLogin';
 import { customNullImg } from '@/util/utils';
+import { patchView } from '@/api/patchData';
 
 export async function getStaticProps() {
   const queryClient = new QueryClient();
@@ -43,7 +44,7 @@ function AuthorsDetail({ data, id }: { data: AuthorDetailProps; id: string }) {
     enabled: !!token,
     refetchOnWindowFocus: false,
   });
-
+  const {mutate: view} = useMutation(()=>patchView({title:"artist",id: instagramId}));
   const { mutate: addFollowMutate } = useMutation(addFollow, {
     onSuccess: () => {
       setFollow((prevFollow) => !prevFollow);
@@ -85,6 +86,10 @@ function AuthorsDetail({ data, id }: { data: AuthorDetailProps; id: string }) {
       }
     });
   }, [authors, id]);
+
+  useEffect(() => {
+    view();
+  }, []);
 
   return (
     <>

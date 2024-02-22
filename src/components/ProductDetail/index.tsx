@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { QueryClient, dehydrate, useMutation, useQuery } from 'react-query';
 import { ProductDetailProps, ProductType } from '@/interface/product';
-import { patchFormClick } from '@/api/patchData';
+import { patchFormClick, patchView } from '@/api/patchData';
 import { addLike, deleteLike, getUserLike } from '@/api/user';
 import { priceFormatter, seqFormatter } from '@/util/utils';
 import { getCookie } from '@/util/cookie';
@@ -37,7 +37,7 @@ function ProductDetail({ data, id }: { data: ProductDetailProps; id: string }) {
     enabled: !!token,
     refetchOnWindowFocus: false,
   });
-
+  const {mutate: view} = useMutation(()=>patchView({title:"products",id: productId}));
   const { mutate: formMutate } = useMutation(patchFormClick);
   const { mutate: addLikeMutate } = useMutation(addLike, {
     onSuccess: () => {
@@ -71,13 +71,16 @@ function ProductDetail({ data, id }: { data: ProductDetailProps; id: string }) {
 
   useEffect(() => {
     if (products === undefined) return;
-
     products.map((item) => {
       if (String(item.productId) === id) {
         setLike(true);
       }
     });
   }, [products, id]);
+
+  useEffect(() => {
+    view();
+  }, []);
 
   return (
     <>
