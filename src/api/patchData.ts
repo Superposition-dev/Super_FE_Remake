@@ -1,4 +1,3 @@
-import { setItemWithExpire } from '@/util/localstorage';
 import { instance } from './instance';
 
 export const patchLike = async ({ id, like }: { id: number; like: boolean }) => {
@@ -15,7 +14,6 @@ export const patchFormClick = async (id: number) => {
 export const patchView = async ({ title, id }: { title: string; id: string | number }) => {
   try {
     const res = await instance.patch(`/${title}/${id}/view`);
-    setItemWithExpire('views', `${title}-${id}`);
     return res.data;
   } catch (e) {
     console.error(e);
