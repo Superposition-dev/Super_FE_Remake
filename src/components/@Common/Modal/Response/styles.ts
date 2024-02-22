@@ -46,10 +46,12 @@ export const ModalInnerWrap = styled.div`
 export const Title = styled.p`
   ${({ theme }) => theme.flex.flexCenter}
   width: 100%;
-  height: 70%;
-  ${({ theme }) => theme.font.bold_14};
+  height: 75%;
+  padding: 0 1rem;
+  ${({ theme }) => theme.font.medium_14};
   color: ${({ theme }) => theme.colors.white};
   text-align: center;
+  white-space: pre-wrap;
 `;
 
 export const ModalButtonWrap = styled.div`
@@ -57,11 +59,12 @@ export const ModalButtonWrap = styled.div`
   ${({ theme }) => theme.flex.flexCenter}
   justify-content: center;
   width: 100%;
-  height: 30%;
+  height: 20%;
 `;
 
 export const CancelButton = styled.button`
   ${({ theme }) => theme.flex.flexCenter}
+  align-items: flex-start;
   width: 50%;
   height: 100%;
   ${({ theme }) => theme.font.bold_12};

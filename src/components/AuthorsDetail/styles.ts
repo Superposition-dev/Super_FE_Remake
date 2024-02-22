@@ -141,6 +141,13 @@ export const ImageWrap = styled.div`
   }
 `;
 
+export const Text = styled.p`
+  ${({ theme }) => theme.flex.flexCenter};
+  height: 5rem;
+  ${({ theme }) => theme.font.medium_14};
+  color: ${({ theme }) => theme.colors.gray};
+`;
+
 export const Icon = styled.div`
   background-color: #000;
   width: fit-content;

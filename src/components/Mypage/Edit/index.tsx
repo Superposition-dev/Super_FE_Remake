@@ -12,6 +12,7 @@ import { QueryClient, dehydrate, useMutation, useQuery } from 'react-query';
 import { getCookie, removeCookie } from '@/util/cookie';
 import { deleteUser, getUserInfo, putEditUserInfo } from '@/api/user';
 import { useRouter } from 'next/router';
+import ResponseModal from '@/components/@Common/Modal/Response';
 
 export async function getStaticProps() {
   const queryClient = new QueryClient();
@@ -27,6 +28,8 @@ export async function getStaticProps() {
 function MyEditPage() {
   const [userInfo, setUserInfo] = useState<UserInfoType>();
   const [open, setOpen] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>('');
   const token = getCookie('accessToken');
   const router = useRouter();
 
@@ -47,8 +50,13 @@ function MyEditPage() {
   });
 
   const { mutate: putEditUserInfoMutate } = useMutation(putEditUserInfo, {
-    onSuccess: () => {
-      onLink('/mypage');
+    onSuccess: (res) => {
+      if (res.response.status == 409) {
+        setError(true);
+        setMessage('다른 사용자와 중복된 닉네임으로\n변경할 수 없어요.');
+      } else {
+        onLink('/mypage');
+      }
     },
   });
 
@@ -99,16 +107,23 @@ function MyEditPage() {
         </S.ButtonWrap>
       </S.MyEditWrap>
       <Portal>
-        {open ? (
-          <ResignModal
-            state={open}
-            setState={setOpen}
-            data={data}
-            handler={() => deleteUserMutate(token)}
-          ></ResignModal>
-        ) : (
-          <></>
-        )}
+        <>
+          {open ? (
+            <ResignModal
+              state={open}
+              setState={setOpen}
+              data={data}
+              handler={() => deleteUserMutate(token)}
+            ></ResignModal>
+          ) : (
+            <></>
+          )}
+          {error ? (
+            <ResponseModal state={error} setState={setError} message={message} cancel="확인" handler={undefined} />
+          ) : (
+            <> </>
+          )}
+        </>
       </Portal>
     </CommonWrapper>
   );

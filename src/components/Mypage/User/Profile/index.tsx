@@ -12,10 +12,11 @@ import { getCookie } from '@/util/cookie';
 function Profile(props: ProfileProps) {
   const { userInfo } = props;
   const [onEdit, setOnEdit] = useState<boolean>(false);
-  const setIsVaild = useSetRecoilState(nicknameAtom);
   const router = useRouter();
   const token = getCookie('accessToken');
-  useQuery('nickNameIsValid',()=>isValiableNickname(token), {
+  const setIsVaild = useSetRecoilState(nicknameAtom);
+
+  useQuery('nickNameIsValid', () => isValiableNickname(token), {
     enabled: onEdit,
     onSuccess: (data) => {
       setIsVaild(data);
@@ -29,11 +30,7 @@ function Profile(props: ProfileProps) {
       <S.ProfileWrap>
         <S.Profile>
           <S.ImageWrap>
-            <S.Image
-              src={customNullImg(
-                userInfo ? userInfo.profile : '',
-              )}
-            />
+            <S.Image src={customNullImg(userInfo ? userInfo.profile : '')} />
           </S.ImageWrap>
           <S.DescWrap>
             <S.NickName>{userInfo.nickname}</S.NickName>
@@ -45,7 +42,7 @@ function Profile(props: ProfileProps) {
             </S.EmailWrap>
           </S.DescWrap>
         </S.Profile>
-        <S.EditButton onClick={()=>setOnEdit(true)}>수정</S.EditButton>
+        <S.EditButton onClick={() => setOnEdit(true)}>수정</S.EditButton>
       </S.ProfileWrap>
     )
   );
