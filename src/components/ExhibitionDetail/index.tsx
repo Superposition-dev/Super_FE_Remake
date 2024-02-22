@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { RefObject, use, useEffect, useRef, useState } from 'react';
 import * as S from './styles';
 import Author from './Author';
 import Search from '../@Common/Search';
@@ -27,11 +27,13 @@ function ExhibitionDetailPage({ data }: { data: ExhibitionDetailProps }) {
   return (
     <S.ExhibitionDetailWrap>
       <CommonTitle data={TITLE} />
-      <S.Authors>
-        {data.artistInfo?.map((author: AuthorType, index: number) => (
-          <Author key={index} data={author} />
-        ))}
-      </S.Authors>
+      <S.AuthorsWrap>
+        <S.Authors>
+          {data.artistInfo?.map((author: AuthorType, index: number) => (
+            <Author key={index} data={author} />
+          ))}
+        </S.Authors>
+      </S.AuthorsWrap>
       <Search setData={setSearchData} />
       <S.ProductsWrap>
         <S.Products

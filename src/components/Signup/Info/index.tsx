@@ -2,20 +2,29 @@ import React, { useState } from 'react';
 import * as S from './styles';
 import { UserInfoProps } from '@/interface/signup';
 import { ValidateNickNameType } from '@/interface/common';
-import { validateNickName } from '@/util/utils';
+import { regexNickname, validateNickName } from '@/util/utils';
+import Portal from '@/components/@Common/Modal';
+import ResponseModal from '@/components/@Common/Modal/Response';
 
 function UserInfo(props: UserInfoProps) {
   const { userInfo, setUserInfo } = props;
   const [isEdit, setIsEdit] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>('');
   const [validate, setValidate] = useState<ValidateNickNameType>(ValidateNickNameType.default);
 
   const onChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserInfo((userInfo) => ({
-      ...userInfo,
-      nickname: e.target.value,
-    }));
-
-    setValidate(validateNickName(e.target.value));
+    if (regexNickname(e.target.value)) {
+      setError(true);
+      setMessage('이모지는 닉네임에 포함될 수 없어요.');
+      return;
+    } else {
+      setValidate(validateNickName(e.target.value));
+      setUserInfo((userInfo) => ({
+        ...userInfo,
+        nickname: e.target.value,
+      }));
+    }
   };
 
   const onChangeBirthYear = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -101,6 +110,13 @@ function UserInfo(props: UserInfoProps) {
           </S.GendersWrap>
         </S.UserInfoGenderWrap>
       </S.UserInfoBottomWrap>
+      <Portal>
+        {error ? (
+          <ResponseModal state={error} setState={setError} message={message} cancel="확인" handler={undefined} />
+        ) : (
+          <> </>
+        )}
+      </Portal>
     </>
   );
 }

@@ -117,24 +117,23 @@ function AuthorsDetail({ data, id }: { data: AuthorDetailProps; id: string }) {
           </S.AuthorWrap>
           <S.AuthorWrap>
             <S.Title>대표 작품</S.Title>
-            <S.ImageSwiper slidesPerView={2.3} spaceBetween={10} freeMode={true} modules={[FreeMode, Pagination]}>
-              {products.map((item: AuthorProductsProps, index) => (
-                <SwiperSlide key={index}>
-                  <S.ImageWrap
-                    onClick={() => {
-                      router.push(`/product/${item.productId}`);
-                    }}
-                  >
-                    <Image
-                      src={customNullImg(item.picture)}
-                      alt="작품"
-                      loading="eager"
-                      fill
-                    />
-                  </S.ImageWrap>
-                </SwiperSlide>
-              ))}
-            </S.ImageSwiper>
+            {products.length !== 0 ? (
+              <S.ImageSwiper slidesPerView={2.3} spaceBetween={10} freeMode={true} modules={[FreeMode, Pagination]}>
+                {products.map((item: AuthorProductsProps, index) => (
+                  <SwiperSlide key={index}>
+                    <S.ImageWrap
+                      onClick={() => {
+                        router.push(`/product/${item.productId}`);
+                      }}
+                    >
+                      <Image src={customNullImg(item.picture)} alt="작품" loading="eager" fill />
+                    </S.ImageWrap>
+                  </SwiperSlide>
+                ))}
+              </S.ImageSwiper>
+            ) : (
+              <S.Text>작가님의 대표 작품이 아직 없어요!</S.Text>
+            )}
           </S.AuthorWrap>
           <S.AuthorWrap>
             <S.Title>SNS</S.Title>

@@ -15,8 +15,8 @@ const getAxiosInstans = (type: string) => {
   const instance = axios.create(config);
   instance.defaults.timeout = 2500;
   instance.interceptors.response.use(
-    response => response,
-    async error => {
+    (response) => response,
+    async (error) => {
       console.log(error);
       const originalRequest = error.config;
       if (error.response?.status === 401) {
@@ -24,19 +24,18 @@ const getAxiosInstans = (type: string) => {
           return new Promise((resolve, reject) => {
             failedQueue.push({ resolve, reject });
           })
-            .then(token => {
+            .then((token) => {
               originalRequest.headers['Authorization'] = 'Bearer ' + token;
               return instance(originalRequest);
             })
-            .catch(err => {
+            .catch((err) => {
               return Promise.reject(err);
             });
         }
         isRefreshing = true;
         try {
           const refresh = getCookie('refreshToken');
-          const res = await axios.get(
-            `${process.env.NEXT_PUBLIC_BASE_URL}/users/regenerateToken`);
+          const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/users/regenerateToken`);
           const { accessToken } = res.data;
           await removeCookie('accessToken');
           setCookie('accessToken', accessToken, { path: '/' });
@@ -44,15 +43,15 @@ const getAxiosInstans = (type: string) => {
           failedQueue.forEach((request: any) => request.resolve(accessToken));
           return instance(originalRequest);
         } catch (err) {
-          failedQueue.forEach((request:any) => request.reject(error));
+          failedQueue.forEach((request: any) => request.reject(error));
           failedQueue = [];
         } finally {
           isRefreshing = false;
         }
       }
       return Promise.reject(error);
-  }
-  )
+    },
+  );
   return instance;
 };
 
