@@ -19,22 +19,15 @@ const getAxiosInstans = (type: string) => {
     async error => {
       console.log(error);
       const originalRequest = error.config;
+      if(error.response?.status === 400) {
+        removeCookie('accessToken', { path: '/' });
+        window.alert('로그인이 필요한 서비스입니다.');
+        window.location.href = '/';
+      }
       if (error.response?.status === 401) {
-        if (isRefreshing) {
-          return new Promise((resolve, reject) => {
-            failedQueue.push({ resolve, reject });
-          })
-            .then(token => {
-              originalRequest.headers['Authorization'] = 'Bearer ' + token;
-              return instance(originalRequest);
-            })
-            .catch(err => {
-              return Promise.reject(err);
-            });
-        }
         isRefreshing = true;
         try {
-          const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/users/regenerateToken`);
+          const res = await instance.get(`${process.env.NEXT_PUBLIC_BASE_URL}/users/regenerateToken`);
           const { accessToken } = res.data;
           await removeCookie('accessToken');
           setCookie('accessToken', accessToken, { path: '/' });
@@ -42,14 +35,28 @@ const getAxiosInstans = (type: string) => {
           failedQueue.forEach((request: any) => request.resolve(accessToken));
           return instance(originalRequest);
         } catch (err:any) {
-          if(err.response.status === 400) {
+          if(err.response.status === 400 || err.response.status === 403) {
             removeCookie('accessToken', { path: '/' });
+            window.alert('세션이 만료도었습니다. 다시 로그인 해주세요.');
             window.location.href = '/';
           }
           failedQueue.forEach((request:any) => request.reject(error));
           failedQueue = [];
         } finally {
           isRefreshing = false;
+        }
+        if (isRefreshing) {
+          return new Promise((resolve, reject) => {
+            failedQueue.push({ resolve, reject });
+          })
+            .then(token => {
+              console.log(token);
+              originalRequest.headers['Authorization'] = 'Bearer ' + token;
+              return instance(originalRequest);
+            })
+            .catch(err => {
+              return Promise.reject(err);
+            });
         }
       }
       return Promise.reject(error);

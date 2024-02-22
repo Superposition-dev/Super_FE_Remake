@@ -55,7 +55,7 @@ function SignupPage() {
         </S.SignupBottomWrap>
         <S.SignupButton
           disabled={
-            (userInfo?.nickname && validateNickName(userInfo.nickname) === ValidateNickNameType.success) || isLoading
+            (userInfo?.nickname && userInfo.birthYear?.length==4 && userInfo.gender && validateNickName(userInfo.nickname) === ValidateNickNameType.success) || isLoading
               ? false
               : true
           }

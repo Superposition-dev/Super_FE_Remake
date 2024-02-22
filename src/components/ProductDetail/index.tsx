@@ -34,6 +34,7 @@ function ProductDetail({ data, id }: { data: ProductDetailProps; id: string }) {
       const queryClient = new QueryClient();
       return queryClient.getQueryData('userLike');
     },
+    enabled: !!token,
     refetchOnWindowFocus: false,
   });
 
@@ -100,7 +101,7 @@ function ProductDetail({ data, id }: { data: ProductDetailProps; id: string }) {
               <S.Code>No.{seqFormatter(productId)}</S.Code>
             </S.TitleWrap>
             <S.Like like={like} onClick={handleLike}>
-              {like ? <S.Heart /> : <S.UnHeart />}
+              {token && like ? <S.Heart /> : <S.UnHeart />}
             </S.Like>
           </S.NameWrap>
           <S.InfoWrap>

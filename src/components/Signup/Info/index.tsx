@@ -72,6 +72,7 @@ function UserInfo(props: UserInfoProps) {
           <S.BirthYearWrap>
             <S.BirthYear
               type="text"
+              onInput={(e:React.ChangeEvent<HTMLInputElement>)=> e.target.value = e.target.value.replace(/[^0-9]/g, '')}
               value={userInfo?.birthYear as string}
               placeholder="YYYY"
               onChange={(e) => onChangeBirthYear(e)}

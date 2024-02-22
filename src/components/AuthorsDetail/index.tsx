@@ -40,6 +40,7 @@ function AuthorsDetail({ data, id }: { data: AuthorDetailProps; id: string }) {
       const queryClient = new QueryClient();
       return queryClient.getQueryData('userFollow');
     },
+    enabled: !!token,
     refetchOnWindowFocus: false,
   });
 
@@ -106,7 +107,7 @@ function AuthorsDetail({ data, id }: { data: AuthorDetailProps; id: string }) {
               <S.AuthorIntro>{introduce}</S.AuthorIntro>
             </S.AuthorInfo>
             <S.FollowButton onClick={handleFollow} follow={follow}>
-              {follow ? <S.CheckIcon /> : '팔로우'}
+              {token && follow ? <S.CheckIcon /> : '팔로우'}
             </S.FollowButton>
           </S.AuthorInfoWrap>
           <S.AuthorWrap>
