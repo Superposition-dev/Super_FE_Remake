@@ -86,7 +86,7 @@ function UserInfo(props: UserInfoProps) {
             <S.GenderWrap htmlFor="woman">
               <S.RadioButton
                 type="radio"
-                name="sex"
+                name="gender"
                 id="woman"
                 value="F"
                 onChange={(e) => {
@@ -98,7 +98,7 @@ function UserInfo(props: UserInfoProps) {
             <S.GenderWrap htmlFor="man">
               <S.RadioButton
                 type="radio"
-                name="sex"
+                name="gender"
                 id="man"
                 value="M"
                 onChange={(e) => {

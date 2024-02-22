@@ -29,6 +29,7 @@ function MyEditPage() {
   const [userInfo, setUserInfo] = useState<UserInfoType>();
   const [open, setOpen] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
+  const [isEdit, setIsEdit] = useState<boolean>(true);
   const [message, setMessage] = useState<string>('');
   const token = getCookie('accessToken');
   const router = useRouter();
@@ -51,10 +52,12 @@ function MyEditPage() {
 
   const { mutate: putEditUserInfoMutate } = useMutation(putEditUserInfo, {
     onSuccess: (res) => {
-      if (res.response.status == 409) {
+      if (res && res.response.status == 409) {
         setError(true);
         setMessage('다른 사용자와 중복된 닉네임으로\n변경할 수 없어요.');
       } else {
+        setIsEdit(false);
+        setMessage('회원 정보 수정이 완료되었습니다.');
         onLink('/mypage');
       }
     },
@@ -115,13 +118,18 @@ function MyEditPage() {
               data={data}
               handler={() => deleteUserMutate(token)}
             ></ResignModal>
+          ) : error ? (
+            <ResponseModal state={error} setState={setError} message={message} cancel="확인" handler={undefined} />
+          ) : !isEdit ? (
+            <ResponseModal
+              state={isEdit}
+              setState={setIsEdit}
+              message={message}
+              cancel="닫기"
+              handler={() => onLink('/mypage')}
+            />
           ) : (
             <></>
-          )}
-          {error ? (
-            <ResponseModal state={error} setState={setError} message={message} cancel="확인" handler={undefined} />
-          ) : (
-            <> </>
           )}
         </>
       </Portal>

@@ -88,7 +88,7 @@ function UserInfo(props: UserInfoProps) {
           <S.BirthYearWrap>
             <S.BirthYear
               type="text"
-              value={userInfo?.birthYear !== null ? userInfo?.birthYear : ''}
+              value={userInfo?.birthYear !== null ? userInfo?.birthYear : 'YYYY'}
               placeholder="YYYY"
               onChange={(e) => onChangeBirthYear(e)}
               maxLength={4}
@@ -108,7 +108,7 @@ function UserInfo(props: UserInfoProps) {
                 <S.GenderWrap htmlFor="woman">
                   <S.RadioButton
                     type="radio"
-                    name="sex"
+                    name="gender"
                     id="woman"
                     value="F"
                     checked={userInfo?.gender === 'F' ? true : false}
@@ -122,7 +122,7 @@ function UserInfo(props: UserInfoProps) {
                 <S.GenderWrap htmlFor="man">
                   <S.RadioButton
                     type="radio"
-                    name="sex"
+                    name="gender"
                     id="man"
                     value="M"
                     checked={userInfo?.gender === 'M' ? true : false}
