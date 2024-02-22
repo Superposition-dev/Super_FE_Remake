@@ -89,7 +89,7 @@ function CommonUserImage(props: CommonUserImageProps) {
               setState={setComplete}
               message="프로필이 수정되었습니다."
               cancel="닫기"
-              handler={() => (pathname.includes('edit') ? router.push('/mypage') : undefined)}
+              handler={pathname.includes('edit') ? () => router.push('/mypage') : undefined}
             />
           ) : (
             <></>
