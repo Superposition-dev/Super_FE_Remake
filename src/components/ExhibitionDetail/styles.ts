@@ -16,12 +16,17 @@ export const ProductsWrap = styled.div`
   padding: 0 1rem;
 `;
 
-export const Authors = styled.div`
+export const AuthorsWrap = styled.div`
   width: 100%;
+`;
+
+export const Authors = styled.div`
   display: flex;
+  width: auto;
   justify-content: center;
   align-items: center;
-  gap: 1.4rem;
+  gap: 0.75rem;
+  overflow: auto;
 `;
 
 export const Products = styled(MasonryGrid)<{ maxScroll: number }>`
