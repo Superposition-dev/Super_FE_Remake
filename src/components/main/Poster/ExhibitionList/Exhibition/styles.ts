@@ -30,6 +30,7 @@ export const Box = styled.div<{ img: string }>`
 `;
 
 export const TextWrap = styled.div`
+  min-width: 80%;
   display: none;
   height: 100%;
   @media (max-width: 768px) {
