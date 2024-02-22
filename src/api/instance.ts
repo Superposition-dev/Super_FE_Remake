@@ -19,6 +19,11 @@ const getAxiosInstans = (type: string) => {
     async error => {
       console.log(error);
       const originalRequest = error.config;
+      if(error.response?.status === 400) {
+        removeCookie('accessToken', { path: '/' });
+        window.alert('로그인이 필요한 서비스입니다.');
+        window.location.href = '/';
+      }
       if (error.response?.status === 401) {
         isRefreshing = true;
         try {
@@ -30,8 +35,9 @@ const getAxiosInstans = (type: string) => {
           failedQueue.forEach((request: any) => request.resolve(accessToken));
           return instance(originalRequest);
         } catch (err:any) {
-          if(err.response.status === 400) {
+          if(err.response.status === 400 || err.response.status === 403) {
             removeCookie('accessToken', { path: '/' });
+            window.alert('세션이 만료도었습니다. 다시 로그인 해주세요.');
             window.location.href = '/';
           }
           failedQueue.forEach((request:any) => request.reject(error));
