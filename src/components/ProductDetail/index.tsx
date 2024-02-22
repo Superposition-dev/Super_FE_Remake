@@ -35,7 +35,6 @@ function ProductDetail({ data, id }: { data: ProductDetailProps; id: string }) {
       return queryClient.getQueryData('userLike');
     },
     refetchOnWindowFocus: false,
-    staleTime: 1000 * 60 * 60 * 24,
   });
 
   const { mutate: formMutate } = useMutation(patchFormClick);
