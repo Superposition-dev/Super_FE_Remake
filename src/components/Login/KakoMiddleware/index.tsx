@@ -30,7 +30,8 @@ const KakaoMiddleware = () => {
           sessionStorage.setItem('userInfo', JSON.stringify(e.response.data));
           router.push('/signup');
           return;
-        } else if (e.response.status == 409) {
+        }
+        if (e.response.status == 409) {
           const date = e.response.data;
 
           setLogin(false);
@@ -38,6 +39,13 @@ const KakaoMiddleware = () => {
           setMessage(
             `탈퇴 이후 3개월이 지나지 않아\n가입이 제한되었어요.\n\n${dateFormatter(date)}부터 다시 가입할 수 있어요.`,
           );
+          return;
+        }
+        if(e.response.status === 500){
+          setLogin(false);
+          setOpen(true);
+          setMessage('서버에 문제가 생겼어요.\n잠시 후 다시 시도해주세요.');
+          return;
         }
       }
     },
