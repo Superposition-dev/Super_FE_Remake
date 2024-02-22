@@ -20,21 +20,9 @@ const getAxiosInstans = (type: string) => {
       console.log(error);
       const originalRequest = error.config;
       if (error.response?.status === 401) {
-        if (isRefreshing) {
-          return new Promise((resolve, reject) => {
-            failedQueue.push({ resolve, reject });
-          })
-            .then(token => {
-              originalRequest.headers['Authorization'] = 'Bearer ' + token;
-              return instance(originalRequest);
-            })
-            .catch(err => {
-              return Promise.reject(err);
-            });
-        }
         isRefreshing = true;
         try {
-          const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/users/regenerateToken`);
+          const res = await instance.get(`${process.env.NEXT_PUBLIC_BASE_URL}/users/regenerateToken`);
           const { accessToken } = res.data;
           await removeCookie('accessToken');
           setCookie('accessToken', accessToken, { path: '/' });
@@ -50,6 +38,19 @@ const getAxiosInstans = (type: string) => {
           failedQueue = [];
         } finally {
           isRefreshing = false;
+        }
+        if (isRefreshing) {
+          return new Promise((resolve, reject) => {
+            failedQueue.push({ resolve, reject });
+          })
+            .then(token => {
+              console.log(token);
+              originalRequest.headers['Authorization'] = 'Bearer ' + token;
+              return instance(originalRequest);
+            })
+            .catch(err => {
+              return Promise.reject(err);
+            });
         }
       }
       return Promise.reject(error);
