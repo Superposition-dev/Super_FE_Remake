@@ -60,6 +60,7 @@ export const postSignup = async (data: UserInfoType) => {
     return res.data;
   } catch (e) {
     console.log(e);
+    return e;
   }
 };
 
@@ -151,6 +152,7 @@ export const putEditUserInfo = async ({ body, token }: { body: UserInfoType; tok
     return res.data;
   } catch (e) {
     console.log(e);
+    return e;
   }
 };
 

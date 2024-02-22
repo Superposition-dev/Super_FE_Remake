@@ -53,30 +53,23 @@ function CommonUserImage(props: CommonUserImageProps) {
   };
 
   const onPreviewOrigin = () => {
+    const formData = new FormData();
+
     setOpen(false);
     setUserInfo((userInfo) => ({
       ...userInfo,
       profile: '',
     }));
 
-    patchUserProfileMutate({ file: null, token: token });
+    formData.append('file', '');
+    patchUserProfileMutate({ file: formData, token: token });
   };
 
   return (
     <>
       <S.UserImageWrap onClick={() => setOpen(true)}>
         <S.UserImage>
-          <S.Img
-            src={
-              data?.profile === userInfo?.profile && data?.profile !== undefined
-                ? customNullImg(`https://kr.object.ncloudstorage.com/superposition-bucket/${userInfo?.profile}`)
-                : userInfo?.profile !== undefined
-                ? customNullImg(userInfo.profile)
-                : customNullImg('')
-            }
-            alt="회원 이미지"
-            fill
-          />
+          <S.Img src={customNullImg(userInfo?.profile ? userInfo.profile : '')} alt="회원 이미지" fill />
         </S.UserImage>
         <S.IconWrap>
           <S.Icon />

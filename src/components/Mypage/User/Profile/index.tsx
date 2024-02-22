@@ -25,8 +25,6 @@ function Profile(props: ProfileProps) {
     },
   });
 
-  console.log(onEdit);
-
   return (
     userInfo && (
       <S.ProfileWrap>
