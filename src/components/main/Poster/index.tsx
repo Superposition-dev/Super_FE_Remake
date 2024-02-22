@@ -7,7 +7,7 @@ function Poster() {
 
   const router = useRouter();
   const onLinked = () => {
-    router.push(`/products`);
+    router.push(`/exhibition`);
   }
 
   return (
@@ -19,13 +19,13 @@ function Poster() {
     <S.ContentWrap>
       <S.PosterInfoWrap onClick={onLinked}>
         <S.PosterImage>
-          <Image src="/images/poster4.webp" loading="lazy" alt="포스터" fill />
+          <Image src="/images/poster5.webp" loading="lazy" alt="포스터" fill />
         </S.PosterImage>
         <S.TextWrap>
         <S.PosterTitleWrap>
-          <S.PosterTitle>여기는 따뜻해</S.PosterTitle>
+          <S.PosterTitle>지하의 행성들</S.PosterTitle>
           <S.PosterSubWrap>
-            <S.PosterSubTitle>성수지앵XSuperposition 겨울 전시</S.PosterSubTitle>
+            <S.PosterSubTitle>슈퍼포지션 성수 기획전</S.PosterSubTitle>
             <S.More>{`더보기 >`}</S.More>
           </S.PosterSubWrap>
         </S.PosterTitleWrap>
