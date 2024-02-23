@@ -6,7 +6,7 @@ import { QueryClient, dehydrate, useMutation, useQuery } from 'react-query';
 import { ProductDetailProps, ProductType } from '@/interface/product';
 import { patchFormClick, patchView } from '@/api/patchData';
 import { addLike, deleteLike, getUserLike } from '@/api/user';
-import { priceFormatter, seqFormatter } from '@/util/utils';
+import { customNullImg, priceFormatter, seqFormatter } from '@/util/utils';
 import { getCookie } from '@/util/cookie';
 import Portal from '../@Common/Modal';
 import InduceLoginModal from '../@Common/Modal/InduceLogin';
@@ -123,7 +123,7 @@ function ProductDetail({ data, id }: { data: ProductDetailProps; id: string }) {
             <S.AuthorBox>
               <S.AuthorImageWrap>
                 <Image
-                  src={`https://kr.object.ncloudstorage.com/superposition-bucket/${artistInfo.profile}`}
+                  src={customNullImg(artistInfo.profile)}
                   alt="이미지"
                   width={48}
                   height={48}
